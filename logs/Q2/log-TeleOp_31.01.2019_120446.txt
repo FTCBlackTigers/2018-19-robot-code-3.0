@@ -1,0 +1,87 @@
+ Time, Object, Value, Comments 
+8.980233487,leftColorSensor,60.0,searchMineral: SILVER
+9.047242133,rightColorSensor,287.0,searchMineral:SILVER
+9.262201924,leftColorSensor,62.0,searchMineral: SILVER
+9.316225154,rightColorSensor,280.0,searchMineral:SILVER
+9.561490049,leftColorSensor,1724.0,searchMineral: SILVER
+9.614292029,rightColorSensor,278.0,searchMineral:SILVER
+13.474250257,leftColorSensor,2834.0,searchMineral: SILVER
+13.532664683,rightColorSensor,283.0,searchMineral:SILVER
+13.758598589,leftColorSensor,784.0,searchMineral: SILVER
+13.811226037,rightColorSensor,283.0,searchMineral:SILVER
+14.020548328,leftColorSensor,596.0,searchMineral: SILVER
+14.077260464,rightColorSensor,279.0,searchMineral:SILVER
+14.288593589,leftColorSensor,1746.0,searchMineral: SILVER
+14.3452851,rightColorSensor,277.0,searchMineral:SILVER
+14.561688172,leftColorSensor,2513.0,searchMineral: SILVER
+14.614288329,rightColorSensor,279.0,searchMineral:SILVER
+15.278171349,leftColorSensor,1528.0,searchMineral: SILVER
+15.333899162,rightColorSensor,281.0,searchMineral:SILVER
+29.537254781,leftColorSensor,63.0,searchMineral: SILVER
+29.588267385,rightColorSensor,281.0,searchMineral:SILVER
+29.808702541,leftColorSensor,85.0,searchMineral: SILVER
+29.861707749,rightColorSensor,276.0,searchMineral:SILVER
+30.091518843,leftColorSensor,59.0,searchMineral: SILVER
+30.14421426,rightColorSensor,279.0,searchMineral:SILVER
+30.361649416,leftColorSensor,59.0,searchMineral: SILVER
+30.419692072,rightColorSensor,277.0,searchMineral:SILVER
+30.625485354,leftColorSensor,59.0,searchMineral: SILVER
+30.679645666,rightColorSensor,510.0,searchMineral:SILVER
+30.915277437,leftColorSensor,59.0,searchMineral: SILVER
+30.97146103,rightColorSensor,351.0,searchMineral:SILVER
+31.199878531,leftColorSensor,58.0,searchMineral: SILVER
+31.264806812,rightColorSensor,286.0,searchMineral:SILVER
+31.477236343,leftColorSensor,85.0,searchMineral: SILVER
+31.527784312,rightColorSensor,281.0,searchMineral:SILVER
+32.188259572,leftColorSensor,59.0,searchMineral: SILVER
+32.24427353,rightColorSensor,275.0,searchMineral:SILVER
+32.63825478,leftColorSensor,60.0,searchMineral: SILVER
+32.692185561,rightColorSensor,281.0,searchMineral:SILVER
+32.908265613,leftColorSensor,60.0,searchMineral: SILVER
+32.961482175,rightColorSensor,289.0,searchMineral:SILVER
+33.19616129,leftColorSensor,60.0,searchMineral: SILVER
+33.250217175,rightColorSensor,2054.0,searchMineral:SILVER
+34.345283738,leftColorSensor,60.0,searchMineral: SILVER
+34.395153374,rightColorSensor,2280.0,searchMineral:SILVER
+34.575241758,leftColorSensor,59.0,searchMineral: SILVER
+34.626720352,rightColorSensor,1632.0,searchMineral:SILVER
+34.876692279,leftColorSensor,95.0,searchMineral: SILVER
+34.93470181,rightColorSensor,1841.0,searchMineral:SILVER
+35.13425504,leftColorSensor,382.0,searchMineral: SILVER
+35.201617383,rightColorSensor,1220.0,searchMineral:SILVER
+35.448177643,leftColorSensor,65.0,searchMineral: SILVER
+35.510170768,rightColorSensor,2057.0,searchMineral:SILVER
+54.50664847,leftColorSensor,63.0,searchMineral: SILVER
+54.575558366,rightColorSensor,281.0,searchMineral:SILVER
+54.788191074,leftColorSensor,62.0,searchMineral: SILVER
+54.844116543,rightColorSensor,277.0,searchMineral:SILVER
+55.112263417,leftColorSensor,73.0,searchMineral: SILVER
+55.174414564,rightColorSensor,277.0,searchMineral:SILVER
+55.368744876,leftColorSensor,72.0,searchMineral: SILVER
+55.421258157,rightColorSensor,275.0,searchMineral:SILVER
+55.652406958,leftColorSensor,63.0,searchMineral: SILVER
+55.716216438,rightColorSensor,282.0,searchMineral:SILVER
+55.975619823,leftColorSensor,60.0,searchMineral: SILVER
+56.030265031,rightColorSensor,280.0,searchMineral:SILVER
+56.253287896,leftColorSensor,68.0,searchMineral: SILVER
+56.318501229,rightColorSensor,275.0,searchMineral:SILVER
+56.559184458,leftColorSensor,91.0,searchMineral: SILVER
+56.61222826,rightColorSensor,287.0,searchMineral:SILVER
+56.839501906,leftColorSensor,133.0,searchMineral: SILVER
+56.904172115,rightColorSensor,280.0,searchMineral:SILVER
+57.13221227,leftColorSensor,101.0,searchMineral: SILVER
+57.181152687,rightColorSensor,274.0,searchMineral:SILVER
+59.844663155,leftColorSensor,60.0,searchMineral: SILVER
+59.899524353,rightColorSensor,276.0,searchMineral:SILVER
+60.084279249,leftColorSensor,59.0,searchMineral: SILVER
+60.139225863,rightColorSensor,620.0,searchMineral:SILVER
+60.383278989,leftColorSensor,60.0,searchMineral: SILVER
+60.437188363,rightColorSensor,308.0,searchMineral:SILVER
+60.635267374,leftColorSensor,60.0,searchMineral: SILVER
+60.692573675,rightColorSensor,303.0,searchMineral:SILVER
+60.930585446,leftColorSensor,60.0,searchMineral: SILVER
+60.980153571,rightColorSensor,2270.0,searchMineral:SILVER
+63.049964821,leftColorSensor,59.0,searchMineral: SILVER
+63.116216383,rightColorSensor,493.0,searchMineral:SILVER
+63.336579769,leftColorSensor,59.0,searchMineral: SILVER
+63.390265184,rightColorSensor,2137.0,searchMineral:SILVER

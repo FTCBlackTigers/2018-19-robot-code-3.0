@@ -1,0 +1,232 @@
+ Time, Object, Value, Comments 
+43.896237327,gyro,-0.0,target-7.0
+43.955894046,gyro,-0.0625,target-7.0
+44.027905452,gyro,-0.0625,target-7.0
+44.097426129,gyro,-0.0625,target-7.0
+44.168458681,gyro,-0.1875,target-7.0
+44.236672692,gyro,-0.1875,target-7.0
+44.300395035,gyro,-0.25,target-7.0
+44.375647327,gyro,-0.3125,target-7.0
+44.462659097,gyro,-0.5,target-7.0
+44.532301337,gyro,-0.6875,target-7.0
+44.625142223,gyro,-0.875,target-7.0
+44.695395087,gyro,-1.0625,target-7.0
+44.766460348,gyro,-1.3125,target-7.0
+44.836514358,gyro,-1.625,target-7.0
+44.906248212,gyro,-2.0625,target-7.0
+44.997159827,gyro,-3.0625,target-7.0
+45.329963472,SamplingSize,0.0,
+45.602378993,SamplingSize,0.0,
+45.774562326,SamplingSize,0.0,
+45.936600764,SamplingSize,0.0,
+46.120331232,SamplingSize,0.0,
+46.258376128,SamplingSize,0.0,
+46.453705868,SamplingSize,2.0,
+46.679334357,gyro,-9.625,target5.0
+46.757298784,gyro,-9.625,target5.0
+46.848653367,gyro,-9.0625,target5.0
+46.913135971,gyro,-8.75,target5.0
+46.971357534,gyro,-8.5625,target5.0
+47.041234565,gyro,-8.125,target5.0
+47.100466596,gyro,-7.6875,target5.0
+47.177076909,gyro,-6.5,target5.0
+47.248456128,gyro,-5.0625,target5.0
+47.317100243,gyro,-3.375,target5.0
+47.385465711,gyro,-1.875,target5.0
+47.450305971,gyro,-0.8125,target5.0
+47.520273315,gyro,-0.0625,target5.0
+47.580319461,gyro,0.375,target5.0
+47.986133003,leftDrive,0.1,target: -130.0
+47.989067534,rightDrive,0.0,target-130.0
+48.000875815,leftDrive,0.2,target: -130.0
+48.004066857,rightDrive,0.0,target-130.0
+48.010101075,leftDrive,0.25,target: -130.0
+48.014160659,rightDrive,-0.1,target-130.0
+48.021471388,leftDrive,-0.1,target: -130.0
+48.025140972,rightDrive,-0.7,target-130.0
+48.039061701,leftDrive,-0.55,target: -130.0
+48.042041909,rightDrive,-1.9,target-130.0
+48.04806493,leftDrive,-0.7,target: -130.0
+48.051045086,rightDrive,-2.3,target-130.0
+48.057564409,leftDrive,-0.9,target: -130.0
+48.063104669,rightDrive,-2.55,target-130.0
+48.0710842,leftDrive,-1.35,target: -130.0
+48.074244409,rightDrive,-2.95,target-130.0
+48.081018471,leftDrive,-1.7,target: -130.0
+48.084461961,rightDrive,-3.35,target-130.0
+48.089128419,leftDrive,-2.05,target: -130.0
+48.096136701,rightDrive,-3.7,target-130.0
+48.104231597,leftDrive,-2.7,target: -130.0
+48.107066024,rightDrive,-4.35,target-130.0
+48.113548783,leftDrive,-3.15,target: -130.0
+48.117030607,rightDrive,-4.9,target-130.0
+48.123064148,leftDrive,-3.7,target: -130.0
+48.131708784,rightDrive,-5.5,target-130.0
+48.138414513,leftDrive,-4.55,target: -130.0
+48.141319669,rightDrive,-6.3,target-130.0
+48.148264565,leftDrive,-5.15,target: -130.0
+48.151592586,rightDrive,-6.95,target-130.0
+48.173253211,leftDrive,-5.85,target: -130.0
+48.177150555,rightDrive,-8.65,target-130.0
+48.185181597,leftDrive,-7.7,target: -130.0
+48.187197638,rightDrive,-9.45,target-130.0
+48.199584357,leftDrive,-8.75,target: -130.0
+48.203353627,rightDrive,-10.6,target-130.0
+48.211229305,leftDrive,-9.7,target: -130.0
+48.214235191,rightDrive,-11.45,target-130.0
+48.220091857,leftDrive,-10.35,target: -130.0
+48.223077742,rightDrive,-12.2,target-130.0
+48.247960607,leftDrive,-12.65,target: -130.0
+48.251472429,rightDrive,-14.65,target-130.0
+48.262274252,leftDrive,-13.7,target: -130.0
+48.266614045,rightDrive,-16.0,target-130.0
+48.273090242,leftDrive,-14.95,target: -130.0
+48.276085399,rightDrive,-16.9,target-130.0
+48.282131336,leftDrive,-15.8,target: -130.0
+48.285113316,rightDrive,-17.8,target-130.0
+48.300564409,leftDrive,-16.65,target: -130.0
+48.303710243,rightDrive,-19.6,target-130.0
+48.309636753,leftDrive,-18.45,target: -130.0
+48.317266544,rightDrive,-20.9,target-130.0
+48.323227013,leftDrive,-19.75,target: -130.0
+48.327714148,rightDrive,-21.9,target-130.0
+48.335357481,leftDrive,-21.05,target: -130.0
+48.338067377,rightDrive,-23.0,target-130.0
+48.344011075,leftDrive,-21.85,target: -130.0
+48.348055293,rightDrive,-23.85,target-130.0
+48.354343731,leftDrive,-22.9,target: -130.0
+48.361700345,rightDrive,-25.0,target-130.0
+48.371138469,leftDrive,-24.6,target: -130.0
+48.374136646,rightDrive,-26.7,target-130.0
+48.380267063,leftDrive,-25.55,target: -130.0
+48.383124823,rightDrive,-27.65,target-130.0
+48.38912774,leftDrive,-26.55,target: -130.0
+48.39578847,rightDrive,-28.6,target-130.0
+48.402581804,leftDrive,-27.85,target: -130.0
+48.406229929,rightDrive,-30.1,target-130.0
+48.412138054,leftDrive,-29.05,target: -130.0
+48.417520815,rightDrive,-31.1,target-130.0
+48.422524043,leftDrive,-30.2,target: -130.0
+48.437111544,rightDrive,-32.8,target-130.0
+48.443115658,leftDrive,-32.4,target: -130.0
+48.44650545,rightDrive,-34.4,target-130.0
+48.4531217,leftDrive,-33.5,target: -130.0
+48.456130033,rightDrive,-35.5,target-130.0
+48.469538992,leftDrive,-35.3,target: -130.0
+48.47340045,rightDrive,-37.4,target-130.0
+48.5061017,leftDrive,-39.5,target: -130.0
+48.509346856,rightDrive,-41.5,target-130.0
+48.515092273,leftDrive,-40.5,target: -130.0
+48.518169669,rightDrive,-42.55,target-130.0
+48.528216648,leftDrive,-41.7,target: -130.0
+48.531453002,rightDrive,-44.1,target-130.0
+48.536551648,leftDrive,-43.05,target: -130.0
+48.540188106,rightDrive,-45.1,target-130.0
+48.544216284,leftDrive,-44.05,target: -130.0
+48.546597013,rightDrive,-45.95,target-130.0
+48.551107273,leftDrive,-44.8,target: -130.0
+48.553138106,rightDrive,-46.7,target-130.0
+48.561433679,leftDrive,-45.65,target: -130.0
+48.570096335,rightDrive,-48.0,target-130.0
+48.577244721,leftDrive,-47.85,target: -130.0
+48.580612637,rightDrive,-49.9,target-130.0
+48.587467637,leftDrive,-48.95,target: -130.0
+48.5917717,rightDrive,-51.3,target-130.0
+48.604106284,leftDrive,-50.95,target: -130.0
+48.607038888,rightDrive,-53.05,target-130.0
+48.613196387,leftDrive,-52.0,target: -130.0
+48.61610696,rightDrive,-54.15,target-130.0
+48.62212321,leftDrive,-53.05,target: -130.0
+48.629333835,rightDrive,-55.2,target-130.0
+48.637541804,leftDrive,-54.9,target: -130.0
+48.641451231,rightDrive,-57.15,target-130.0
+48.649493106,leftDrive,-56.3,target: -130.0
+48.654209096,rightDrive,-58.55,target-130.0
+48.661832533,leftDrive,-57.6,target: -130.0
+48.666405502,rightDrive,-60.2,target-130.0
+48.673089877,leftDrive,-59.1,target: -130.0
+48.676081075,rightDrive,-61.35,target-130.0
+48.682020137,leftDrive,-60.15,target: -130.0
+48.68566894,rightDrive,-62.5,target-130.0
+48.706213367,leftDrive,-63.1,target: -130.0
+48.709321544,rightDrive,-65.45,target-130.0
+48.714326179,leftDrive,-64.1,target: -130.0
+48.717073262,rightDrive,-66.4,target-130.0
+48.723050137,leftDrive,-65.05,target: -130.0
+48.729215137,rightDrive,-67.55,target-130.0
+48.746484669,leftDrive,-67.95,target: -130.0
+48.750446491,rightDrive,-70.35,target-130.0
+48.757856231,leftDrive,-69.25,target: -130.0
+48.771078158,rightDrive,-72.9,target-130.0
+48.77704644,leftDrive,-71.7,target: -130.0
+48.78009821,rightDrive,-74.05,target-130.0
+48.787331596,leftDrive,-72.95,target: -130.0
+48.790513783,rightDrive,-75.35,target-130.0
+48.801398887,leftDrive,-74.65,target: -130.0
+48.805121231,rightDrive,-77.1,target-130.0
+48.81212795,leftDrive,-76.05,target: -130.0
+48.815112429,rightDrive,-78.35,target-130.0
+48.821151543,leftDrive,-77.15,target: -130.0
+48.828342377,rightDrive,-79.55,target-130.0
+48.838474356,leftDrive,-79.3,target: -130.0
+48.842629304,rightDrive,-81.7,target-130.0
+48.850240189,leftDrive,-80.75,target: -130.0
+48.853326856,rightDrive,-83.1,target-130.0
+48.860428314,leftDrive,-82.1,target: -130.0
+48.866317846,rightDrive,-84.7,target-130.0
+48.873072272,leftDrive,-83.65,target: -130.0
+48.876072585,rightDrive,-85.9,target-130.0
+48.882094668,leftDrive,-84.75,target: -130.0
+48.885583054,rightDrive,-87.05,target-130.0
+48.896503731,leftDrive,-86.4,target: -130.0
+48.903412429,rightDrive,-89.3,target-130.0
+48.91147472,leftDrive,-88.3,target: -130.0
+48.914162534,rightDrive,-90.75,target-130.0
+48.920041283,leftDrive,-89.5,target: -130.0
+48.923176752,rightDrive,-91.8,target-130.0
+48.936107273,leftDrive,-91.5,target: -130.0
+48.939553835,rightDrive,-93.85,target-130.0
+48.948143835,leftDrive,-92.95,target: -130.0
+48.953272012,rightDrive,-95.4,target-130.0
+48.969099512,leftDrive,-94.3,target: -130.0
+48.972072689,rightDrive,-97.95,target-130.0
+48.984092794,leftDrive,-97.35,target: -130.0
+48.989162064,rightDrive,-100.1,target-130.0
+49.012053366,leftDrive,-100.75,target: -130.0
+49.015070658,rightDrive,-103.35,target-130.0
+49.021057637,leftDrive,-101.85,target: -130.0
+49.024492169,rightDrive,-104.4,target-130.0
+49.041333158,leftDrive,-104.3,target: -130.0
+49.045273158,rightDrive,-107.0,target-130.0
+49.053192533,leftDrive,-105.85,target: -130.0
+49.056062429,rightDrive,-108.4,target-130.0
+49.066594721,leftDrive,-107.35,target: -130.0
+49.070073575,rightDrive,-110.05,target-130.0
+49.075989825,leftDrive,-108.55,target: -130.0
+49.079068158,rightDrive,-111.1,target-130.0
+49.085512169,leftDrive,-109.65,target: -130.0
+49.101290502,rightDrive,-112.45,target-130.0
+49.108139096,leftDrive,-112.55,target: -130.0
+49.111035762,rightDrive,-115.05,target-130.0
+49.116989252,leftDrive,-113.6,target: -130.0
+49.12003045,rightDrive,-116.15,target-130.0
+49.131397116,leftDrive,-114.7,target: -130.0
+49.135683679,rightDrive,-118.0,target-130.0
+49.143105866,leftDrive,-116.85,target: -130.0
+49.146615815,rightDrive,-119.4,target-130.0
+49.153353939,leftDrive,-118.15,target: -130.0
+49.16824946,rightDrive,-120.9,target-130.0
+49.174035502,leftDrive,-120.8,target: -130.0
+49.177080085,rightDrive,-123.3,target-130.0
+49.183032689,leftDrive,-121.9,target: -130.0
+49.186045815,rightDrive,-124.45,target-130.0
+49.195841023,leftDrive,-123.0,target: -130.0
+49.19924696,rightDrive,-126.15,target-130.0
+49.206329825,leftDrive,-124.8,target: -130.0
+49.209400033,rightDrive,-127.4,target-130.0
+49.218107481,leftDrive,-126.15,target: -130.0
+49.222171022,rightDrive,-128.9,target-130.0
+49.235064721,leftDrive,-127.7,target: -130.0
+49.238101856,rightDrive,-131.0,target-130.0
+49.244041961,leftDrive,-129.5,target: -130.0
+49.247072221,rightDrive,-132.05,target-130.0

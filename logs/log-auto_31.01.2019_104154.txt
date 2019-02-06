@@ -1,0 +1,471 @@
+ Time, Object, Value, Comments 
+20.031830408,gyro,6.0625,target-7.0
+20.144797805,gyro,5.875,target-7.0
+20.22086546,gyro,5.6875,target-7.0
+20.330522856,gyro,5.4375,target-7.0
+20.447284055,gyro,5.125,target-7.0
+20.584834263,gyro,4.0,target-7.0
+20.716772544,gyro,1.8125,target-7.0
+20.810350044,gyro,-0.25,target-7.0
+20.902692232,gyro,-1.75,target-7.0
+20.984862961,gyro,-3.6875,target-7.0
+21.36331796,SamplingSize,0.0,
+21.511255616,SamplingSize,0.0,
+21.736318273,SamplingSize,0.0,
+21.972219679,SamplingSize,0.0,
+22.126379314,SamplingSize,0.0,
+22.329661033,SamplingSize,0.0,
+22.495201918,SamplingSize,0.0,
+22.703607075,SamplingSize,0.0,
+22.892130512,SamplingSize,0.0,
+23.044629835,SamplingSize,0.0,
+23.216744366,SamplingSize,0.0,
+23.416674522,SamplingSize,1.0,
+23.418300824,SamplingObject,977.4747924804688,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=523, top=977, bottom=1092, h: 114.07916, w: 38.905334
+23.614498168,SamplingSize,1.0,
+23.615925981,SamplingObject,978.3497314453125,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=523, top=978, bottom=1091, h: 113.13733, w: 38.584106
+23.760526501,SamplingSize,1.0,
+23.763165825,SamplingObject,978.0535888671875,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=523, top=978, bottom=1092, h: 113.895996, w: 38.842834
+23.955702802,SamplingSize,1.0,
+23.95673301,SamplingObject,978.0809326171875,Recognition(label=Gold Mineral, confidence=0.609, left=485, right=523, top=978, bottom=1091, h: 113.27551, w: 38.631226
+24.178706709,SamplingSize,1.0,
+24.179970042,SamplingObject,978.2828369140625,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=523, top=978, bottom=1092, h: 113.27551, w: 38.631226
+24.404749626,SamplingSize,1.0,
+24.406765355,SamplingObject,978.211181640625,Recognition(label=Gold Mineral, confidence=0.609, left=485, right=523, top=978, bottom=1091, h: 113.27551, w: 38.631226
+24.629104365,SamplingSize,3.0,
+24.632905199,SamplingObject,958.8452758789063,Recognition(label=Silver Mineral, confidence=0.934, left=356, right=521, top=959, bottom=1138, h: 178.70844, w: 164.57715
+24.633687803,SamplingObject,984.7527465820313,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=525, top=985, bottom=1085, h: 99.85272, w: 41.59967
+24.635820511,SamplingObject,278.66412353515625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.23322, w: 132.36838
+24.821543011,SamplingSize,3.0,
+24.822584157,SamplingObject,958.930908203125,Recognition(label=Silver Mineral, confidence=0.934, left=356, right=521, top=959, bottom=1138, h: 178.70837, w: 164.57715
+24.82374947,SamplingObject,984.831298828125,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=525, top=985, bottom=1085, h: 99.85266, w: 41.59967
+24.824696397,SamplingObject,278.78515625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.23315, w: 132.36838
+24.990367802,SamplingSize,3.0,
+24.991319469,SamplingObject,959.2553100585938,Recognition(label=Silver Mineral, confidence=0.934, left=357, right=521, top=959, bottom=1138, h: 178.36542, w: 164.26126
+24.995114365,SamplingObject,985.1130981445313,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=526, top=985, bottom=1085, h: 99.835144, w: 41.592377
+24.996293063,SamplingObject,278.56597900390625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.23322, w: 132.36838
+25.180404261,SamplingSize,3.0,
+25.188322855,SamplingObject,959.3516845703125,Recognition(label=Silver Mineral, confidence=0.934, left=357, right=521, top=959, bottom=1138, h: 178.36536, w: 164.26129
+25.191915979,SamplingObject,985.9791259765625,Recognition(label=Gold Mineral, confidence=0.609, left=485, right=526, top=986, bottom=1085, h: 99.0387, w: 41.26056
+25.193645876,SamplingObject,278.64581298828125,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.23322, w: 132.36838
+25.349594677,SamplingSize,3.0,
+25.35034374,SamplingObject,959.1973266601563,Recognition(label=Silver Mineral, confidence=0.934, left=357, right=521, top=959, bottom=1138, h: 178.36542, w: 164.26126
+25.350943427,SamplingObject,984.1988525390625,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=526, top=984, bottom=1084, h: 100.241455, w: 41.76172
+25.351524261,SamplingObject,278.45635986328125,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=278, bottom=411, h: 132.45447, w: 132.58984
+25.528680823,SamplingSize,3.0,
+25.531143427,SamplingObject,959.04052734375,Recognition(label=Silver Mineral, confidence=0.934, left=357, right=521, top=959, bottom=1138, h: 178.5144, w: 164.3985
+25.532334574,SamplingObject,985.2144775390625,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=526, top=985, bottom=1085, h: 99.538574, w: 41.468872
+25.533360928,SamplingObject,278.61175537109375,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.45447, w: 132.58981
+25.763731657,SamplingSize,3.0,
+25.784184209,SamplingObject,959.23388671875,Recognition(label=Silver Mineral, confidence=0.934, left=357, right=521, top=959, bottom=1138, h: 178.5144, w: 164.3985
+25.785279417,SamplingObject,985.6859130859375,Recognition(label=Gold Mineral, confidence=0.609, left=484, right=526, top=986, bottom=1085, h: 99.14136, w: 41.303375
+25.785952959,SamplingObject,278.60992431640625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.45447, w: 132.58981
+25.99491749,SamplingSize,3.0,
+25.995897386,SamplingObject,986.3739013671875,Recognition(label=Gold Mineral, confidence=0.609, left=485, right=526, top=986, bottom=1085, h: 98.22168, w: 40.920197
+25.996618063,SamplingObject,278.54840087890625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=279, bottom=411, h: 132.45447, w: 132.58984
+25.997291917,SamplingObject,959.212890625,Recognition(label=Silver Mineral, confidence=0.949, left=356, right=526, top=959, bottom=1129, h: 169.32715, w: 169.50046
+26.171253219,SamplingSize,3.0,
+26.17214447,SamplingObject,986.4588623046875,Recognition(label=Gold Mineral, confidence=0.609, left=485, right=526, top=986, bottom=1085, h: 98.22168, w: 40.920197
+26.173199626,SamplingObject,278.3603515625,Recognition(label=Gold Mineral, confidence=0.500, left=350, right=482, top=278, bottom=411, h: 132.44788, w: 132.58313
+26.17396723,SamplingObject,959.0548706054688,Recognition(label=Silver Mineral, confidence=0.949, left=356, right=526, top=959, bottom=1128, h: 169.43207, w: 169.6055
+26.572561603,gyro,-6.5625,target5.0
+26.642351396,gyro,-6.5,target5.0
+26.722200146,gyro,-6.3125,target5.0
+26.805961396,gyro,-6.1875,target5.0
+26.88453676,gyro,-6.0625,target5.0
+26.952010666,gyro,-5.875,target5.0
+27.047839833,gyro,-5.625,target5.0
+27.124513896,gyro,-5.25,target5.0
+27.206262593,gyro,-4.375,target5.0
+27.284017698,gyro,-3.3125,target5.0
+27.376283791,gyro,-1.5,target5.0
+27.465304573,gyro,-0.0625,target5.0
+27.559899885,gyro,1.125,target5.0
+27.998414885,leftDrive,0.7,target: -130.0
+28.003148687,rightDrive,-0.75,target-130.0
+28.013575146,leftDrive,0.8,target: -130.0
+28.018566135,rightDrive,-0.85,target-130.0
+28.039503999,leftDrive,0.9,target: -130.0
+28.044032958,rightDrive,-1.1,target-130.0
+28.053796708,leftDrive,0.4,target: -130.0
+28.067773166,rightDrive,-2.1,target-130.0
+28.078673166,leftDrive,-0.25,target: -130.0
+28.08549926,rightDrive,-2.6,target-130.0
+28.111364989,leftDrive,-1.05,target: -130.0
+28.115963531,rightDrive,-3.55,target-130.0
+28.137027281,leftDrive,-2.2,target: -130.0
+28.140846864,rightDrive,-4.55,target-130.0
+28.149637437,leftDrive,-2.7,target: -130.0
+28.155988375,rightDrive,-5.25,target-130.0
+28.177522749,leftDrive,-4.15,target: -130.0
+28.180930614,rightDrive,-6.65,target-130.0
+28.188976291,leftDrive,-4.85,target: -130.0
+28.198961499,rightDrive,-7.35,target-130.0
+28.214832073,leftDrive,-6.45,target: -130.0
+28.220920093,rightDrive,-9.05,target-130.0
+28.233579781,leftDrive,-7.65,target: -130.0
+28.239854728,rightDrive,-10.3,target-130.0
+28.250393739,leftDrive,-8.8,target: -130.0
+28.255557281,rightDrive,-11.45,target-130.0
+28.265312437,leftDrive,-9.9,target: -130.0
+28.270626187,rightDrive,-12.6,target-130.0
+28.280908114,leftDrive,-11.05,target: -130.0
+28.285893583,rightDrive,-13.85,target-130.0
+28.301814416,leftDrive,-12.3,target: -130.0
+28.30647801,rightDrive,-15.55,target-130.0
+28.320580874,leftDrive,-14.35,target: -130.0
+28.329832333,rightDrive,-17.2,target-130.0
+28.338870926,leftDrive,-15.95,target: -130.0
+28.343239312,rightDrive,-18.7,target-130.0
+28.353558948,leftDrive,-17.15,target: -130.0
+28.358632176,rightDrive,-20.05,target-130.0
+28.374900823,leftDrive,-19.1,target: -130.0
+28.378871708,rightDrive,-22.0,target-130.0
+28.387939676,leftDrive,-20.35,target: -130.0
+28.395376031,rightDrive,-23.25,target-130.0
+28.408049624,leftDrive,-22.2,target: -130.0
+28.412347385,rightDrive,-25.15,target-130.0
+28.419858114,leftDrive,-23.3,target: -130.0
+28.434842593,rightDrive,-26.25,target-130.0
+28.446992802,leftDrive,-25.6,target: -130.0
+28.451031968,rightDrive,-28.95,target-130.0
+28.465420093,leftDrive,-27.7,target: -130.0
+28.47022228,rightDrive,-30.75,target-130.0
+28.488658114,leftDrive,-29.65,target: -130.0
+28.491934989,rightDrive,-33.05,target-130.0
+28.525896135,leftDrive,-33.8,target: -130.0
+28.533254885,rightDrive,-36.95,target-130.0
+28.540868374,leftDrive,-35.5,target: -130.0
+28.545685562,rightDrive,-38.45,target-130.0
+28.556549468,leftDrive,-37.05,target: -130.0
+28.564384364,rightDrive,-40.25,target-130.0
+28.580362905,leftDrive,-39.7,target: -130.0
+28.584848843,rightDrive,-42.7,target-130.0
+28.610994155,leftDrive,-43.15,target: -130.0
+28.616964468,rightDrive,-46.1,target-130.0
+28.632386969,leftDrive,-44.9,target: -130.0
+28.637032176,rightDrive,-48.35,target-130.0
+28.647070562,leftDrive,-46.95,target: -130.0
+28.654490145,rightDrive,-49.95,target-130.0
+28.672526708,leftDrive,-49.15,target: -130.0
+28.679073062,rightDrive,-52.65,target-130.0
+28.690030353,leftDrive,-51.6,target: -130.0
+28.698062749,rightDrive,-54.7,target-130.0
+28.71416952,leftDrive,-54.0,target: -130.0
+28.718337906,rightDrive,-57.4,target-130.0
+28.731527645,leftDrive,-55.75,target: -130.0
+28.735841552,rightDrive,-59.35,target-130.0
+28.74451775,leftDrive,-57.55,target: -130.0
+28.748638843,rightDrive,-60.75,target-130.0
+28.766570822,leftDrive,-59.45,target: -130.0
+28.774477229,rightDrive,-63.25,target-130.0
+28.787546916,leftDrive,-62.05,target: -130.0
+28.791344832,rightDrive,-65.65,target-130.0
+28.804705718,leftDrive,-64.15,target: -130.0
+28.809984989,rightDrive,-67.6,target-130.0
+28.818023999,leftDrive,-65.85,target: -130.0
+28.822138531,rightDrive,-69.15,target-130.0
+28.837718166,leftDrive,-67.95,target: -130.0
+28.841896239,rightDrive,-71.45,target-130.0
+28.850658166,leftDrive,-69.4,target: -130.0
+28.854855979,rightDrive,-72.8,target-130.0
+28.868704624,leftDrive,-71.5,target: -130.0
+28.874680718,rightDrive,-74.95,target-130.0
+28.883897854,leftDrive,-73.2,target: -130.0
+28.886857437,rightDrive,-76.55,target-130.0
+28.900476447,leftDrive,-74.55,target: -130.0
+28.905601968,rightDrive,-78.5,target-130.0
+28.918551655,leftDrive,-77.0,target: -130.0
+28.922987437,rightDrive,-80.7,target-130.0
+28.943744885,leftDrive,-79.65,target: -130.0
+28.952519833,rightDrive,-83.95,target-130.0
+28.968348322,leftDrive,-82.15,target: -130.0
+28.976504677,rightDrive,-86.7,target-130.0
+29.003013687,leftDrive,-86.05,target: -130.0
+29.007853687,rightDrive,-90.3,target-130.0
+29.042547906,leftDrive,-91.25,target: -130.0
+29.045983739,rightDrive,-94.9,target-130.0
+29.05480702,leftDrive,-92.85,target: -130.0
+29.059619364,rightDrive,-96.35,target-130.0
+29.075537072,leftDrive,-94.95,target: -130.0
+29.082911552,rightDrive,-99.1,target-130.0
+29.090749676,leftDrive,-97.0,target: -130.0
+29.095539104,rightDrive,-100.45,target-130.0
+29.110529416,leftDrive,-99.15,target: -130.0
+29.114364885,rightDrive,-102.75,target-130.0
+29.124616239,leftDrive,-100.75,target: -130.0
+29.129196916,rightDrive,-104.35,target-130.0
+29.14554103,leftDrive,-103.1,target: -130.0
+29.150712644,rightDrive,-106.8,target-130.0
+29.159722436,leftDrive,-104.85,target: -130.0
+29.168511498,rightDrive,-108.4,target-130.0
+29.184731653,leftDrive,-107.55,target: -130.0
+29.191392747,rightDrive,-111.5,target-130.0
+29.209418946,leftDrive,-110.35,target: -130.0
+29.215999155,rightDrive,-114.15,target-130.0
+29.234728686,leftDrive,-112.8,target: -130.0
+29.241734936,rightDrive,-117.2,target-130.0
+29.254490353,leftDrive,-115.2,target: -130.0
+29.258464259,rightDrive,-119.2,target-130.0
+29.273040197,leftDrive,-117.35,target: -130.0
+29.278314571,rightDrive,-121.45,target-130.0
+29.286898582,leftDrive,-119.15,target: -130.0
+29.291973842,rightDrive,-123.1,target-130.0
+29.312802905,leftDrive,-121.5,target: -130.0
+29.317548217,rightDrive,-125.9,target-130.0
+29.326222801,leftDrive,-123.65,target: -130.0
+29.334590613,rightDrive,-127.45,target-130.0
+29.348304467,leftDrive,-126.1,target: -130.0
+29.354681395,rightDrive,-130.05,target-130.0
+29.381550352,leftDrive,-130.2,target: -130.0
+29.386826655,rightDrive,-133.9,target-130.0
+29.394897384,leftDrive,-131.6,target: -130.0
+29.410737436,rightDrive,-136.65,target-130.0
+29.423815822,leftDrive,-135.0,target: -130.0
+29.428624676,rightDrive,-138.6,target-130.0
+29.457607124,leftDrive,-138.85,target: -130.0
+29.460798061,rightDrive,-142.55,target-130.0
+29.477936551,leftDrive,-141.0,target: -130.0
+29.485070665,rightDrive,-144.95,target-130.0
+29.516458374,leftDrive,-145.05,target: -130.0
+29.521827696,rightDrive,-149.45,target-130.0
+29.563051499,leftDrive,-150.85,target: -130.0
+29.570064988,rightDrive,-154.95,target-130.0
+29.582003686,leftDrive,-152.85,target: -130.0
+29.589264363,rightDrive,-157.3,target-130.0
+29.603942072,leftDrive,-154.9,target: -130.0
+29.608906446,rightDrive,-159.75,target-130.0
+29.620573946,leftDrive,-157.35,target: -130.0
+29.626485561,rightDrive,-161.75,target-130.0
+29.642012123,leftDrive,-159.85,target: -130.0
+29.646632749,rightDrive,-164.2,target-130.0
+29.655717592,leftDrive,-161.45,target: -130.0
+29.660820769,rightDrive,-165.85,target-130.0
+29.674711499,leftDrive,-163.55,target: -130.0
+29.684251759,rightDrive,-168.25,target-130.0
+29.693754363,leftDrive,-165.85,target: -130.0
+29.711772071,rightDrive,-170.3,target-130.0
+29.728582123,leftDrive,-169.85,target: -130.0
+29.738715405,rightDrive,-174.1,target-130.0
+29.751047019,leftDrive,-172.4,target: -130.0
+29.755260509,rightDrive,-176.7,target-130.0
+29.770377853,leftDrive,-174.0,target: -130.0
+29.781864102,rightDrive,-179.65,target-130.0
+29.794748374,leftDrive,-177.35,target: -130.0
+29.815522749,rightDrive,-181.8,target-130.0
+29.828524571,leftDrive,-181.1,target: -130.0
+29.842531811,rightDrive,-185.85,target-130.0
+29.856503165,leftDrive,-184.55,target: -130.0
+29.861980457,rightDrive,-189.15,target-130.0
+29.877025353,leftDrive,-186.85,target: -130.0
+29.884137072,rightDrive,-191.65,target-130.0
+29.90847754,leftDrive,-189.25,target: -130.0
+29.916505769,rightDrive,-195.25,target-130.0
+29.926799519,leftDrive,-192.5,target: -130.0
+29.936352384,rightDrive,-197.05,target-130.0
+29.943984676,leftDrive,-194.45,target: -130.0
+29.949046707,rightDrive,-198.9,target-130.0
+29.959691655,leftDrive,-196.25,target: -130.0
+29.966449519,rightDrive,-200.7,target-130.0
+29.98281228,leftDrive,-199.0,target: -130.0
+29.987022905,rightDrive,-203.35,target-130.0
+29.99630353,leftDrive,-200.35,target: -130.0
+30.009453321,rightDrive,-205.65,target-130.0
+30.036219259,leftDrive,-202.35,target: -130.0
+30.040345196,rightDrive,-208.05,target-130.0
+30.081256967,leftDrive,-203.25,target: -130.0
+30.08555228,rightDrive,-209.55,target-130.0
+30.093939624,leftDrive,-203.25,target: -130.0
+30.104743009,rightDrive,-209.75,target-130.0
+30.120124311,leftDrive,-203.3,target: -130.0
+30.124125718,rightDrive,-209.75,target-130.0
+30.137169832,leftDrive,-203.35,target: -130.0
+30.14143504,rightDrive,-209.75,target-130.0
+30.151889311,leftDrive,-203.35,target: -130.0
+30.157527124,rightDrive,-209.75,target-130.0
+30.170997957,leftDrive,-203.35,target: -130.0
+30.180357332,rightDrive,-209.75,target-130.0
+30.188944884,leftDrive,-203.35,target: -130.0
+30.193006759,rightDrive,-209.75,target-130.0
+30.215238738,leftDrive,-203.35,target: -130.0
+30.219792071,rightDrive,-209.75,target-130.0
+30.231388165,leftDrive,-203.35,target: -130.0
+30.244967749,rightDrive,-209.75,target-130.0
+30.25404004,leftDrive,-203.4,target: -130.0
+30.259776342,rightDrive,-209.75,target-130.0
+30.289577019,leftDrive,-203.5,target: -130.0
+30.293847801,rightDrive,-209.8,target-130.0
+30.313425561,leftDrive,-203.55,target: -130.0
+30.318492592,rightDrive,-209.8,target-130.0
+30.32789879,leftDrive,-203.55,target: -130.0
+30.336442592,rightDrive,-209.8,target-130.0
+30.347011394,leftDrive,-203.55,target: -130.0
+30.351662384,rightDrive,-209.8,target-130.0
+30.359967852,leftDrive,-203.55,target: -130.0
+30.362985405,rightDrive,-209.8,target-130.0
+30.377203999,leftDrive,-203.55,target: -130.0
+30.381022748,rightDrive,-209.8,target-130.0
+30.388817853,leftDrive,-203.55,target: -130.0
+30.394095509,rightDrive,-209.8,target-130.0
+30.408366863,leftDrive,-203.55,target: -130.0
+30.413348895,rightDrive,-209.8,target-130.0
+30.421963217,leftDrive,-203.55,target: -130.0
+30.425930509,rightDrive,-209.8,target-130.0
+30.443698895,leftDrive,-203.55,target: -130.0
+30.448561863,rightDrive,-209.8,target-130.0
+30.456937905,leftDrive,-203.55,target: -130.0
+30.46092405,rightDrive,-209.8,target-130.0
+30.472335926,leftDrive,-203.55,target: -130.0
+30.475900769,rightDrive,-209.8,target-130.0
+30.487627905,leftDrive,-203.55,target: -130.0
+30.492946499,rightDrive,-209.8,target-130.0
+30.512621707,leftDrive,-203.6,target: -130.0
+30.516844884,rightDrive,-209.85,target-130.0
+30.536564363,leftDrive,-203.6,target: -130.0
+30.543516863,rightDrive,-209.85,target-130.0
+30.553376343,leftDrive,-203.6,target: -130.0
+30.557662853,rightDrive,-209.85,target-130.0
+30.592729416,leftDrive,-203.6,target: -130.0
+30.599342696,rightDrive,-209.85,target-130.0
+30.615080405,leftDrive,-203.6,target: -130.0
+30.62013504,rightDrive,-209.85,target-130.0
+30.628752175,leftDrive,-203.6,target: -130.0
+30.636047749,rightDrive,-209.85,target-130.0
+30.652354676,leftDrive,-203.6,target: -130.0
+30.657963582,rightDrive,-209.85,target-130.0
+30.669050769,leftDrive,-203.6,target: -130.0
+30.672880926,rightDrive,-209.85,target-130.0
+30.681992019,leftDrive,-203.6,target: -130.0
+30.6893453,rightDrive,-209.85,target-130.0
+30.71591004,leftDrive,-203.6,target: -130.0
+30.720280613,rightDrive,-209.85,target-130.0
+30.728864363,leftDrive,-203.6,target: -130.0
+30.738068634,rightDrive,-209.85,target-130.0
+30.751888529,leftDrive,-203.65,target: -130.0
+30.75683754,rightDrive,-209.85,target-130.0
+30.773958634,leftDrive,-203.65,target: -130.0
+30.780724831,rightDrive,-209.85,target-130.0
+30.790006602,leftDrive,-203.65,target: -130.0
+30.793864051,rightDrive,-209.85,target-130.0
+30.813488374,leftDrive,-203.65,target: -130.0
+30.81887853,rightDrive,-209.85,target-130.0
+30.827909467,leftDrive,-203.65,target: -130.0
+30.835765301,rightDrive,-209.85,target-130.0
+30.845970301,leftDrive,-203.65,target: -130.0
+30.849919154,rightDrive,-209.85,target-130.0
+30.857944467,leftDrive,-203.65,target: -130.0
+30.862154572,rightDrive,-209.85,target-130.0
+30.884787592,leftDrive,-203.65,target: -130.0
+30.889802123,rightDrive,-209.85,target-130.0
+30.900814311,leftDrive,-203.65,target: -130.0
+30.913354936,rightDrive,-209.85,target-130.0
+30.921947383,leftDrive,-203.65,target: -130.0
+30.926176759,rightDrive,-209.85,target-130.0
+30.943199207,leftDrive,-203.65,target: -130.0
+30.947299207,rightDrive,-209.85,target-130.0
+30.954752853,leftDrive,-203.65,target: -130.0
+30.957833165,rightDrive,-209.85,target-130.0
+30.975795509,leftDrive,-203.65,target: -130.0
+30.982999676,rightDrive,-209.85,target-130.0
+30.994370978,leftDrive,-203.65,target: -130.0
+31.002707436,rightDrive,-209.85,target-130.0
+31.014349676,leftDrive,-203.65,target: -130.0
+31.019330457,rightDrive,-209.85,target-130.0
+31.027970248,leftDrive,-203.65,target: -130.0
+31.034535092,rightDrive,-209.85,target-130.0
+31.061792123,leftDrive,-203.65,target: -130.0
+31.069962331,rightDrive,-209.85,target-130.0
+31.106294259,leftDrive,-203.65,target: -130.0
+31.111854102,rightDrive,-209.85,target-130.0
+31.123021551,leftDrive,-203.65,target: -130.0
+31.1275678,rightDrive,-209.85,target-130.0
+31.14505353,leftDrive,-203.65,target: -130.0
+31.152415457,rightDrive,-209.85,target-130.0
+31.161814988,leftDrive,-203.65,target: -130.0
+31.174195561,rightDrive,-209.85,target-130.0
+31.18892155,leftDrive,-203.6,target: -130.0
+31.196356863,rightDrive,-209.9,target-130.0
+31.224945978,leftDrive,-202.65,target: -130.0
+31.228814363,rightDrive,-209.9,target-130.0
+31.243576134,leftDrive,-202.1,target: -130.0
+31.248602227,rightDrive,-209.25,target-130.0
+31.258575405,leftDrive,-200.95,target: -130.0
+31.262955353,rightDrive,-208.05,target-130.0
+31.273890613,leftDrive,-199.8,target: -130.0
+31.277745092,rightDrive,-207.2,target-130.0
+31.288628582,leftDrive,-199.15,target: -130.0
+31.29338702,rightDrive,-206.5,target-130.0
+31.308452905,leftDrive,-198.35,target: -130.0
+31.313019103,rightDrive,-205.5,target-130.0
+31.322797853,leftDrive,-197.6,target: -130.0
+31.327609311,rightDrive,-204.7,target-130.0
+31.343371186,leftDrive,-196.6,target: -130.0
+31.348001655,rightDrive,-203.45,target-130.0
+31.356002384,leftDrive,-195.75,target: -130.0
+31.361877852,rightDrive,-202.65,target-130.0
+31.381437748,leftDrive,-194.2,target: -130.0
+31.386075769,rightDrive,-201.05,target-130.0
+31.393642697,leftDrive,-193.3,target: -130.0
+31.402361395,rightDrive,-200.2,target-130.0
+31.41286879,leftDrive,-192.0,target: -130.0
+31.417819623,rightDrive,-198.8,target-130.0
+31.429603009,leftDrive,-190.85,target: -130.0
+31.436604571,rightDrive,-197.4,target-130.0
+31.459926394,leftDrive,-188.45,target: -130.0
+31.466976394,rightDrive,-195.25,target-130.0
+31.482203738,leftDrive,-186.85,target: -130.0
+31.490474883,rightDrive,-193.4,target-130.0
+31.506237905,leftDrive,-185.4,target: -130.0
+31.509915144,rightDrive,-191.25,target-130.0
+31.524606967,leftDrive,-183.05,target: -130.0
+31.528161707,rightDrive,-189.55,target-130.0
+31.54677228,leftDrive,-181.25,target: -130.0
+31.55131556,rightDrive,-187.45,target-130.0
+31.579179936,leftDrive,-178.25,target: -130.0
+31.586357228,rightDrive,-184.25,target-130.0
+31.599377904,leftDrive,-176.4,target: -130.0
+31.604302332,rightDrive,-182.4,target-130.0
+31.612343634,leftDrive,-174.95,target: -130.0
+31.615839467,rightDrive,-181.15,target-130.0
+31.644532124,leftDrive,-173.6,target: -130.0
+31.6493928,rightDrive,-177.85,target-130.0
+31.658760352,leftDrive,-170.3,target: -130.0
+31.668650404,rightDrive,-176.45,target-130.0
+31.681440821,leftDrive,-168.2,target: -130.0
+31.68742754,rightDrive,-174.15,target-130.0
+31.702867124,leftDrive,-166.45,target: -130.0
+31.709929571,rightDrive,-171.75,target-130.0
+31.7525103,leftDrive,-160.75,target: -130.0
+31.755922383,rightDrive,-166.8,target-130.0
+31.770406497,leftDrive,-159.5,target: -130.0
+31.776366237,rightDrive,-164.7,target-130.0
+31.791298684,leftDrive,-156.65,target: -130.0
+31.795835559,rightDrive,-162.5,target-130.0
+31.813998736,leftDrive,-154.1,target: -130.0
+31.81833259,rightDrive,-160.15,target-130.0
+31.827765872,leftDrive,-152.75,target: -130.0
+31.836711654,rightDrive,-158.55,target-130.0
+31.854337175,leftDrive,-150.45,target: -130.0
+31.858074102,rightDrive,-155.6,target-130.0
+31.873887123,leftDrive,-147.8,target: -130.0
+31.88095681,rightDrive,-153.35,target-130.0
+31.891439102,leftDrive,-145.9,target: -130.0
+31.896417435,rightDrive,-151.4,target-130.0
+31.912462956,leftDrive,-143.85,target: -130.0
+31.91703405,rightDrive,-149.1,target-130.0
+31.926575716,leftDrive,-142.2,target: -130.0
+31.936360456,rightDrive,-147.5,target-130.0
+31.947042227,leftDrive,-139.9,target: -130.0
+31.950965508,rightDrive,-145.35,target-130.0
+31.95991681,leftDrive,-138.55,target: -130.0
+31.97038707,rightDrive,-143.85,target-130.0
+31.984496654,leftDrive,-135.85,target: -130.0
+31.989938372,rightDrive,-141.15,target-130.0
+32.001366602,leftDrive,-134.4,target: -130.0
+32.005548217,rightDrive,-139.3,target-130.0
+32.012936654,leftDrive,-132.75,target: -130.0
+32.016749206,rightDrive,-138.05,target-130.0
+32.026888373,leftDrive,-131.3,target: -130.0
+32.039617487,rightDrive,-136.4,target-130.0
+32.048907487,leftDrive,-128.8,target: -130.0
+32.053931446,rightDrive,-134.05,target-130.0

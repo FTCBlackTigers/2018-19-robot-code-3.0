@@ -1,0 +1,259 @@
+ Time, Object, Value, Comments 
+22.234497284,gyro,8.375,target-7.0
+22.323391085,gyro,8.1875,target-7.0
+22.410259106,gyro,8.0,target-7.0
+22.494020304,gyro,7.8125,target-7.0
+22.585664002,gyro,7.5,target-7.0
+22.665642648,gyro,6.8125,target-7.0
+22.787671242,gyro,5.375,target-7.0
+22.8580452,gyro,3.9375,target-7.0
+22.952732387,gyro,2.0,target-7.0
+23.041465668,gyro,-0.4375,target-7.0
+23.134056659,gyro,-3.25,target-7.0
+23.219162127,gyro,-5.125,target-7.0
+23.577943481,SamplingSize,0.0,
+23.83391619,SamplingSize,0.0,
+24.036696137,SamplingSize,0.0,
+24.167124781,SamplingSize,0.0,
+24.377072126,SamplingSize,0.0,
+24.574236033,SamplingSize,0.0,
+24.704769262,SamplingSize,0.0,
+24.898703116,SamplingSize,0.0,
+25.106793845,SamplingSize,0.0,
+25.352614782,SamplingSize,3.0,
+25.363980355,SamplingObject,349.06878662109375,Recognition(label=Gold Mineral, confidence=0.957, left=358, right=460, top=349, bottom=475, h: 125.91724, w: 102.22952
+25.364941762,SamplingObject,998.2791748046875,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=998, bottom=1177, h: 178.71228, w: 153.95825
+25.365778637,SamplingObject,997.8728637695313,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=998, bottom=1108, h: 110.227234, w: 44.41516
+25.519659053,SamplingSize,3.0,
+25.520458115,SamplingObject,348.99163818359375,Recognition(label=Gold Mineral, confidence=0.957, left=358, right=460, top=349, bottom=475, h: 125.9173, w: 102.22952
+25.526116189,SamplingObject,998.43701171875,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=998, bottom=1177, h: 178.71228, w: 153.95825
+25.527336241,SamplingObject,998.0526123046875,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=998, bottom=1108, h: 110.18347, w: 44.397522
+25.767502022,SamplingSize,3.0,
+25.768543636,SamplingObject,349.07440185546875,Recognition(label=Gold Mineral, confidence=0.957, left=358, right=460, top=349, bottom=475, h: 125.72522, w: 102.07367
+25.770018115,SamplingObject,998.43896484375,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=998, bottom=1177, h: 178.57935, w: 153.84372
+25.771512334,SamplingObject,998.3873291015625,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=998, bottom=1108, h: 109.84619, w: 44.261627
+25.935944887,SamplingSize,3.0,
+25.936699157,SamplingObject,348.94427490234375,Recognition(label=Gold Mineral, confidence=0.957, left=357, right=459, top=349, bottom=475, h: 125.72522, w: 102.0737
+25.937248584,SamplingObject,998.5106811523438,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.5794, w: 153.84372
+25.937764313,SamplingObject,998.6494140625,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1108, h: 109.82202, w: 44.251953
+26.133611448,SamplingSize,3.0,
+26.135128741,SamplingObject,348.8182373046875,Recognition(label=Gold Mineral, confidence=0.957, left=357, right=459, top=349, bottom=475, h: 125.72528, w: 102.0737
+26.146447647,SamplingObject,998.7626953125,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.68848, w: 153.93768
+26.151897698,SamplingObject,998.96630859375,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1109, h: 109.87732, w: 44.2742
+26.339081553,SamplingSize,3.0,
+26.339802647,SamplingObject,348.7591552734375,Recognition(label=Gold Mineral, confidence=0.957, left=357, right=459, top=349, bottom=474, h: 125.72522, w: 102.0737
+26.344365616,SamplingObject,998.64404296875,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.68848, w: 153.93771
+26.345252855,SamplingObject,998.67919921875,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1109, h: 109.87744, w: 44.2742
+26.549545042,SamplingSize,3.0,
+26.551370303,SamplingObject,998.6570434570313,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.64117, w: 153.897
+26.552571032,SamplingObject,998.8992309570313,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1109, h: 109.87738, w: 44.27417
+26.556238689,SamplingObject,339.89202880859375,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=456, h: 115.81604, w: 105.67398
+26.721987803,SamplingSize,3.0,
+26.722732959,SamplingObject,998.6112060546875,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.64111, w: 153.897
+26.729584156,SamplingObject,999.4737548828125,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=522, top=999, bottom=1109, h: 109.87732, w: 44.27417
+26.73044551,SamplingObject,339.87799072265625,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=455, h: 115.37323, w: 105.27008
+26.885541136,SamplingSize,3.0,
+26.890463948,SamplingObject,998.510986328125,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.7201, w: 153.965
+26.898164208,SamplingObject,999.0595703125,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=522, top=999, bottom=1109, h: 110.142334, w: 44.38098
+26.899056344,SamplingObject,340.0037841796875,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=455, h: 115.37323, w: 105.27005
+27.077508063,SamplingSize,3.0,
+27.080394312,SamplingObject,998.5645751953125,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.7201, w: 153.965
+27.084451813,SamplingObject,999.034423828125,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1109, h: 110.14221, w: 44.38098
+27.087402698,SamplingObject,339.6793212890625,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=455, h: 115.37329, w: 105.27005
+27.296355563,SamplingSize,3.0,
+27.297223844,SamplingObject,998.60400390625,Recognition(label=Silver Mineral, confidence=0.883, left=354, right=508, top=999, bottom=1177, h: 178.69849, w: 153.94641
+27.297744313,SamplingObject,999.3114013671875,Recognition(label=Gold Mineral, confidence=0.660, left=477, right=521, top=999, bottom=1109, h: 110.14221, w: 44.38095
+27.298239729,SamplingObject,339.86602783203125,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=455, h: 115.37329, w: 105.27005
+27.529930614,SamplingSize,3.0,
+27.530842073,SamplingObject,340.06182861328125,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=461, top=340, bottom=456, h: 115.743774, w: 105.608154
+27.531504781,SamplingObject,996.532958984375,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=997, bottom=1181, h: 184.82056, w: 156.58661
+27.532391239,SamplingObject,998.3447265625,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=998, bottom=1105, h: 106.67053, w: 42.982025
+27.69556775,SamplingSize,3.0,
+27.698678115,SamplingObject,340.04425048828125,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=462, top=340, bottom=457, h: 116.51599, w: 106.31268
+27.708034104,SamplingObject,996.3884887695313,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=996, bottom=1181, h: 185.06708, w: 156.7955
+27.708652281,SamplingObject,997.921875,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=998, bottom=1105, h: 106.722046, w: 43.002808
+27.871965614,SamplingSize,3.0,
+27.872974312,SamplingObject,340.00665283203125,Recognition(label=Gold Mineral, confidence=0.445, left=355, right=462, top=340, bottom=457, h: 116.51593, w: 106.31268
+27.873924625,SamplingObject,996.3668823242188,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=996, bottom=1181, h: 185.06708, w: 156.7955
+27.874623479,SamplingObject,998.50244140625,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=999, bottom=1105, h: 106.69873, w: 42.99344
+28.061271656,SamplingSize,3.0,
+28.062557385,SamplingObject,340.01226806640625,Recognition(label=Gold Mineral, confidence=0.445, left=356, right=462, top=340, bottom=457, h: 116.51593, w: 106.31268
+28.064837802,SamplingObject,996.2666015625,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=996, bottom=1181, h: 185.15308, w: 156.86838
+28.065532438,SamplingObject,998.4432373046875,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=998, bottom=1105, h: 106.69885, w: 42.99344
+28.241461864,SamplingSize,3.0,
+28.24753426,SamplingObject,339.99359130859375,Recognition(label=Gold Mineral, confidence=0.445, left=355, right=461, top=340, bottom=457, h: 116.51593, w: 106.31268
+28.248603844,SamplingObject,996.211669921875,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=996, bottom=1181, h: 185.1532, w: 156.86838
+28.250489052,SamplingObject,997.6756591796875,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=998, bottom=1104, h: 106.69885, w: 42.99344
+28.415898375,SamplingSize,3.0,
+28.437863115,SamplingObject,340.02813720703125,Recognition(label=Gold Mineral, confidence=0.445, left=355, right=461, top=340, bottom=457, h: 116.51593, w: 106.31268
+28.438427854,SamplingObject,996.171875,Recognition(label=Silver Mineral, confidence=0.883, left=355, right=512, top=996, bottom=1181, h: 185.15308, w: 156.86838
+28.438933896,SamplingObject,997.88037109375,Recognition(label=Gold Mineral, confidence=0.660, left=478, right=521, top=998, bottom=1105, h: 107.04639, w: 43.133545
+28.819707906,gyro,-6.1875,target5.0
+28.887725302,gyro,-6.125,target5.0
+28.980636239,gyro,-5.9375,target5.0
+29.054678011,gyro,-5.75,target5.0
+29.148380927,gyro,-5.625,target5.0
+29.218655823,gyro,-5.375,target5.0
+29.302716708,gyro,-5.1875,target5.0
+29.429173478,gyro,-4.6875,target5.0
+29.521016916,gyro,-3.8125,target5.0
+29.595697853,gyro,-2.9375,target5.0
+29.680969363,gyro,-1.4375,target5.0
+29.756252124,gyro,-0.125,target5.0
+29.829650509,gyro,1.375,target5.0
+30.238277749,leftDrive,0.4,target: -130.0
+30.241548686,rightDrive,-0.15,target-130.0
+30.252198947,leftDrive,0.55,target: -130.0
+30.261689832,rightDrive,-0.2,target-130.0
+30.271702436,leftDrive,0.3,target: -130.0
+30.275541239,rightDrive,-1.1,target-130.0
+30.28341103,leftDrive,0.1,target: -130.0
+30.287412749,rightDrive,-1.8,target-130.0
+30.301934676,leftDrive,-0.2,target: -130.0
+30.306124572,rightDrive,-2.25,target-130.0
+30.315677124,leftDrive,-0.6,target: -130.0
+30.319650405,rightDrive,-2.65,target-130.0
+30.334447541,leftDrive,-1.2,target: -130.0
+30.339042228,rightDrive,-3.3,target-130.0
+30.347145457,leftDrive,-1.7,target: -130.0
+30.352075509,rightDrive,-3.85,target-130.0
+30.371295249,leftDrive,-2.75,target: -130.0
+30.375620249,rightDrive,-5.0,target-130.0
+30.382996134,leftDrive,-3.35,target: -130.0
+30.386610666,rightDrive,-5.6,target-130.0
+30.398617697,leftDrive,-4.2,target: -130.0
+30.406444572,rightDrive,-6.65,target-130.0
+30.41772952,leftDrive,-5.35,target: -130.0
+30.432481551,rightDrive,-7.7,target-130.0
+30.442622228,leftDrive,-7.0,target: -130.0
+30.446415926,rightDrive,-9.3,target-130.0
+30.460892957,leftDrive,-7.95,target: -130.0
+30.467125249,rightDrive,-10.65,target-130.0
+30.482658842,leftDrive,-9.8,target: -130.0
+30.486589207,rightDrive,-12.3,target-130.0
+30.502644832,leftDrive,-11.35,target: -130.0
+30.507387905,rightDrive,-13.95,target-130.0
+30.517537905,leftDrive,-12.65,target: -130.0
+30.521582697,rightDrive,-15.25,target-130.0
+30.535204676,leftDrive,-14.1,target: -130.0
+30.539626811,rightDrive,-16.8,target-130.0
+30.548085718,leftDrive,-15.25,target: -130.0
+30.552349311,rightDrive,-17.85,target-130.0
+30.567399312,leftDrive,-16.85,target: -130.0
+30.571547332,rightDrive,-19.65,target-130.0
+30.577424937,leftDrive,-17.9,target: -130.0
+30.58044853,rightDrive,-20.45,target-130.0
+30.587358947,leftDrive,-18.75,target: -130.0
+30.598104832,rightDrive,-21.4,target-130.0
+30.608103634,leftDrive,-20.6,target: -130.0
+30.612511551,rightDrive,-23.45,target-130.0
+30.618497957,leftDrive,-21.7,target: -130.0
+30.62264228,rightDrive,-24.4,target-130.0
+30.639573113,leftDrive,-23.7,target: -130.0
+30.644303739,rightDrive,-26.45,target-130.0
+30.654244728,leftDrive,-25.0,target: -130.0
+30.662696134,rightDrive,-27.95,target-130.0
+30.671015197,leftDrive,-26.7,target: -130.0
+30.674479364,rightDrive,-29.5,target-130.0
+30.681349467,leftDrive,-27.75,target: -130.0
+30.684473635,rightDrive,-30.55,target-130.0
+30.697349624,leftDrive,-28.85,target: -130.0
+30.704512801,rightDrive,-32.45,target-130.0
+30.722035249,leftDrive,-31.85,target: -130.0
+30.729024259,rightDrive,-34.8,target-130.0
+30.755227437,leftDrive,-35.35,target: -130.0
+30.764648062,rightDrive,-38.85,target-130.0
+30.772443999,leftDrive,-37.35,target: -130.0
+30.775452645,rightDrive,-40.05,target-130.0
+30.781497072,leftDrive,-38.3,target: -130.0
+30.784560197,rightDrive,-41.0,target-130.0
+30.795582332,leftDrive,-39.4,target: -130.0
+30.799680561,rightDrive,-42.55,target-130.0
+30.812943061,leftDrive,-41.65,target: -130.0
+30.816994103,rightDrive,-44.55,target-130.0
+30.834430614,leftDrive,-43.05,target: -130.0
+30.839624207,rightDrive,-47.05,target-130.0
+30.848405718,leftDrive,-45.4,target: -130.0
+30.852408478,rightDrive,-48.45,target-130.0
+30.867530249,leftDrive,-47.7,target: -130.0
+30.872453894,rightDrive,-50.7,target-130.0
+30.880343895,leftDrive,-49.05,target: -130.0
+30.884410614,rightDrive,-52.0,target-130.0
+30.904862541,leftDrive,-51.45,target: -130.0
+30.909592124,rightDrive,-54.8,target-130.0
+30.918373166,leftDrive,-53.2,target: -130.0
+30.927460457,rightDrive,-56.35,target-130.0
+30.942303269,leftDrive,-55.4,target: -130.0
+30.945746551,rightDrive,-58.95,target-130.0
+30.955184572,leftDrive,-57.2,target: -130.0
+30.968121499,rightDrive,-61.25,target-130.0
+30.978084624,leftDrive,-59.75,target: -130.0
+30.982428478,rightDrive,-63.05,target-130.0
+30.993578478,leftDrive,-61.25,target: -130.0
+30.997621447,rightDrive,-64.85,target-130.0
+31.008739624,leftDrive,-63.35,target: -130.0
+31.012024207,rightDrive,-66.5,target-130.0
+31.022336915,leftDrive,-64.8,target: -130.0
+31.03152728,rightDrive,-68.65,target-130.0
+31.047665145,leftDrive,-67.75,target: -130.0
+31.051978217,rightDrive,-70.95,target-130.0
+31.066343322,leftDrive,-69.65,target: -130.0
+31.073044936,rightDrive,-73.45,target-130.0
+31.083487384,leftDrive,-71.7,target: -130.0
+31.08749478,rightDrive,-75.15,target-130.0
+31.101577228,leftDrive,-73.8,target: -130.0
+31.106625093,rightDrive,-77.3,target-130.0
+31.114591551,leftDrive,-75.45,target: -130.0
+31.118583478,rightDrive,-78.7,target-130.0
+31.13363504,leftDrive,-77.6,target: -130.0
+31.138994624,rightDrive,-80.95,target-130.0
+31.14654577,leftDrive,-79.15,target: -130.0
+31.150417488,rightDrive,-82.4,target-130.0
+31.162560092,leftDrive,-81.0,target: -130.0
+31.16661327,rightDrive,-84.3,target-130.0
+31.179492645,leftDrive,-82.95,target: -130.0
+31.18441551,rightDrive,-86.25,target-130.0
+31.201560769,leftDrive,-85.3,target: -130.0
+31.206277384,rightDrive,-88.85,target-130.0
+31.214600301,leftDrive,-87.05,target: -130.0
+31.218624676,rightDrive,-90.3,target-130.0
+31.260609676,leftDrive,-92.0,target: -130.0
+31.265236239,rightDrive,-95.75,target-130.0
+31.277579624,leftDrive,-94.4,target: -130.0
+31.283199207,rightDrive,-97.85,target-130.0
+31.29755327,leftDrive,-96.55,target: -130.0
+31.302121134,rightDrive,-100.2,target-130.0
+31.309602905,leftDrive,-98.15,target: -130.0
+31.313588738,rightDrive,-101.55,target-130.0
+31.321623478,leftDrive,-99.55,target: -130.0
+31.331652436,rightDrive,-103.65,target-130.0
+31.342202957,leftDrive,-101.8,target: -130.0
+31.347389364,rightDrive,-105.45,target-130.0
+31.362209415,leftDrive,-103.45,target: -130.0
+31.36865327,rightDrive,-107.8,target-130.0
+31.376464364,leftDrive,-105.8,target: -130.0
+31.380651707,rightDrive,-109.4,target-130.0
+31.395842385,leftDrive,-107.4,target: -130.0
+31.399933217,rightDrive,-111.75,target-130.0
+31.407523114,leftDrive,-109.35,target: -130.0
+31.411576915,rightDrive,-113.05,target-130.0
+31.419518999,leftDrive,-110.75,target: -130.0
+31.428548374,rightDrive,-114.35,target-130.0
+31.44502103,leftDrive,-113.65,target: -130.0
+31.450590144,rightDrive,-117.35,target-130.0
+31.467618322,leftDrive,-116.1,target: -130.0
+31.472578269,rightDrive,-120.15,target-130.0
+31.480707228,leftDrive,-117.9,target: -130.0
+31.484721812,rightDrive,-121.45,target-130.0
+31.498003113,leftDrive,-119.8,target: -130.0
+31.503349988,rightDrive,-123.6,target-130.0
+31.514034937,leftDrive,-121.6,target: -130.0
+31.517477801,rightDrive,-125.35,target-130.0
+31.533340509,leftDrive,-123.85,target: -130.0
+31.53799202,rightDrive,-127.7,target-130.0
+31.548161395,leftDrive,-125.8,target: -130.0
+31.553244311,rightDrive,-129.4,target-130.0
+31.570242332,leftDrive,-128.35,target: -130.0
+31.573874572,rightDrive,-131.95,target-130.0
+31.582457905,leftDrive,-129.8,target: -130.0
+31.586362749,rightDrive,-133.35,target-130.0

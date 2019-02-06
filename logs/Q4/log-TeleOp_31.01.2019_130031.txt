@@ -1,0 +1,85 @@
+ Time, Object, Value, Comments 
+14.047290306,leftColorSensor,61.0,searchMineral: GOLD
+14.101298536,rightColorSensor,280.0,searchMineral:GOLD
+14.362264786,leftColorSensor,60.0,searchMineral: GOLD
+14.417284786,rightColorSensor,2143.0,searchMineral:GOLD
+14.646298796,leftColorSensor,456.0,searchMineral: GOLD
+14.708511922,rightColorSensor,288.0,searchMineral:GOLD
+14.931309734,leftColorSensor,344.0,searchMineral: GOLD
+14.985763223,rightColorSensor,556.0,searchMineral:GOLD
+15.173317963,leftColorSensor,299.0,searchMineral: GOLD
+15.227657702,rightColorSensor,736.0,searchMineral:GOLD
+15.436226921,leftColorSensor,231.0,searchMineral: GOLD
+15.485198796,rightColorSensor,656.0,searchMineral:GOLD
+15.968755307,leftColorSensor,438.0,searchMineral: GOLD
+16.025239161,rightColorSensor,280.0,searchMineral:GOLD
+16.225314681,leftColorSensor,257.0,searchMineral: GOLD
+16.280108432,rightColorSensor,287.0,searchMineral:GOLD
+21.352209211,leftColorSensor,60.0,searchMineral: GOLD
+21.406625096,rightColorSensor,282.0,searchMineral:GOLD
+24.29552473,leftColorSensor,64.0,searchMineral: GOLD
+24.352322856,rightColorSensor,281.0,searchMineral:GOLD
+24.56832223,leftColorSensor,112.0,searchMineral: GOLD
+24.631230772,rightColorSensor,280.0,searchMineral:GOLD
+25.400323376,leftColorSensor,65.0,searchMineral: GOLD
+25.455996396,rightColorSensor,422.0,searchMineral:GOLD
+25.688704157,leftColorSensor,59.0,searchMineral: GOLD
+25.752094313,rightColorSensor,561.0,searchMineral:GOLD
+25.954167334,leftColorSensor,60.0,searchMineral: GOLD
+26.008244157,rightColorSensor,697.0,searchMineral:GOLD
+26.227243792,leftColorSensor,61.0,searchMineral: GOLD
+26.286673167,rightColorSensor,505.0,searchMineral:GOLD
+26.487243479,leftColorSensor,121.0,searchMineral: GOLD
+26.535739104,rightColorSensor,1122.0,searchMineral:GOLD
+26.763283219,leftColorSensor,83.0,searchMineral: GOLD
+26.82857374,rightColorSensor,830.0,searchMineral:GOLD
+27.054664416,leftColorSensor,62.0,searchMineral: GOLD
+27.114443113,rightColorSensor,1120.0,searchMineral:GOLD
+44.233252379,leftColorSensor,63.0,searchMineral: GOLD
+44.288304306,rightColorSensor,279.0,searchMineral:GOLD
+44.518703161,leftColorSensor,137.0,searchMineral: GOLD
+44.581248421,rightColorSensor,276.0,searchMineral:GOLD
+44.806309254,leftColorSensor,75.0,searchMineral: GOLD
+44.856561441,rightColorSensor,281.0,searchMineral:GOLD
+45.049519983,leftColorSensor,60.0,searchMineral: GOLD
+45.109302327,rightColorSensor,277.0,searchMineral:GOLD
+45.29022014,leftColorSensor,62.0,searchMineral: GOLD
+45.339300556,rightColorSensor,278.0,searchMineral:GOLD
+45.509248264,leftColorSensor,1134.0,searchMineral: GOLD
+45.565616909,rightColorSensor,278.0,searchMineral:GOLD
+62.230701956,leftColorSensor,61.0,searchMineral: GOLD
+62.288504456,rightColorSensor,282.0,searchMineral:GOLD
+62.52031732,leftColorSensor,66.0,searchMineral: GOLD
+62.57272883,rightColorSensor,278.0,searchMineral:GOLD
+62.770548049,leftColorSensor,71.0,searchMineral: GOLD
+62.827260653,rightColorSensor,903.0,searchMineral:GOLD
+64.042277163,leftColorSensor,76.0,searchMineral: GOLD
+64.096200808,rightColorSensor,298.0,searchMineral:GOLD
+64.312568673,leftColorSensor,59.0,searchMineral: GOLD
+64.365358048,rightColorSensor,281.0,searchMineral:GOLD
+64.575738621,leftColorSensor,61.0,searchMineral: GOLD
+64.633685808,rightColorSensor,280.0,searchMineral:GOLD
+65.153323933,leftColorSensor,61.0,searchMineral: GOLD
+65.209324767,rightColorSensor,283.0,searchMineral:GOLD
+66.54934987,leftColorSensor,64.0,searchMineral: GOLD
+66.609308516,rightColorSensor,280.0,searchMineral:GOLD
+71.059713671,leftColorSensor,61.0,searchMineral: GOLD
+71.115524869,rightColorSensor,278.0,searchMineral:GOLD
+71.355319869,leftColorSensor,60.0,searchMineral: GOLD
+71.411332421,rightColorSensor,283.0,searchMineral:GOLD
+71.624586222,leftColorSensor,60.0,searchMineral: GOLD
+71.676203616,rightColorSensor,1282.0,searchMineral:GOLD
+71.902210545,leftColorSensor,94.0,searchMineral: GOLD
+71.958780285,rightColorSensor,291.0,searchMineral:GOLD
+72.173307785,leftColorSensor,633.0,searchMineral: GOLD
+72.22996617,rightColorSensor,283.0,searchMineral:GOLD
+93.321330173,leftColorSensor,60.0,searchMineral: GOLD
+93.372314183,rightColorSensor,280.0,searchMineral:GOLD
+93.592324548,leftColorSensor,59.0,searchMineral: GOLD
+93.641307308,rightColorSensor,278.0,searchMineral:GOLD
+93.867510328,leftColorSensor,82.0,searchMineral: GOLD
+93.91533012,rightColorSensor,660.0,searchMineral:GOLD
+94.829526162,leftColorSensor,857.0,searchMineral: GOLD
+94.890259704,rightColorSensor,2183.0,searchMineral:GOLD
+95.266309493,leftColorSensor,86.0,searchMineral: GOLD
+95.321343297,rightColorSensor,1167.0,searchMineral:GOLD
