@@ -39,18 +39,22 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
- * doing Landing, Team Marker and Parking
- * PTS = 50
- * In Case of no Sampling
- * Starting from BlueDepot On The Lander
+ * doing Landing,Sampling and Team Marker
+ * PTS = 70
+ * Starting from Depot On The Lander
  * FIRST Autonomous
  */
 @Autonomous(name = "Depot", group = "Auto")
 public class Depot extends LinearOpMode {
 
-    private Robot robot = new Robot();
-    private ElapsedTime runtime = new ElapsedTime();
-    private LogCreater log = new LogCreater("auto");
+    protected Robot robot = new Robot();
+    protected ElapsedTime runtime = new ElapsedTime();
+    protected LogCreater log = new LogCreater("auto");
+
+    public void endAuto() {
+        robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
+        robot.climbing.moveliftAuto(Climbing.Height.DRIVE_POS);
+    }
 
 
     @Override
@@ -61,10 +65,9 @@ public class Depot extends LinearOpMode {
         robot.climbing.land();
         robot.drive.turnByGyroAbsolut(-7);
         robot.drive.Sampling(Drive.Side.DEPOT);
-        robot.intake.release();
+        robot.intake.injackt();
         sleep(3000);
         robot.intake.stopMotor();
-        robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
-        robot.climbing.moveliftAuto(Climbing.Height.DRIVE_POS);
+        endAuto();
     }
 }

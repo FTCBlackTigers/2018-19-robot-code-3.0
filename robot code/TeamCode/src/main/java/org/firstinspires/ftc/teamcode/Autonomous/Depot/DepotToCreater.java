@@ -46,28 +46,13 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * FIRST Autonomous
  */
 @Autonomous(name = "DepotToCreater", group = "Auto")
-public class DepotToCreater extends LinearOpMode {
-
-  private Robot robot = new Robot();
-  private ElapsedTime runtime = new ElapsedTime();
-  private LogCreater log = new LogCreater("auto");
-
+public class DepotToCreater extends Depot {
 
   @Override
-  public void runOpMode() throws InterruptedException {
-    log.init(this);
-    robot.init(hardwareMap , this, log);
-    waitForStart();
-    robot.climbing.land();
-    robot.drive.turnByGyroAbsolut(-7);
-    robot.drive.Sampling(Drive.Side.DEPOT);
-    robot.intake.release();
-    sleep(3000);
-    robot.intake.stopMotor();
+  public void endAuto() {
     robot.drive.turnByGyroAbsolut(50);
     robot.drive.driveByEncoderUsingPID(200, Drive.Direction.FORWARD);
     robot.drive.turnByGyroAbsolut(50);
     robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
-
-    }
   }
+}

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.RobotSystems;
 
 import android.graphics.Color;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -18,6 +19,7 @@ public class Intake {
     }
 
     private final double COLLECTION_SPEED = 0.8;
+    private final double INJECT_SPEED = 0.5;
     private final double RELEASE_SPEED = 0.5;
     private final double LEFT_SERVO_OPEN_POS = 0.8;
     private final double RIGHT_SERVO_OPEN_POS = 0;
@@ -149,11 +151,11 @@ public class Intake {
     }
 
     public void release(){
-        if (timeToOpenRight == -1) {
+        if(timeToOpenRight == -1) {
             timeToOpenRight = opMode.getRuntime();
         }
         openLeftGate();
-        if (timeToOpenRight + 1 <= opMode.getRuntime()) {
+        if(opMode.getRuntime() >= timeToOpenRight + 1) {
             openRightGate();
         }
         collectMotor.setPower(RELEASE_SPEED);

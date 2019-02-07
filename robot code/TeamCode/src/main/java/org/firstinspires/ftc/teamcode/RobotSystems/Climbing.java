@@ -19,7 +19,8 @@ public class Climbing {
         DOWN(10),
         DRIVE_POS(30),
         COLLECT(150),
-        LAND(52),
+        LAND(50),
+        LANDFINAL(60),
         GO_TO_CLIMB(50),
         CLIMB(30),
         PUT(50);
@@ -38,7 +39,7 @@ public class Climbing {
     public enum Height {
         DRIVE_POS(0),
         COLLECT(20),
-        LAND(24),
+        LAND(30),
         GO_TO_CLIMB(24),
         CLIMB(10),
         PUT(31);
@@ -60,10 +61,10 @@ public class Climbing {
     private final double HANG_CLOSE_POS = 0;
     private final double ANGLE_SPEED = 1;
 
-    private DcMotor liftMotor;
+    public DcMotor liftMotor;
     private Servo hangServo;
-    private DcMotor angleMotorLeft;
-    private DcMotor angleMotorRight;
+    public DcMotor angleMotorLeft;
+    public DcMotor angleMotorRight;
     private OpMode opMode;
     private DigitalChannel liftTouch;
     private DigitalChannel angleTouch;
@@ -306,7 +307,8 @@ public class Climbing {
 
     public void land() {
         moveAngleAuto(Climbing.Angle.LAND);
-        moveliftAuto(Height.LAND);
+        moveliftAuto(Climbing.Height.LAND);
+        moveAngleAuto(Climbing.Angle.LANDFINAL);
         openServo();
         ((LinearOpMode) opMode).sleep(600);
         moveAngleAuto(Angle.DOWN);
