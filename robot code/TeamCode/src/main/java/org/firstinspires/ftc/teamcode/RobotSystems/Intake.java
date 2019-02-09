@@ -14,9 +14,6 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 public class Intake {
-    enum Minerals{
-        GOLD, SILVER, UNKNOWN;
-    }
 
     private final double COLLECTION_SPEED = 0.8;
     private final double INJECT_SPEED = 0.5;
@@ -30,8 +27,6 @@ public class Intake {
 
     private DcMotor collectMotor;
     public Servo leftServo, rightServo;
-    private ColorSensor leftColorSensor, rightColorSensor;
-    private Minerals searchMineral;
 
     private boolean collectModeIsPrevActive;
     private boolean releaseModeIsPrevActive;
@@ -40,10 +35,6 @@ public class Intake {
     private boolean injecktIsActive;
     private boolean injecktIsPrevActive;
     private LogCreater log;
-    private Minerals leftMineral = Minerals.UNKNOWN;
-    private Minerals rightMineral = Minerals.UNKNOWN;
-    private double leftRecognationCounter = 0;
-    private double rightRecognationCounter = 0;
     private double timeToOpenRight = -1;
 
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log){
@@ -57,18 +48,10 @@ public class Intake {
         collectMotor.setPower(0);
         collectMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        leftColorSensor = hardwareMap.get(ColorSensor.class, "leftColorSensor");
-        rightColorSensor = hardwareMap.get(ColorSensor.class, "rightColorSensor");
-        searchMineral = Minerals.GOLD;
-
         leftServo = hardwareMap.get(Servo.class, "leftServo");
         rightServo = hardwareMap.get(Servo.class, "rightServo");
         closeLeftGate();
         closeRightGate();
-        if (leftColorSensor instanceof SwitchableLight && rightColorSensor instanceof SwitchableLight) {
-            ((SwitchableLight) leftColorSensor).enableLight(false);
-            ((SwitchableLight) rightColorSensor).enableLight(false);
-        }
     }
 
     public void teleOpMotion(Gamepad driver, Gamepad operator) {
@@ -97,17 +80,8 @@ public class Intake {
             timeToOpenRight = -1;
         }
 
-        if(operator.y) {
-            setSearchMineral(Minerals.GOLD);
-        }
-
-        if(operator.b) {
-            setSearchMineral(Minerals.SILVER);
-        }
-
         if (injecktIsActive) {
             this.injackt();
-
         }
 
         if(injecktIsPrevActive && !injecktIsActive) {
@@ -120,10 +94,8 @@ public class Intake {
                 .addData("collectMotorPower: ", collectMotor.getPower()+"\n")
                 .addData("rightServoPos: ", rightServo.getPosition())
                 .addData("leftServoPos: ", leftServo.getPosition()+"\n")
-                .addData("search mineral: ", searchMineral+"\n")
                 .addData("releaseModeIsPrevActive: ", releaseModeIsPrevActive)
-                .addData("collectModeIsPrevActive: ", collectModeIsPrevActive +"\n")
-        .addData("leftMineral", leftMineral).addData("rightMineral", rightMineral);
+                .addData("collectModeIsPrevActive: ", collectModeIsPrevActive +"\n");
 
         releaseModeIsPrevActive = releaseModeIsActive;
         collectModeIsPrevActive = collectModeIsActive;
@@ -132,14 +104,10 @@ public class Intake {
 
     private void openLeftGate() {
         leftServo.setPosition(LEFT_SERVO_OPEN_POS);
-        leftMineral = Minerals.UNKNOWN;
-        leftRecognationCounter = 0;
     }
 
     private void openRightGate() {
         rightServo.setPosition(RIGHT_SERVO_OPEN_POS);
-        rightMineral = Minerals.UNKNOWN;
-        rightRecognationCounter = 0;
     }
 
     private void closeLeftGate() {
@@ -155,7 +123,7 @@ public class Intake {
             timeToOpenRight = opMode.getRuntime();
         }
         openLeftGate();
-        if(opMode.getRuntime() >= timeToOpenRight + 1) {
+        if(opMode.getRuntime() >= timeToOpenRight + 0.8) {
             openRightGate();
         }
         collectMotor.setPower(RELEASE_SPEED);
@@ -164,97 +132,18 @@ public class Intake {
 
    public void collect() {
         collectMotor.setPower(COLLECTION_SPEED);
-        this.leftOutput();
-        this.rightOutput();
     }
     public void injackt() {
-        collectMotor.setPower(-COLLECTION_SPEED);
+        collectMotor.setPower(-INJECT_SPEED);
         openRightGate();
         openLeftGate();
     }
-
-    private Minerals getLeftMineral() {
-        float[] hsvValues = new float[3];
-        Color.RGBToHSV(leftColorSensor.red() * 255, leftColorSensor.green() * 255, leftColorSensor.blue()* 255, hsvValues);
-        opMode.telemetry.addLine("leftColorSensor: ").addData("Value: ", hsvValues[2]);
-        if (log != null) {
-            log.writeLog("leftColorSensor", hsvValues[2], "searchMineral: " + searchMineral);
-        }
-
-
-        if(hsvValues[2] >= 700) {
-            return Minerals.SILVER;
-        }
-        if (hsvValues[2] >= 150 && hsvValues[2] <= 400) {
-            return Minerals.GOLD;
-        }
-        return Minerals.UNKNOWN;
-    }
-
-    private Minerals getRightMineral() {
-        float[] hsvValues = new float[3];
-        Color.RGBToHSV(rightColorSensor.red() * 255, rightColorSensor.green() * 255, rightColorSensor.blue()* 255, hsvValues);
-        opMode.telemetry.addLine("rightColorSensor: ").addData("Value: ", hsvValues[2]);
-       if (log != null) {
-           log.writeLog("rightColorSensor", hsvValues[2], "searchMineral:" + searchMineral);
-       }
-
-        if(hsvValues[2] >= 1700) { // 1550
-            return Minerals.SILVER;
-        }
-        if (hsvValues[2] >= 350 && hsvValues[2] <= 800) { // 300, 550
-            return Minerals.GOLD;
-        }
-        return Minerals.UNKNOWN;
-    }
-
-
-    private void leftOutput() {
-        if (leftMineral != searchMineral) {
-            Minerals imat = getLeftMineral();
-            if (imat == Minerals.UNKNOWN) {
-                closeLeftGate();
-            } else if (imat != searchMineral) {
-                openLeftGate();
-            } else {
-                leftRecognationCounter++;
-                if (leftRecognationCounter >= 10) {
-                    leftMineral = searchMineral;
-                }
-
-            }
-        }
-    }
-
-    private void rightOutput() {
-        if (rightMineral != searchMineral) {
-            Minerals imat = getRightMineral();
-            if (imat == Minerals.UNKNOWN) {
-                closeRightGate();
-            } else if (imat != searchMineral) {
-                openRightGate();
-            } else {
-                rightRecognationCounter++;
-                if (rightRecognationCounter >= 10) {
-                    rightMineral = searchMineral;
-                }
-            }
-        }
-    }
-
     public void stopMotor(){
         collectMotor.setPower(0);
         closeRightGate();
         closeLeftGate();
     }
 
-    public void setSearchMineral(Minerals mineral){
-        this.searchMineral = mineral;
-        rightMineral = Minerals.UNKNOWN;
-        leftMineral = Minerals.UNKNOWN;
-        leftRecognationCounter = 0;
-        rightRecognationCounter = 0;
-    }
 
 }
 

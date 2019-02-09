@@ -222,20 +222,20 @@ public class Drive {
             switch (pos) {
                 case LEFT:
                     turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(100, Direction.BACKWARD);
+                    driveByEncoderUsingPID(95, Direction.BACKWARD);
                     turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(50,Direction.BACKWARD);
+                    driveByEncoderUsingPID(45,Direction.BACKWARD);
                     break;
                 case CENTER:
                 case UNKNOWN:
                     turnByGyroAbsolut(5);
-                    driveByEncoderUsingPID(130, Direction.BACKWARD);
+                    driveByEncoderUsingPID(125, Direction.BACKWARD);
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(85, Direction.BACKWARD);
+                    driveByEncoderUsingPID(80, Direction.BACKWARD);
                     turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(50,Direction.BACKWARD);
+                    driveByEncoderUsingPID(45,Direction.BACKWARD);
                     break;
             }
 
