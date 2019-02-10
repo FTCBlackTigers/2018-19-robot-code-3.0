@@ -20,6 +20,8 @@ import java.io.PrintStream;
 import java.util.Date;
 
 public class Robot {
+
+    public boolean initilaized = false;
     public Drive drive = new Drive();
     public Intake intake = new Intake();
     public Climbing climbing = new Climbing();
@@ -33,6 +35,7 @@ public class Robot {
         intake.init(hardwareMap, opMode, log);
         climbing.init(hardwareMap, opMode, log);
         this.opMode = opMode;
+        initilaized = true;
 
     }
 
@@ -56,4 +59,17 @@ public class Robot {
 
     }
 
+    public void setOpMode(OpMode opMode) {
+        this.opMode = opMode;
+        this.climbing.setOpMode(opMode);
+        this.drive.setOpMode(opMode);
+        this.intake.setOpMode(opMode);
+    }
+
+    public void setLog(LogCreater log) {
+        this.log = log;
+        this.climbing.setLog(log);
+        this.drive.setLog(log);
+        this.intake.setLog(log);
+    }
 }

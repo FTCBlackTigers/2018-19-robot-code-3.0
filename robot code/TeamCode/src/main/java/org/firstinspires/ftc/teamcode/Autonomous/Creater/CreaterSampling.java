@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 @Autonomous(name = "CreaterSampling", group = "Tests")
 @Disabled
 public class CreaterSampling extends LinearOpMode{
-    private Robot robot = new Robot();
+    protected Robot robot = new Robot();
     private ElapsedTime runtime = new ElapsedTime();
     @Override
     public void runOpMode() throws InterruptedException {

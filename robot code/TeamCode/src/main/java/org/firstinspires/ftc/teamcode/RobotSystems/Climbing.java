@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 import org.firstinspires.ftc.teamcode.Util.PIDController;
 
@@ -18,12 +19,12 @@ public class Climbing {
     public enum Angle {
         DOWN(10),
         DRIVE_POS(30),
-        COLLECT(150),
+        COLLECT(160),
         LAND(50),
         LANDFINAL(60),
-        GO_TO_CLIMB(50),
+        GO_TO_CLIMB(51),
         CLIMB(30),
-        PUT(50);
+        PUT(52);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -38,11 +39,11 @@ public class Climbing {
 
     public enum Height {
         DRIVE_POS(0),
-        COLLECT(20),
+        COLLECT(15),
         LAND(30),
-        GO_TO_CLIMB(24),
+        GO_TO_CLIMB(29),
         CLIMB(10),
-        PUT(31);
+        PUT(36);
 
         float pos;
         final double ticksPerCm = 134.2307;
@@ -80,7 +81,7 @@ public class Climbing {
     private double liftJoystickPrevValue = 0;
     private double stopPIDTime;
     private PIDController anglePID;
-    private final double KP = 1, KI = 0, KD = 0, TOLERANCE = 4;
+    private final double KP = 0.5, KI = 0, KD = 0, TOLERANCE = 4;
     private LogCreater log;
 
 
@@ -139,6 +140,7 @@ public class Climbing {
             liftMotor.setPower(0);
             liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            GlobalVariebels.liftPosEndAuto = 0;
         }
 
         if (!liftMotor.isBusy() && liftMotor.getMode() == DcMotor.RunMode.RUN_TO_POSITION) {
@@ -216,7 +218,8 @@ public class Climbing {
                 .addData("liftTouch: " , liftTouchIsActive)
                 .addData(" angleTouch: ", angleTouchIsActive +"\n")
                 .addData(" potentiometer: ", potentiometer.getVoltage())
-                .addData("angle: ", getAngle());
+                .addData("angle: ", getAngle())
+                .addData("liftPosEndAuto", GlobalVariebels.liftPosEndAuto);
 
 
         angleTouchIsPrevActive = angleTouchIsActive;
@@ -228,14 +231,9 @@ public class Climbing {
 
 
     public void moveLift(Height height) {
-        liftMotor.setTargetPosition(height.getTicks());
-
+        liftMotor.setTargetPosition(height.getTicks() - GlobalVariebels.liftPosEndAuto);
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
         liftMotor.setPower(Math.abs(LIFT_SPEED));
-
-
-
     }
 
     private void liftMoveManual(double motorPower) {
@@ -340,5 +338,13 @@ public class Climbing {
     }
     public double getAngle() {
         return potentiometer.getVoltage() / 3.347 *270;
+    }
+
+    public void setOpMode(OpMode opMode) {
+        this.opMode = opMode;
+    }
+
+    public void setLog(LogCreater log) {
+        this.log = log;
     }
 }

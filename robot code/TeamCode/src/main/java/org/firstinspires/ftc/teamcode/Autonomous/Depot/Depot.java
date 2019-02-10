@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
+import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
@@ -69,5 +70,7 @@ public class Depot extends LinearOpMode {
         sleep(3000);
         robot.intake.stopMotor();
         endAuto();
+        GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
     }
+
 }

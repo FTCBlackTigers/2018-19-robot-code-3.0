@@ -47,7 +47,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  */
 @Autonomous(name = "Creater", group = "Tests")
 public class Creater extends LinearOpMode {
-  private Robot robot = new Robot();
+  protected Robot robot = new Robot();
   private ElapsedTime runtime = new ElapsedTime();
   private LogCreater log = new LogCreater("auto");
 

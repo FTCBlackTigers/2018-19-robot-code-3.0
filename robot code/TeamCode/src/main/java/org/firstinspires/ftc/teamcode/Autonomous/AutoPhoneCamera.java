@@ -43,7 +43,7 @@ import java.util.List;
 @Autonomous(name = "AutoPhoneCamera", group = "Tests")
 
 public class AutoPhoneCamera extends LinearOpMode {
-  private Robot robot = new Robot();
+  protected Robot robot = new Robot();
   private GoldRecognation recognation = null;
   private ElapsedTime runtime = new ElapsedTime();
 

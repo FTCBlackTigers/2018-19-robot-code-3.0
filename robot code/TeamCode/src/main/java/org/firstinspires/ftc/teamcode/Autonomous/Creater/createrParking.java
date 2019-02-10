@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 @Autonomous(name = "CreaterParking", group = "autonmous")
 @Disabled
 public class createrParking extends LinearOpMode{
-    private Robot robot = new Robot();
+    protected Robot robot = new Robot();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override

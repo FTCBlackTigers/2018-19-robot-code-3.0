@@ -45,7 +45,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 @Autonomous(name = "Creater", group = "Tests")
 @Disabled
 public class NoSampling extends LinearOpMode {
-  private Robot robot = new Robot();
+  protected Robot robot = new Robot();
   private ElapsedTime runtime = new ElapsedTime();
 
   @Override

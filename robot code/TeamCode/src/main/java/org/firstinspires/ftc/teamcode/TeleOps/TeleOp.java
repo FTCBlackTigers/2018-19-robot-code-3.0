@@ -46,16 +46,23 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
 public class TeleOp extends OpMode {
 
   private ElapsedTime runtime = new ElapsedTime();
-  private Robot robot = new Robot();
+  protected Robot robot = new Robot();
   private LogCreater log = new LogCreater("TeleOp");
 
   @Override
   public void init() {
     log.init(this);
-    robot.init(hardwareMap,this, log);
+    if (!robot.initilaized) {
+      robot.init(hardwareMap, this, log);
+    } else {
+      robot.setOpMode(this);
+      robot.setLog(log);
+    }
     telemetry.addData("Status", "Initialized");
+    telemetry.update();
 
   }
+
 
   /*
      * Code to run when the op mode is first enabled goes here
@@ -84,6 +91,9 @@ public class TeleOp extends OpMode {
     telemetry.addData("robot Status", "Run Time: " + runtime.toString());
     telemetry.addData("gyro angle: ", robot.drive.getAngle());
     telemetry.update();
+    if (gamepad1.y) {
+      robot.init(hardwareMap, this, log);
+    }
 
   }
 }

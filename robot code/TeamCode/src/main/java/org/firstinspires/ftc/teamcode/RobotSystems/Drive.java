@@ -293,7 +293,13 @@ public class Drive {
         return gyro.getAngle();
     }
 
+    public void setOpMode(OpMode opMode) {
+        this.opMode = opMode;
+    }
 
+    public void setLog(LogCreater log) {
+        this.log = log;
+    }
 }
 
 

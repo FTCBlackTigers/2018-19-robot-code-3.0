@@ -43,7 +43,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 public class TeleOpTRX extends OpMode {
 
   private ElapsedTime runtime = new ElapsedTime();
-  private Robot robot = new Robot();
+  protected Robot robot = new Robot();
 
   @Override
   public void init() {
