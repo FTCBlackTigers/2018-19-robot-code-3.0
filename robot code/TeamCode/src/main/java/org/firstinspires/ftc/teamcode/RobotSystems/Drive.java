@@ -29,7 +29,7 @@ public class Drive {
     static final double COUNTS_PER_CM = 20; /*(COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);*/
     private final double KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
-    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 5;
+    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 7;
 
     private OpMode opMode;
     private BT_Gyro gyro = new BT_Gyro();
@@ -67,6 +67,9 @@ public class Drive {
 
         forwardPID = new PIDController(KP, KI, KD, TOLERANCE,opMode);
         turnPID = new PIDController(turnKP, turnKI, turnKD, turnTOLERANCE, opMode);
+
+        //leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public void teleOpMotion(Gamepad driver) {
         if (driver.dpad_up) {
@@ -86,8 +89,8 @@ public class Drive {
 
 
     private void tankDrive(double powerLeftDrive, double powerRightDrive) {
-        leftDrive.setPower(powerLeftDrive * 0.5);
-        rightDrive.setPower(powerRightDrive * 0.5);
+        leftDrive.setPower(powerLeftDrive *0.5);
+        rightDrive.setPower(powerRightDrive *0.5);
     }
 
     public void turnByGyroRelative(double degrees) {
@@ -214,7 +217,7 @@ public class Drive {
         rightDrive.setPower(0);
     }
 
-    public void Sampling(Side side) {
+    public GoldRecognation.MineralPos Sampling(Side side) {
         GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
         recognation.stopTfod();
         recognation.turnOffLeds();
@@ -224,7 +227,7 @@ public class Drive {
                     turnByGyroAbsolut(30);
                     driveByEncoderUsingPID(95, Direction.BACKWARD);
                     turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(45,Direction.BACKWARD);
+                    driveByEncoderUsingPID(45, Direction.BACKWARD);
                     break;
                 case CENTER:
                 case UNKNOWN:
@@ -235,7 +238,7 @@ public class Drive {
                     turnByGyroAbsolut(-30);
                     driveByEncoderUsingPID(80, Direction.BACKWARD);
                     turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(45,Direction.BACKWARD);
+                    driveByEncoderUsingPID(45, Direction.BACKWARD);
                     break;
             }
 
@@ -244,9 +247,6 @@ public class Drive {
                 case LEFT:
                     turnByGyroAbsolut(30);
                     driveByEncoderUsingPID(75, Direction.BACKWARD);
-                    turnByGyroAbsolut(0);
-                    driveByEncoderUsingPID(20, Drive.Direction.BACKWARD);
-
                     break;
                 case CENTER:
                 case UNKNOWN:
@@ -256,13 +256,12 @@ public class Drive {
                 case RIGHT:
                     turnByGyroAbsolut(-30);
                     driveByEncoderUsingPID(75, Direction.BACKWARD);
-                    turnByGyroAbsolut(0);
-                    driveByEncoderUsingPID(20, Drive.Direction.BACKWARD);
                     break;
             }
         }
         opMode.telemetry.addData("mineral", pos);
-        }
+        return pos;
+    }
 
         public void driveToCreater(Side side) {
         GoldRecognation.MineralPos pos = recognation.getGoldPos(log);

@@ -22,9 +22,9 @@ public class Climbing {
         COLLECT(160),
         LAND(50),
         LANDFINAL(60),
-        GO_TO_CLIMB(51),
+        GO_TO_CLIMB(57),
         CLIMB(30),
-        PUT(52);
+        PUT(56);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -158,6 +158,10 @@ public class Climbing {
             } else {
                 stopPIDTime = opMode.getRuntime() + 0.3;
                 double output = anglePID.getOutput(getAngle());
+                if(IsLiftInDeadZone()){
+                    output *= 0.1;
+                    opMode.telemetry.addData("output: " , output);
+                }
                 angleMotorLeft.setPower(output);
                 angleMotorRight.setPower(output);
             }
@@ -305,18 +309,18 @@ public class Climbing {
 
     public void land() {
         moveAngleAuto(Climbing.Angle.LAND);
-        moveliftAuto(Climbing.Height.LAND);
+        moveLiftAuto(Climbing.Height.LAND);
         moveAngleAuto(Climbing.Angle.LANDFINAL);
         openServo();
         ((LinearOpMode) opMode).sleep(600);
+        moveLiftAuto(Climbing.Height.CLIMB);
         moveAngleAuto(Angle.DOWN);
-        moveliftAuto(Climbing.Height.CLIMB);
 
         angleMotorLeft.setPower(0);
         liftMotor.setPower(0);
     }
 
-    public void moveliftAuto(Height height) {
+    public void moveLiftAuto(Height height) {
         moveLift(height);
         waitForFinish(liftMotor);
         liftMotor.setPower(0);
@@ -346,5 +350,8 @@ public class Climbing {
 
     public void setLog(LogCreater log) {
         this.log = log;
+    }
+    public boolean IsLiftInDeadZone(){
+        return getAngle()>49 && getAngle()<70;
     }
 }

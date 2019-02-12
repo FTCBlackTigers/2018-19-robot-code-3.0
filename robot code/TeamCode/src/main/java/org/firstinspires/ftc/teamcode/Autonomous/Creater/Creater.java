@@ -30,14 +30,14 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.sun.tools.javac.comp.Todo;
 
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
+import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
@@ -48,8 +48,8 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
 @Autonomous(name = "Creater", group = "Tests")
 public class Creater extends LinearOpMode {
   protected Robot robot = new Robot();
-  private ElapsedTime runtime = new ElapsedTime();
-  private LogCreater log = new LogCreater("auto");
+  protected ElapsedTime runtime = new ElapsedTime();
+  protected LogCreater log = new LogCreater("auto");
 
   @Override
   public void runOpMode() throws InterruptedException {
@@ -57,8 +57,21 @@ public class Creater extends LinearOpMode {
     waitForStart();
     robot.climbing.land();
     robot.drive.turnByGyroAbsolut(-10);
-    robot.drive.Sampling(Drive.Side.CREATER);
-    robot.climbing.moveliftAuto(Climbing.Height.PUT);
+    GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
+    goToDepot(goldPos);
+    goToCreater(goldPos);
+    GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
 
+  }
+
+  public void goToDepot(GoldRecognation.MineralPos goldPos) {
+  }
+
+  public void goToCreater(GoldRecognation.MineralPos goldPos) {
+    if (goldPos == GoldRecognation.MineralPos.LEFT || goldPos == GoldRecognation.MineralPos.RIGHT) {
+      robot.drive.turnByGyroAbsolut(0);
+      robot.drive.driveByEncoderUsingPID(20, Drive.Direction.BACKWARD);
+    }
+    robot.climbing.moveLiftAuto(Climbing.Height.PUT);
   }
 }

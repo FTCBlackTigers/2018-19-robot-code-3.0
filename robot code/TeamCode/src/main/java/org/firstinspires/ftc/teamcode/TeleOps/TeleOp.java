@@ -91,9 +91,6 @@ public class TeleOp extends OpMode {
     telemetry.addData("robot Status", "Run Time: " + runtime.toString());
     telemetry.addData("gyro angle: ", robot.drive.getAngle());
     telemetry.update();
-    if (gamepad1.y) {
-      robot.init(hardwareMap, this, log);
-    }
 
   }
 }

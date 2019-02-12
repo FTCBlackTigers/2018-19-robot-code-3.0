@@ -27,50 +27,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.Autonomous.Depot;
+package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
-import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
-import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
-import org.firstinspires.ftc.teamcode.Util.LogCreater;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 
-/**
- * doing Landing,Sampling and Team Marker
- * PTS = 70
- * Starting from Depot On The Lander
- * FIRST Autonomous
- */
-@Autonomous(name = "Depot", group = "Auto")
-public class Depot extends LinearOpMode {
-
-    protected Robot robot = new Robot();
-    protected ElapsedTime runtime = new ElapsedTime();
-    protected LogCreater log = new LogCreater("auto");
-
-    public void endAuto() {
-        robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
-        robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
-    }
-
-
+@Autonomous(name = "CreaterToDepot", group = "Tests")
+public class CreaterToDepot extends Creater {
     @Override
-    public void runOpMode() throws InterruptedException {
-        log.init(this);
-        robot.init(hardwareMap, this, log);
-        waitForStart();
-        robot.climbing.land();
-        robot.drive.turnByGyroAbsolut(-7);
-        robot.drive.Sampling(Drive.Side.DEPOT);
+    public void goToDepot(GoldRecognation.MineralPos goldPos) {
+        if (goldPos == GoldRecognation.MineralPos.RIGHT || goldPos == GoldRecognation.MineralPos.LEFT) {
+            robot.drive.driveByEncoder(70, 0.3, Drive.Direction.FORWARD, 3000);
+        }
+        else {
+            robot.drive.driveByEncoder(55, 0.3, Drive.Direction.FORWARD, 3000);
+        }
+        robot.drive.turnByGyroAbsolut(55);
+        robot.drive.driveByEncoder(135, 0.3, Drive.Direction.BACKWARD, 3000);
+        robot.drive.turnByGyroAbsolut(133);
+        robot.drive.driveByEncoder(150, 0.5, Drive.Direction.BACKWARD, 3000);
+        //robot.climbing.moveLiftAuto(Climbing.Height.PUT);
         robot.intake.injackt();
         sleep(2000);
         robot.intake.stopMotor();
-        endAuto();
-        GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
+
+    }
+
+    @Override
+    public void goToCreater(GoldRecognation.MineralPos goldPos) {
+        robot.climbing.moveLift(Climbing.Height.CLIMB);
+        robot.drive.driveByEncoder(180, 0.5, Drive.Direction.FORWARD, 3000);
+        robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+        robot.intake.collect();
     }
 
 }
