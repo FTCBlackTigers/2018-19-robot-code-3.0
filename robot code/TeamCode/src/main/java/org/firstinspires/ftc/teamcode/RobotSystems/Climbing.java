@@ -340,6 +340,45 @@ public class Climbing {
         angleMotorRight.setPower(0);
         angleMotorLeft.setPower(0);
     }
+
+    public  void moveAngleAndHeight(Angle angle, Height height){
+        anglePID.reset(angle.pos, getAngle());
+
+        liftMotor.setTargetPosition(height.getTicks());
+        liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        liftMotor.setPower(Math.abs(LIFT_SPEED));
+
+        while (!anglePID.onTarget()){
+            double output = anglePID.getOutput(getAngle());
+            angleMotorRight.setPower(output);
+            angleMotorLeft.setPower(output);
+            opMode.telemetry.addLine("Angle \n")
+                    .addData("error: ", anglePID.getCurrentError())
+                    .addData("output: ", output)
+                    .addData("angle", getAngle() + "\n");
+
+            opMode.telemetry.addLine("Lift \n")
+                    .addData("position: ", liftMotor.getCurrentPosition());
+            opMode.telemetry.update();
+
+            if(!liftMotor.isBusy()){
+                liftMotor.setPower(0);
+                liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            }
+        }
+        angleMotorLeft.setPower(0);
+        angleMotorRight.setPower(0);
+
+        while(liftMotor.isBusy()){
+            opMode.telemetry.addLine("Lift \n")
+                    .addData("position: ", liftMotor.getCurrentPosition());
+            opMode.telemetry.update();
+        }
+
+        liftMotor.setPower(0);
+        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
     public double getAngle() {
         return potentiometer.getVoltage() / 3.347 *270;
     }

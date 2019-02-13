@@ -263,7 +263,7 @@ public class Drive {
         return pos;
     }
 
-        public void driveToCreater(Side side) {
+    public void driveToCreater(Side side) {
         GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
         if (side == Side.DEPOT) {
             switch (pos) {
@@ -286,7 +286,72 @@ public class Drive {
 
             }
         }
+    }
+
+    public  void curvedDrive(double distanceCm, double angle,double speed, double startTurnDist, Direction direction) {
+
+        int startTurnDistCounts = (int)(startTurnDist * COUNTS_PER_CM);
+
+        double steer = 0, max;
+        double leftSpeed = speed, rightSpeed = speed;
+
+        if(direction == Direction.BACKWARD) {
+            distanceCm *= -1;
         }
+
+        int newLeftTarget = (int)(distanceCm * COUNTS_PER_CM);
+        int newRightTarget = (int)(distanceCm * COUNTS_PER_CM);
+
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftDrive.setTargetPosition(newLeftTarget);
+        rightDrive.setTargetPosition(newRightTarget);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        turnPID.reset(angle, getAngle());
+
+        leftDrive.setPower(Math.abs(leftSpeed));
+        rightDrive.setPower(Math.abs(rightSpeed));
+
+        while (((LinearOpMode) opMode).opModeIsActive() &&
+                (rightDrive.isBusy() && leftDrive.isBusy())) {
+            if (Math.abs(leftDrive.getCurrentPosition()) < startTurnDistCounts || Math.abs(rightDrive.getCurrentPosition()) < startTurnDistCounts) {
+                steer = turnPID.getOutput(getAngle());
+
+                if (direction == Direction.BACKWARD) {
+                    steer *= -1;
+                }
+
+                leftSpeed = speed - steer;
+                rightSpeed = speed + steer;
+
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+                if (max > 1.0) {
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+                leftDrive.setPower(leftSpeed);
+                rightDrive.setPower(rightSpeed);
+            }
+            opMode.telemetry.addData("Err/St",  "%5.1f/%5.1f",  turnPID.getCurrentError(), steer)
+                .addData("Target",  "%7d:%7d",      newLeftTarget,  newRightTarget)
+                .addData("Actual",  "%7d:%7d",      leftDrive.getCurrentPosition(), rightDrive.getCurrentPosition())
+                .addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
+            opMode.telemetry.update();
+        }
+
+        /*if(!turnPID.onTarget()){
+            turnByGyroAbsolut(angle);
+        }*/
+
+    }
 
     public double getAngle(){
         return gyro.getAngle();
