@@ -322,7 +322,7 @@ public class Drive {
         while (((LinearOpMode) opMode).opModeIsActive() &&
                 (rightDrive.isBusy() && leftDrive.isBusy())) {
             if (Math.abs(leftDrive.getCurrentPosition()) < startTurnDistCounts || Math.abs(rightDrive.getCurrentPosition()) < startTurnDistCounts) {
-                steer = turnPID.getOutput(getAngle());
+                steer = turnPID.onTarget()? 0 : turnPID.getOutput(getAngle());
 
                 if (direction == Direction.BACKWARD) {
                     steer *= -1;
