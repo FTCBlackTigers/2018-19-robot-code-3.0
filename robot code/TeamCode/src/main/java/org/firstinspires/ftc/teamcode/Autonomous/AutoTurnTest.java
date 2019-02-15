@@ -39,8 +39,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
-@Autonomous(name = "PID test", group = "Tests")
-@Disabled
+@Autonomous(name = "TurnTest", group = "Tests")
 public class AutoTurnTest extends LinearOpMode {
 
   private Robot robot = new Robot();
@@ -52,11 +51,6 @@ public class AutoTurnTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    //robot.climbing.land();
-    //robot.climbing.moveAngleByPID(55);
-    //robot.drive.turnByGyroAbsolut(-370);
-    //robot.drive.driveByEncoderUsingPID(150, Drive.Direction.FORWARD);
-    //robot.drive.driveByEncoder(100,0.5, Drive.Direction.FORWARD,1000000);
-
+    robot.climbing.moveAngleAndHeight(Climbing.Angle.LANDFINAL, Climbing.Height.LAND);
   }
 }

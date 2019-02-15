@@ -37,6 +37,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
@@ -52,24 +53,33 @@ public class Depot extends LinearOpMode {
     protected ElapsedTime runtime = new ElapsedTime();
     protected LogCreater log = new LogCreater("auto");
 
-    public void endAuto() {
-        robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
-        robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
+    public void endAuto(GoldRecognation.MineralPos goldPos) {
+        if (goldPos == GoldRecognation.MineralPos.LEFT) {
+            robot.drive.turnByGyroAbsolut(-50);
+            robot.drive.driveByEncoder(200, 0.5, Drive.Direction.FORWARD, 3000);
+            robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+            robot.intake.collect();
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+            robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        } else {
+            robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
+        }
     }
-
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         log.init(this);
         robot.init(hardwareMap, this, log);
         waitForStart();
         robot.climbing.land();
         robot.drive.turnByGyroAbsolut(-7);
-        robot.drive.Sampling(Drive.Side.DEPOT);
+        GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.DEPOT);
         robot.intake.injackt();
         sleep(2000);
         robot.intake.stopMotor();
-        endAuto();
+        endAuto(goldPos);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
     }
 

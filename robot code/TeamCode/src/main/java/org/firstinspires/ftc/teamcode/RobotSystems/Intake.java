@@ -123,7 +123,7 @@ public class Intake {
             timeToOpenRight = opMode.getRuntime();
         }
         openLeftGate();
-        if(opMode.getRuntime() >= timeToOpenRight + 0.8) {
+        if(opMode.getRuntime() >= timeToOpenRight + 0.5) {
             openRightGate();
         }
         collectMotor.setPower(RELEASE_SPEED);

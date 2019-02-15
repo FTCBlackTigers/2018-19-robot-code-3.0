@@ -36,23 +36,44 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
  * doing Landing, Team Marker and Parking
  * PTS = 50
  * In Case of no Sampling
- * Starting from BlueDepot On The Lander
+ * Starting from Depot On The Lander
  * FIRST Autonomous
  */
 @Autonomous(name = "DepotToCreater", group = "Auto")
 public class DepotToCreater extends Depot {
 
   @Override
-  public void endAuto() {
-    robot.drive.turnByGyroAbsolut(50);
-    robot.drive.driveByEncoderUsingPID(200, Drive.Direction.FORWARD);
-    robot.drive.turnByGyroAbsolut(50);
+  public void endAuto(GoldRecognation.MineralPos goldPos) {
+    double driveDis = 0, turnAngle = 0;
+    switch (goldPos) {
+      case RIGHT:
+        driveDis = 200;
+        turnAngle = 60;
+        break;
+      case UNKNOWN:
+      case CENTER:
+        driveDis = 235;
+        turnAngle = 60;
+        break;
+      case LEFT:
+        driveDis = 200;
+        turnAngle = -50;
+        break;
+    }
+    robot.drive.turnByGyroAbsolut(turnAngle);
+    robot.drive.driveByEncoder(driveDis, 0.5, Drive.Direction.FORWARD, 3000);
     robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+    robot.intake.collect();
+    robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+    robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+    robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+
   }
 }

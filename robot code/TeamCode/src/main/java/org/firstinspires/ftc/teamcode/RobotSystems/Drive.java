@@ -225,18 +225,18 @@ public class Drive {
             switch (pos) {
                 case LEFT:
                     turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(95, Direction.BACKWARD);
+                    driveByEncoderUsingPID(80, Direction.BACKWARD);
                     turnByGyroAbsolut(-30);
                     driveByEncoderUsingPID(45, Direction.BACKWARD);
                     break;
                 case CENTER:
                 case UNKNOWN:
                     turnByGyroAbsolut(5);
-                    driveByEncoderUsingPID(125, Direction.BACKWARD);
+                    driveByEncoderUsingPID(140, Direction.BACKWARD);
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(80, Direction.BACKWARD);
+                    driveByEncoderUsingPID(90, Direction.BACKWARD);
                     turnByGyroAbsolut(30);
                     driveByEncoderUsingPID(45, Direction.BACKWARD);
                     break;
@@ -288,7 +288,7 @@ public class Drive {
         }
     }
 
-    public  void curvedDrive(double distanceCm, double angle,double speed, double startTurnDist, Direction direction) {
+    public  void curvedDrive(double distanceCm, double angle, double speed, double startTurnDist, Direction direction) {
 
         int startTurnDistCounts = (int)(startTurnDist * COUNTS_PER_CM);
 
@@ -321,7 +321,7 @@ public class Drive {
 
         while (((LinearOpMode) opMode).opModeIsActive() &&
                 (rightDrive.isBusy() && leftDrive.isBusy())) {
-            if (Math.abs(leftDrive.getCurrentPosition()) < startTurnDistCounts || Math.abs(rightDrive.getCurrentPosition()) < startTurnDistCounts) {
+            if (Math.abs(leftDrive.getCurrentPosition()) > startTurnDistCounts || Math.abs(rightDrive.getCurrentPosition()) > startTurnDistCounts) {
                 steer = turnPID.onTarget()? 0 : turnPID.getOutput(getAngle());
 
                 if (direction == Direction.BACKWARD) {

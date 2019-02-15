@@ -308,13 +308,15 @@ public class Climbing {
     }
 
     public void land() {
-        moveAngleAuto(Climbing.Angle.LAND);
-        moveLiftAuto(Climbing.Height.LAND);
-        moveAngleAuto(Climbing.Angle.LANDFINAL);
+        //moveAngleAuto(Climbing.Angle.LAND);
+        //moveLiftAuto(Climbing.Height.LAND);
+        //moveAngleAuto(Climbing.Angle.LANDFINAL);
+        moveAngleAndHeight(Climbing.Angle.LANDFINAL, Climbing.Height.LAND);
         openServo();
         ((LinearOpMode) opMode).sleep(600);
-        moveLiftAuto(Climbing.Height.CLIMB);
-        moveAngleAuto(Angle.DOWN);
+        //moveLiftAuto(Climbing.Height.CLIMB);
+        //moveAngleAuto(Angle.DOWN);
+        moveAngleAndHeight(Angle.DOWN, Height.CLIMB);
 
         angleMotorLeft.setPower(0);
         liftMotor.setPower(0);
