@@ -153,6 +153,10 @@ public class Drive {
                 opMode.telemetry.addData("leftPos", leftDrive.getCurrentPosition());
                 opMode.telemetry.addData("rightPos", rightDrive.getCurrentPosition());
                 opMode.telemetry.update();
+                if(log != null) {
+                    log.writeLog("leftDrive", leftDrive.getCurrentPosition(), "target: " + newLeftTarget);
+                    log.writeLog("rightDrive", rightDrive.getCurrentPosition(), "target" + newRightTarget);
+                }
             }
             leftDrive.setPower(0);
             rightDrive.setPower(0);
@@ -204,7 +208,7 @@ public class Drive {
                         .addData("robot angle: ", getAngle());
                 opMode.telemetry.update();
                 if (log != null) {
-                    log.writeLog("gyro", getAngle(), "target" + targetDegree);
+                    log.writeLog("gyro", getAngle(), "target: " + targetDegree);
                 }
             }
             double time = opMode.getRuntime() + 0.3;
@@ -261,31 +265,6 @@ public class Drive {
         }
         opMode.telemetry.addData("mineral", pos);
         return pos;
-    }
-
-    public void driveToCreater(Side side) {
-        GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
-        if (side == Side.DEPOT) {
-            switch (pos) {
-                case LEFT:
-                    turnByGyroAbsolut(90);
-                    driveByEncoderUsingPID(80, Direction.BACKWARD);
-                    turnByGyroAbsolut(20);
-                    driveByEncoderUsingPID(60, Direction.BACKWARD);
-                    break;
-                case UNKNOWN:
-                case CENTER:
-                    turnByGyroAbsolut(90);
-                    driveByEncoderUsingPID(60, Direction.BACKWARD);
-                    turnByGyroAbsolut(20);
-                    driveByEncoderUsingPID(60, Direction.BACKWARD);
-                    break;
-                case RIGHT:
-                    turnByGyroAbsolut(20);
-                    turnByGyroAbsolut(110);
-
-            }
-        }
     }
 
     public  void curvedDrive(double distanceCm, double angle, double speed, double startTurnDist, Direction direction) {

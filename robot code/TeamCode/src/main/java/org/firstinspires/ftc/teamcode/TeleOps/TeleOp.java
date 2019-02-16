@@ -52,12 +52,7 @@ public class TeleOp extends OpMode {
   @Override
   public void init() {
     log.init(this);
-    if (!robot.initilaized) {
-      robot.init(hardwareMap, this, log);
-    } else {
-      robot.setOpMode(this);
-      robot.setLog(log);
-    }
+    robot.init(hardwareMap, this, log);
     telemetry.addData("Status", "Initialized");
     telemetry.update();
 

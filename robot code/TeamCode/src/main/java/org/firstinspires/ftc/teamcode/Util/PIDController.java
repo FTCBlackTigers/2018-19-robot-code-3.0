@@ -142,4 +142,7 @@ public class PIDController {
     public void updateError(double currentPos) {
         currentError = setpoint - currentPos;
     }
+    public double getSetpoint() {
+        return setpoint;
+    }
 }

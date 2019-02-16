@@ -51,6 +51,6 @@ public class AutoTurnTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    robot.climbing.moveAngleAndHeight(Climbing.Angle.LANDFINAL, Climbing.Height.LAND);
+    robot.drive.turnByGyroAbsolut(150);
   }
 }

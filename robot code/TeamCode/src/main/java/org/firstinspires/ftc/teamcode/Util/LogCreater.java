@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 
 public class LogCreater {
     private File log;
-    private String PATH = "/sdcard/FIRST/log-";
+    private String PATH = "/sdcard/FIRST/Log-";
     private FileOutputStream outputStream;
     private PrintStream printStream;
     private String fileName;
@@ -40,18 +40,18 @@ public class LogCreater {
         this.fileName = fileName;
     }
 
-    public void init(OpMode opMode){
+    public void init(OpMode opMode) {
         //Calendar.getInstance().getTime();
-        try{
-        SimpleDateFormat formatter = new SimpleDateFormat("_dd.MM.yyyy_HH:mm:ss");
-        Date date = new Date();
-        log = new File(PATH + fileName + formatter.format(date) +".txt");
-        outputStream = new FileOutputStream(log);
-        printStream = new PrintStream(outputStream);
-        printStream.write(" Time, Object, Value, Comments ".getBytes());
-        newLine();
-        this.opMode = opMode;
-        }catch(IOException E){
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("_dd.MM.yyyy_HH:mm:ss");
+            Date date = new Date();
+            log = new File(PATH + fileName + formatter.format(date) + ".csv");
+            outputStream = new FileOutputStream(log);
+            printStream = new PrintStream(outputStream);
+            printStream.write(" Time, Object, Value, Comments ".getBytes());
+            newLine();
+            this.opMode = opMode;
+        } catch (IOException E) {
         }
     }
 

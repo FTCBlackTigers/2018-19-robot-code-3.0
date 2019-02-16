@@ -58,7 +58,7 @@ public class Climbing {
     }
 
     private final double LIFT_SPEED = 1;
-    private final double HANG_OPEN_POS = 0.3;
+    private final double HANG_OPEN_POS = 0.25;
     private final double HANG_CLOSE_POS = 0;
     private final double ANGLE_SPEED = 1;
 
@@ -141,11 +141,21 @@ public class Climbing {
             liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             GlobalVariebels.liftPosEndAuto = 0;
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "reset encoder");
+            }
         }
 
         if (!liftMotor.isBusy() && liftMotor.getMode() == DcMotor.RunMode.RUN_TO_POSITION) {
             liftMotor.setPower(0);
             liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "arrived to target " + liftMotor.getTargetPosition());
+            }
+        } else if(liftMotor.getMode() == DcMotor.RunMode.RUN_TO_POSITION) {
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "target: " + liftMotor.getTargetPosition());
+            }
         }
         if (anglePID.isRunning()) {
             if (anglePID.onTarget()) {
@@ -153,6 +163,9 @@ public class Climbing {
                 angleMotorLeft.setPower(0);
                 if (opMode.getRuntime() >= stopPIDTime) {
                     anglePID.stop();
+                    if (log != null) {
+                        log.writeLog("angleMotor", getAngle(), "arrived to target " + anglePID.getSetpoint());
+                    }
                 }
                 anglePID.updateError(getAngle());
             } else {
@@ -164,6 +177,9 @@ public class Climbing {
                 }
                 angleMotorLeft.setPower(output);
                 angleMotorRight.setPower(output);
+                if (log != null) {
+                    log.writeLog("angleMotor", getAngle(), "target: " + anglePID.getSetpoint());
+                }
             }
         }
 
@@ -171,27 +187,47 @@ public class Climbing {
         if (operator.dpad_down) {
             moveLift(Height.DRIVE_POS);
             moveAngle(Angle.DRIVE_POS);
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "command to move to drive pos " + Height.DRIVE_POS.getTicks());
+                log.writeLog("angleMotor", getAngle(), "command to move to drive pos " + Angle.DRIVE_POS.pos);
+            }
         }
 
         if (operator.dpad_left) {
             moveLift(Height.CLIMB);
             moveAngle(Angle.CLIMB);
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "command to move to climb " + Height.CLIMB.getTicks());
+                log.writeLog("angleMotor", getAngle(), "command to move to climb " + Angle.CLIMB.pos);
+            }
         }
 
         if (operator.dpad_up) {
             moveLift(Height.GO_TO_CLIMB);
             moveAngle(Angle.GO_TO_CLIMB);
             openServo();
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "command to move to go to climb " + Height.GO_TO_CLIMB.getTicks());
+                log.writeLog("angleMotor", getAngle(), "command to move to go to climb " + Angle.GO_TO_CLIMB.pos);
+            }
         }
 
         if (operator.right_trigger > 0.7) {
            moveLift(Height.COLLECT);
            moveAngle(Angle.COLLECT);
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "command to move to collect " + Height.COLLECT.getTicks());
+                log.writeLog("angleMotor", getAngle(), "command to move to collect " + Angle.COLLECT.pos);
+            }
         }
 
         if (operator.left_trigger > 0.7) {
             moveLift(Height.PUT);
             moveAngle(Angle.PUT);
+            if (log != null) {
+                log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "command to move to put " + Height.PUT.getTicks());
+                log.writeLog("angleMotor", getAngle(), "command to move to put " + Angle.PUT.pos);
+            }
         }
 
         if (Math.abs(liftJoystickValue) > 0.1) {
@@ -285,24 +321,16 @@ public class Climbing {
     }
 
     public void lockServo() {
-
         hangServo.setPosition(HANG_CLOSE_POS);
-
     }
 
     public void openServo() {
         hangServo.setPosition(HANG_OPEN_POS);
     }
+
     public void waitForFinish(DcMotor motor){
         while(motor.isBusy() && ((LinearOpMode) opMode).opModeIsActive()){
             opMode.telemetry.addData(motor.getDeviceName() + ": ",motor.getCurrentPosition());
-            opMode.telemetry.update();
-        }
-    }
-    public void waitForFinish(DcMotor motor1,DcMotor motor2){
-        while(motor1.isBusy() && motor2.isBusy() && ((LinearOpMode) opMode).opModeIsActive()){
-            opMode.telemetry.addData(motor1.getDeviceName() + ": ",motor1.getCurrentPosition());
-            opMode.telemetry.addData(motor2.getDeviceName() + ": ",motor2.getCurrentPosition());
             opMode.telemetry.update();
         }
     }
@@ -324,7 +352,13 @@ public class Climbing {
 
     public void moveLiftAuto(Height height) {
         moveLift(height);
-        waitForFinish(liftMotor);
+        while(liftMotor.isBusy() && ((LinearOpMode) opMode).opModeIsActive()) {
+            opMode.telemetry.addData("liftMotor: ", liftMotor.getCurrentPosition());
+            opMode.telemetry.update();
+            if (log != null) {
+                log.writeLog("lift", liftMotor.getCurrentPosition(), "target: " + height.getTicks());
+            }
+        }
         liftMotor.setPower(0);
     }
 
@@ -338,6 +372,9 @@ public class Climbing {
                     .addData("output: ", output)
                     .addData("angle", getAngle());
             opMode.telemetry.update();
+            if (log != null) {
+                log.writeLog("angle", getAngle(), "target: " + angle.pos);
+            }
         }
         angleMotorRight.setPower(0);
         angleMotorLeft.setPower(0);
@@ -367,6 +404,10 @@ public class Climbing {
                 liftMotor.setPower(0);
                 liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             }
+            if (log != null) {
+                log.writeLog("angle", getAngle(), "target: " + angle.pos);
+                log.writeLog("lift", liftMotor.getCurrentPosition(), "target: " + height.getTicks());
+            }
         }
         angleMotorLeft.setPower(0);
         angleMotorRight.setPower(0);
@@ -375,6 +416,9 @@ public class Climbing {
             opMode.telemetry.addLine("Lift \n")
                     .addData("position: ", liftMotor.getCurrentPosition());
             opMode.telemetry.update();
+            if (log != null) {
+                log.writeLog("lift", liftMotor.getCurrentPosition(), "target: " + height.getTicks());
+            }
         }
 
         liftMotor.setPower(0);

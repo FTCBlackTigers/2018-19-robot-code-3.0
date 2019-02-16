@@ -53,7 +53,8 @@ public class Creater extends LinearOpMode {
 
   @Override
   public void runOpMode() throws InterruptedException {
-    robot.init(hardwareMap , this);
+    log.init(this);
+    robot.init(hardwareMap , this, log);
     waitForStart();
     robot.climbing.land();
     robot.drive.turnByGyroAbsolut(-10);
@@ -68,10 +69,34 @@ public class Creater extends LinearOpMode {
   }
 
   public void goToCreater(GoldRecognation.MineralPos goldPos) {
-    if (goldPos == GoldRecognation.MineralPos.LEFT || goldPos == GoldRecognation.MineralPos.RIGHT) {
+    switch (goldPos){
+      case LEFT:
       robot.drive.turnByGyroAbsolut(0);
-      robot.drive.driveByEncoderUsingPID(20, Drive.Direction.BACKWARD);
+      robot.drive.driveByEncoderUsingPID(15, Drive.Direction.FORWARD);
+      robot.drive.turnByGyroAbsolut(100);
+      robot.drive.turnByGyroAbsolut(160);
+      robot.drive.driveByEncoder(40, 0.5, Drive.Direction.FORWARD, 3000);
+      break;
+      case UNKNOWN:
+      case CENTER:
+        robot.drive.turnByGyroAbsolut(0);
+        robot.drive.driveByEncoderUsingPID(15, Drive.Direction.FORWARD);
+        robot.drive.turnByGyroAbsolut(100);
+        robot.drive.turnByGyroAbsolut(160);
+        robot.drive.driveByEncoder(40, 0.5, Drive.Direction.FORWARD, 3000);
+        break;
+      case RIGHT:
+        robot.drive.turnByGyroAbsolut(0);
+        robot.drive.driveByEncoderUsingPID(20, Drive.Direction.FORWARD);
+        robot.drive.turnByGyroAbsolut(100);
+        robot.drive.turnByGyroAbsolut(160);
+        robot.drive.driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 3000);
+        break;
     }
+    robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+    robot.intake.collect();
+    robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+    robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
     robot.climbing.moveLiftAuto(Climbing.Height.PUT);
   }
 }
