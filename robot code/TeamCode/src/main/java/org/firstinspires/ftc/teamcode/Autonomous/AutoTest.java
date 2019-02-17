@@ -40,7 +40,8 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 @Autonomous(name = "TurnTest", group = "Tests")
-public class AutoTurnTest extends LinearOpMode {
+public class AutoTest extends LinearOpMode {
+
 
   private Robot robot = new Robot();
   private ElapsedTime runtime = new ElapsedTime();
@@ -51,6 +52,9 @@ public class AutoTurnTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    robot.drive.turnByGyroAbsolut(150);
+    robot.climbing.moveLiftAuto(Climbing.Height.GO_TO_CLIMB);
+    while(opModeIsActive())
+    robot.climbing.liftMotor.setPower(0.1);
+
   }
 }

@@ -274,6 +274,9 @@ public class Climbing {
         liftMotor.setTargetPosition(height.getTicks() - GlobalVariebels.liftPosEndAuto);
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor.setPower(Math.abs(LIFT_SPEED));
+        if(height == Height.GO_TO_CLIMB && IsliftInTarget(Height.GO_TO_CLIMB)){
+            liftMotor.setPower(0.1); //In Order to anchor the motor and make him no fall
+        }
     }
 
     private void liftMoveManual(double motorPower) {
@@ -438,5 +441,10 @@ public class Climbing {
     }
     public boolean IsLiftInDeadZone(){
         return getAngle()>49 && getAngle()<70;
+    }
+    public boolean IsliftInTarget(Height height){
+        if(liftMotor.getTargetPosition() >= height.getTicks()+200 && liftMotor.getTargetPosition() <= height.getTicks()-200){
+            return true;
+        } else return false;
     }
 }
