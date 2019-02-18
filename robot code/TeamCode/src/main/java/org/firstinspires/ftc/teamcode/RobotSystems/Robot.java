@@ -36,7 +36,8 @@ public class Robot {
         climbing.init(hardwareMap, opMode, log);
         this.opMode = opMode;
         initilaized = true;
-
+        opMode.telemetry.addLine("robot initialized");
+        opMode.telemetry.update();
     }
 
 
@@ -45,6 +46,9 @@ public class Robot {
         intake.init(hardwareMap, opMode);
         climbing.init(hardwareMap, opMode);
         this.opMode = opMode;
+
+        opMode.telemetry.addLine("robot initialized");
+        opMode.telemetry.update();
 
     }
     public void teleop(Gamepad driver, Gamepad operator, boolean isTRX) {

@@ -69,7 +69,6 @@ public class Depot extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
         log.init(this);
         robot.init(hardwareMap, this, log);
         waitForStart();
@@ -82,5 +81,4 @@ public class Depot extends LinearOpMode {
         endAuto(goldPos);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
     }
-
 }

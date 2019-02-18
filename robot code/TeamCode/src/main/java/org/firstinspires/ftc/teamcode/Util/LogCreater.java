@@ -45,7 +45,7 @@ public class LogCreater {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("_dd.MM.yyyy_HH:mm:ss");
             Date date = new Date();
-            log = new File(PATH + fileName + formatter.format(date) + ".csv");
+            log = new File(PATH + fileName + formatter.format(date) + ".txt");
             outputStream = new FileOutputStream(log);
             printStream = new PrintStream(outputStream);
             printStream.write(" Time, Object, Value, Comments ".getBytes());

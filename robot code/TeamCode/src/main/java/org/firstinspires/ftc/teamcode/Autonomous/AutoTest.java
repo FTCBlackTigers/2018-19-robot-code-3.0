@@ -52,9 +52,7 @@ public class AutoTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    robot.climbing.moveLiftAuto(Climbing.Height.GO_TO_CLIMB);
-    while(opModeIsActive())
-    robot.climbing.liftMotor.setPower(0.1);
-
+    //robot.drive.curvedDrive(500, 4, 1, Drive.Direction.BACKWARD , Drive.CurvedDirection.RIGHT);
+    robot.drive.curvedDrive(500, 20, 1, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
   }
 }

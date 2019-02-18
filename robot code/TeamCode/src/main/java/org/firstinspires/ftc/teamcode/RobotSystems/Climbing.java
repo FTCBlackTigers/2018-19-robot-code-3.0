@@ -22,9 +22,9 @@ public class Climbing {
         COLLECT(160),
         LAND(50),
         LANDFINAL(60),
-        GO_TO_CLIMB(57),
+        GO_TO_CLIMB(60),
         CLIMB(30),
-        PUT(56);
+        PUT(61);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -290,6 +290,10 @@ public class Climbing {
     public void moveAngle(Angle angle) {
         anglePID.reset(angle.pos, getAngle());
         double output = anglePID.getOutput(getAngle());
+        if(IsLiftInDeadZone()){
+            output *= 0.1;
+            opMode.telemetry.addData("output: " , output);
+        }
         angleMotorLeft.setPower(output);
         angleMotorRight.setPower(output);
     }
@@ -440,7 +444,7 @@ public class Climbing {
         this.log = log;
     }
     public boolean IsLiftInDeadZone(){
-        return getAngle()>49 && getAngle()<70;
+        return getAngle()>49 && getAngle()<80;
     }
     public boolean IsliftInTarget(Height height){
         if(liftMotor.getTargetPosition() >= height.getTicks()+200 && liftMotor.getTargetPosition() <= height.getTicks()-200){

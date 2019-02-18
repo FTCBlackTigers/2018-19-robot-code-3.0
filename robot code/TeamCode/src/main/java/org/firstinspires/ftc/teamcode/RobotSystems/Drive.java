@@ -18,6 +18,9 @@ public class Drive {
     public enum Direction {
         FORWARD, BACKWARD;
     }
+    public enum CurvedDirection {
+        LEFT, RIGHT;
+    }
     public enum Side {
         DEPOT,
         CREATER;
@@ -198,9 +201,23 @@ public class Drive {
         while (targetDegree > 180) targetDegree -= 360;
         while (targetDegree <= -180) targetDegree += 360;
         turnPID.reset(targetDegree, getAngle());
+
+
+
         while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {
-                double output = turnPID.getOutput(getAngle());
+                double angleCurrection = 0;
+                if(targetDegree>=170) {
+                    if (getAngle() < 0) {
+                        angleCurrection = 360;
+                    }
+                }
+                else if (targetDegree <= -170) {
+                    if (getAngle() > 0) {
+                        targetDegree = -360;
+                    }
+                }
+                double output = turnPID.getOutput(getAngle() + angleCurrection);
                 leftDrive.setPower(-output);
                 rightDrive.setPower(output);
                 opMode.telemetry.addData("error: ", turnPID.getCurrentError())
@@ -330,6 +347,60 @@ public class Drive {
             turnByGyroAbsolut(angle);
         }*/
 
+    }
+    public  void curvedDrive(double distanceCm, double angleFactor, double speed, Direction direction, CurvedDirection curvedDirection)
+    {
+        int newLeftTarget;
+        int newRightTarget;
+
+        double rightSpeed;
+        double leftSpeed;
+
+        if(direction == Direction.BACKWARD) {
+            distanceCm *= -1;
+        }
+        if(curvedDirection == CurvedDirection.RIGHT) {
+            newLeftTarget = (int) (distanceCm * COUNTS_PER_CM);
+            newRightTarget = (int) (distanceCm * COUNTS_PER_CM / angleFactor);
+
+            rightSpeed = speed / angleFactor;
+            leftSpeed = speed;
+        }
+        else {
+            newLeftTarget = (int) (distanceCm * COUNTS_PER_CM  / angleFactor);
+            newRightTarget = (int) (distanceCm * COUNTS_PER_CM);
+
+            rightSpeed = speed;
+            leftSpeed = speed / angleFactor;
+        }
+
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftDrive.setTargetPosition(newLeftTarget);
+        rightDrive.setTargetPosition(newRightTarget);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        leftDrive.setPower(Math.abs(leftSpeed));
+        rightDrive.setPower(Math.abs(rightSpeed));
+
+        while (((LinearOpMode) opMode).opModeIsActive() &&
+                (rightDrive.isBusy() && leftDrive.isBusy())) {
+            opMode.telemetry.addData("leftPos", leftDrive.getCurrentPosition());
+            opMode.telemetry.addData("rightPos", rightDrive.getCurrentPosition());
+            opMode.telemetry.update();
+            if(log != null) {
+                log.writeLog("leftDrive", leftDrive.getCurrentPosition(), "target: " + newLeftTarget);
+                log.writeLog("rightDrive", rightDrive.getCurrentPosition(), "target" + newRightTarget);
+            }
+        }
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
     }
 
     public double getAngle(){
