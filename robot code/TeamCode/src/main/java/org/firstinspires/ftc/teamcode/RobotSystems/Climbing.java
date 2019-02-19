@@ -19,12 +19,12 @@ public class Climbing {
     public enum Angle {
         DOWN(10),
         DRIVE_POS(30),
-        COLLECT(160),
+        COLLECT(156),
         LAND(50),
-        LANDFINAL(60),
-        GO_TO_CLIMB(60),
+        LANDFINAL(54),
+        GO_TO_CLIMB(58),
         CLIMB(30),
-        PUT(61);
+        PUT(59);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -40,7 +40,7 @@ public class Climbing {
     public enum Height {
         DRIVE_POS(0),
         COLLECT(15),
-        LAND(30),
+        LAND(31),
         GO_TO_CLIMB(29),
         CLIMB(10),
         PUT(36);
@@ -347,6 +347,7 @@ public class Climbing {
         //moveLiftAuto(Climbing.Height.LAND);
         //moveAngleAuto(Climbing.Angle.LANDFINAL);
         moveAngleAndHeight(Climbing.Angle.LANDFINAL, Climbing.Height.LAND);
+        ((LinearOpMode) opMode).sleep(600);
         openServo();
         ((LinearOpMode) opMode).sleep(600);
         //moveLiftAuto(Climbing.Height.CLIMB);

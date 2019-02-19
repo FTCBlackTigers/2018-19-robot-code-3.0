@@ -253,7 +253,7 @@ public class Drive {
                 case CENTER:
                 case UNKNOWN:
                     turnByGyroAbsolut(5);
-                    driveByEncoderUsingPID(140, Direction.BACKWARD);
+                    driveByEncoderUsingPID(130, Direction.BACKWARD);
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30);
