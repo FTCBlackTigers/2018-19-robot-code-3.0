@@ -300,7 +300,7 @@ public class Climbing {
 
     public void moveAngleByPID(double target) {
         anglePID.reset(target, getAngle());
-        while (!anglePID.onTarget()) {
+        while (!anglePID.onTarget()  && ((LinearOpMode) opMode).opModeIsActive()) {
             double output = anglePID.getOutput(getAngle());
             angleMotorRight.setPower(output);
             angleMotorLeft.setPower(output);
@@ -395,7 +395,7 @@ public class Climbing {
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor.setPower(Math.abs(LIFT_SPEED));
 
-        while (!anglePID.onTarget()){
+        while (!anglePID.onTarget()  && ((LinearOpMode) opMode).opModeIsActive()){
             double output = anglePID.getOutput(getAngle());
             angleMotorRight.setPower(output);
             angleMotorLeft.setPower(output);
@@ -420,7 +420,7 @@ public class Climbing {
         angleMotorLeft.setPower(0);
         angleMotorRight.setPower(0);
 
-        while(liftMotor.isBusy()){
+        while(liftMotor.isBusy()  && ((LinearOpMode) opMode).opModeIsActive()){
             opMode.telemetry.addLine("Lift \n")
                     .addData("position: ", liftMotor.getCurrentPosition());
             opMode.telemetry.update();

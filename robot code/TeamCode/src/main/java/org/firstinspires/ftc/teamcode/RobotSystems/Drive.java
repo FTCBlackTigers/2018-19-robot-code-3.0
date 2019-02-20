@@ -84,10 +84,11 @@ public class Drive {
         } else tankDrive(-driver.left_stick_y, -driver.right_stick_y);
 
         opMode.telemetry.addLine("Drive: ").
-                addData("left motor power: ", leftDrive.getPower()).
-                addData("right motor power: ", rightDrive.getPower())
+                addData("left motor power: ", leftDrive.getPower())
+                .addData("right motor power: ", rightDrive.getPower())
                 .addData("left motor pos: ", leftDrive.getCurrentPosition())
-                .addData("right motor pos: ", rightDrive.getCurrentPosition());
+                .addData("right motor pos: ", rightDrive.getCurrentPosition())
+                .addData("\ndelta in encoders: ", Math.abs(leftDrive.getCurrentPosition() - rightDrive.getCurrentPosition()));
     }
 
 
