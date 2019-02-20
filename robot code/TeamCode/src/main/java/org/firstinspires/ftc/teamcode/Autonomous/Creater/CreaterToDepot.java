@@ -62,6 +62,9 @@ public class CreaterToDepot extends Creater {
         robot.drive.driveByEncoder(180, 0.5, Drive.Direction.FORWARD, 3000);
         robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
         robot.intake.collect();
+        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
     }
 
 }

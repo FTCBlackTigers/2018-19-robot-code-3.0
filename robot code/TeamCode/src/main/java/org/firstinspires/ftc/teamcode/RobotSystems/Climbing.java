@@ -21,7 +21,7 @@ public class Climbing {
         DRIVE_POS(30),
         COLLECT(156),
         LAND(50),
-        LANDFINAL(54),
+        LANDFINAL(52),
         GO_TO_CLIMB(58),
         CLIMB(30),
         PUT(59);
