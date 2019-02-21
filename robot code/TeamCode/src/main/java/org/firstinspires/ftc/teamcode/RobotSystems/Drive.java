@@ -199,11 +199,9 @@ public class Drive {
     }
 
     public void turnByGyroAbsolut(double targetDegree) {
-        while (targetDegree > 180) targetDegree -= 360;
-        while (targetDegree <= -180) targetDegree += 360;
+        while (targetDegree > 180 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree -= 360;
+        while (targetDegree <= -180 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree += 360;
         turnPID.reset(targetDegree, getAngle());
-
-
 
         while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {

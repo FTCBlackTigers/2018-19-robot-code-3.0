@@ -19,7 +19,7 @@ public class Climbing {
     public enum Angle {
         DOWN(10),
         DRIVE_POS(30),
-        COLLECT(156),
+        COLLECT(152),
         LAND(50),
         LANDFINAL(52),
         GO_TO_CLIMB(58),
