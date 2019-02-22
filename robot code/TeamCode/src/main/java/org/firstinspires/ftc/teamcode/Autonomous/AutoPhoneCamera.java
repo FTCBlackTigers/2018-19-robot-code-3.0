@@ -47,7 +47,6 @@ public class AutoPhoneCamera extends LinearOpMode {
   private GoldRecognation recognation = null;
   private ElapsedTime runtime = new ElapsedTime();
 
-
   @Override
   public void runOpMode() throws InterruptedException {
     recognation = new GoldRecognation(hardwareMap, this);

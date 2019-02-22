@@ -41,7 +41,6 @@ public class LogCreater {
     }
 
     public void init(OpMode opMode) {
-        //Calendar.getInstance().getTime();
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("_dd.MM.yyyy_HH:mm:ss");
             Date date = new Date();

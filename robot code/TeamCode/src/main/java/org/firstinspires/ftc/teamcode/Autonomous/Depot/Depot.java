@@ -55,8 +55,8 @@ public class Depot extends LinearOpMode {
 
     public void endAuto(GoldRecognation.MineralPos goldPos) {
         if (goldPos == GoldRecognation.MineralPos.LEFT) {
-            robot.drive.turnByGyroAbsolut(-50);
-            robot.drive.driveByEncoder(200, 0.5, Drive.Direction.FORWARD, 3000);
+            robot.drive.turnByGyroAbsolut(-45, 10);
+            robot.drive.driveByEncoder(100, 0.5, Drive.Direction.FORWARD, 3000);
             robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
             robot.intake.collect();
             robot.climbing.moveLiftAuto(Climbing.Height.PUT);
@@ -73,11 +73,11 @@ public class Depot extends LinearOpMode {
         robot.init(hardwareMap, this, log);
         waitForStart();
         robot.climbing.land();
-        robot.drive.turnByGyroAbsolut(-7);
+        robot.drive.turnByGyroAbsolut(-7, 10);
         GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.DEPOT);
         robot.intake.injackt();
         sleep(2000);
-        robot.intake.stopMotor();
+        robot.intake.stop();
         endAuto(goldPos);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
     }

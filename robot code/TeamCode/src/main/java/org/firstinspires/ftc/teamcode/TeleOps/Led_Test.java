@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.Prototyping;
+package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -45,41 +45,25 @@ import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 public class Led_Test extends OpMode {
 
   private ElapsedTime runtime = new ElapsedTime();
-  //private DcMotor motor;
   private GoldRecognation goldRecognation;
 
   @Override
   public void init() {
-    //motor = hardwareMap.get(DcMotor.class , "motor");
-    //motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     goldRecognation = new GoldRecognation(hardwareMap, this);
     telemetry.addData("Status", "Initialized");
   }
 
-  /*
-     * Code to run when the op mode is first enabled goes here
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#start()
-     */
   @Override
   public void init_loop() {
   }
 
-  /*
-   * This method will be called ONCE when start is pressed
-   * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-   */
   @Override
   public void start() {
     runtime.reset();
   }
 
-  /*
-   * This method will be called repeatedly in a loop
-   * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-   */
   @Override
   public void loop() {
-    //motor.setPower(gamepad1.left_stick_y);
     telemetry.addData("Status", "Run Time: " + runtime.toString());
     telemetry.addLine("turnOnLeds: a");
     telemetry.addLine("turnOffLeds: b");
@@ -88,5 +72,4 @@ public class Led_Test extends OpMode {
     if(gamepad1.b)
       goldRecognation.turnOffLeds();
   }
-
 }

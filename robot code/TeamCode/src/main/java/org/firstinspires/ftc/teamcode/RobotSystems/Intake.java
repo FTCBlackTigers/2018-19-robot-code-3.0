@@ -1,15 +1,10 @@
 package org.firstinspires.ftc.teamcode.RobotSystems;
 
-import android.graphics.Color;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
@@ -24,6 +19,7 @@ public class Intake {
     private final double RIGHT_SERVO_CLOSE_POS = 0.7;
 
     private OpMode opMode;
+    private LogCreater log;
 
     private DcMotor collectMotor;
     public Servo leftServo, rightServo;
@@ -34,7 +30,7 @@ public class Intake {
     private boolean collectModeIsActive;
     private boolean injecktIsActive;
     private boolean injecktIsPrevActive;
-    private LogCreater log;
+
     private double timeToOpenRight = -1;
 
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log){
@@ -43,15 +39,14 @@ public class Intake {
     }
     public void init(HardwareMap hardwareMap, OpMode opMode) {
         this.opMode = opMode;
-        collectMotor = hardwareMap.get(DcMotor.class, "collectMotor");
-        collectMotor.setDirection(DcMotor.Direction.FORWARD);
-        collectMotor.setPower(0);
-        collectMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
         leftServo = hardwareMap.get(Servo.class, "leftServo");
         rightServo = hardwareMap.get(Servo.class, "rightServo");
-        closeLeftGate();
-        closeRightGate();
+
+        collectMotor = hardwareMap.get(DcMotor.class, "collectMotor");
+        collectMotor.setDirection(DcMotor.Direction.FORWARD);
+        collectMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        stop();
     }
 
     public void teleOpMotion(Gamepad driver, Gamepad operator) {
@@ -70,11 +65,11 @@ public class Intake {
         if(collectModeIsPrevActive && !collectModeIsActive) {
             closeRightGate();
             closeLeftGate();
-            this.stopMotor();
+            this.stop();
         }
 
         if(releaseModeIsPrevActive && !releaseModeIsActive) {
-            this.stopMotor();
+            this.stop();
             closeRightGate();
             closeLeftGate();
             timeToOpenRight = -1;
@@ -87,7 +82,7 @@ public class Intake {
         if(injecktIsPrevActive && !injecktIsActive) {
             closeRightGate();
             closeLeftGate();
-            this.stopMotor();
+            this.stop();
         }
 
         opMode.telemetry.addLine("intake: \n" )
@@ -118,6 +113,11 @@ public class Intake {
         rightServo.setPosition(RIGHT_SERVO_CLOSE_POS);
     }
 
+
+    public void collect() {
+        collectMotor.setPower(COLLECTION_SPEED);
+    }
+
     public void release(){
         if(timeToOpenRight == -1) {
             timeToOpenRight = opMode.getRuntime();
@@ -129,16 +129,12 @@ public class Intake {
         collectMotor.setPower(RELEASE_SPEED);
     }
 
-
-   public void collect() {
-        collectMotor.setPower(COLLECTION_SPEED);
-    }
     public void injackt() {
         collectMotor.setPower(-INJECT_SPEED);
         openRightGate();
         openLeftGate();
     }
-    public void stopMotor(){
+    public void stop(){
         collectMotor.setPower(0);
         closeRightGate();
         closeLeftGate();

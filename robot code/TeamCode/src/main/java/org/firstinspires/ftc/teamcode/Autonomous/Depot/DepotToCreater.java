@@ -54,20 +54,20 @@ public class DepotToCreater extends Depot {
     double driveDis = 0, turnAngle = 0;
     switch (goldPos) {
       case RIGHT:
-        driveDis = 200;
-        turnAngle = 60;
+        driveDis = 100;
+        turnAngle = 55;
         break;
       case UNKNOWN:
       case CENTER:
-        driveDis = 235;
+        driveDis = 110;
         turnAngle = 60;
         break;
       case LEFT:
-        driveDis = 200;
-        turnAngle = -50;
+        driveDis = 100;
+        turnAngle = -45;
         break;
     }
-    robot.drive.turnByGyroAbsolut(turnAngle);
+    robot.drive.turnByGyroAbsolut(turnAngle, 10);
     robot.drive.driveByEncoder(driveDis, 0.5, Drive.Direction.FORWARD, 3000);
     robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
     robot.intake.collect();

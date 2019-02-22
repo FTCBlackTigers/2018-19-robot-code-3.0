@@ -21,25 +21,22 @@ import java.util.Date;
 
 public class Robot {
 
-    public boolean initilaized = false;
     public Drive drive = new Drive();
     public Intake intake = new Intake();
     public Climbing climbing = new Climbing();
     private LogCreater log;
     private OpMode opMode;
 
-
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log) {
+        this.opMode = opMode;
         this.log = log;
         drive.init(hardwareMap, opMode, log);
         intake.init(hardwareMap, opMode, log);
         climbing.init(hardwareMap, opMode, log);
-        this.opMode = opMode;
-        initilaized = true;
+
         opMode.telemetry.addLine("robot initialized");
         opMode.telemetry.update();
     }
-
 
     public void init(HardwareMap hardwareMap, OpMode opMode) {
         drive.init(hardwareMap, opMode);
@@ -49,18 +46,12 @@ public class Robot {
 
         opMode.telemetry.addLine("robot initialized");
         opMode.telemetry.update();
-
     }
-    public void teleop(Gamepad driver, Gamepad operator, boolean isTRX) {
-        if (isTRX) {
-            drive.trxDrive(driver);
-        } else {
-            drive.teleOpMotion(driver);
 
-        }
+    public void teleop(Gamepad driver, Gamepad operator) {
+        drive.teleOpMotion(driver);
         intake.teleOpMotion(driver, operator);
         climbing.teleOpMotion(operator);
-
     }
 
     public void setOpMode(OpMode opMode) {

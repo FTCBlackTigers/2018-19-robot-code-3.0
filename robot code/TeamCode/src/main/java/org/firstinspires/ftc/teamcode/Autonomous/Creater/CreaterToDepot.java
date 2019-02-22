@@ -33,33 +33,61 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
+import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 
 @Autonomous(name = "CreaterToDepot", group = "Tests")
 public class CreaterToDepot extends Creater {
     @Override
     public void goToDepot(GoldRecognation.MineralPos goldPos) {
+        /*
         if (goldPos == GoldRecognation.MineralPos.RIGHT || goldPos == GoldRecognation.MineralPos.LEFT) {
             robot.drive.driveByEncoder(70, 0.3, Drive.Direction.FORWARD, 3000);
         }
         else {
             robot.drive.driveByEncoder(55, 0.3, Drive.Direction.FORWARD, 3000);
         }
-        robot.drive.turnByGyroAbsolut(55);
+        robot.drive.turnByGyroAbsolut(55, 10);
         robot.drive.driveByEncoder(135, 0.3, Drive.Direction.BACKWARD, 3000);
-        robot.drive.turnByGyroAbsolut(133);
+        robot.drive.turnByGyroAbsolut(133, 10);
         robot.drive.driveByEncoder(150, 0.5, Drive.Direction.BACKWARD, 3000);
         //robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        */
+        switch (goldPos){
+            case LEFT:
+                robot.drive.curvedDrive(60,3,0.5, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
+                robot.drive.driveByEncoder(60,0.4, Drive.Direction.BACKWARD,5);
+                robot.drive.turnByGyroAbsolut(130, 5);
+                robot.drive.driveByEncoder(100,0.5, Drive.Direction.BACKWARD,6);
+                break;
+            case UNKNOWN:
+            case CENTER:
+                robot.drive.curvedDrive(100,10,0.6, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
+                robot.drive.turnByGyroAbsolut(90, 3);
+                robot.drive.driveByEncoder(100,0.4, Drive.Direction.BACKWARD,5);
+                robot.drive.turnByGyroAbsolut(130, 5);
+                robot.drive.driveByEncoder(70,0.5, Drive.Direction.BACKWARD,6);
+                break;
+            case RIGHT:
+                robot.drive.curvedDrive(100,6,0.5, Drive.Direction.FORWARD, Drive.CurvedDirection.RIGHT);
+                robot.drive.driveByEncoder(60,0.4, Drive.Direction.FORWARD,5);
+                robot.drive.turnByGyroAbsolut(140, 5);
+                robot.drive.driveByEncoder(100,0.5, Drive.Direction.BACKWARD,6);
+                break;
+        }
+        robot.drive.turnByGyroRelative(10,3);
         robot.intake.injackt();
         sleep(2000);
-        robot.intake.stopMotor();
-
+        robot.intake.stop();
     }
 
     @Override
     public void goToCreater(GoldRecognation.MineralPos goldPos) {
         robot.climbing.moveLift(Climbing.Height.CLIMB);
-        robot.drive.driveByEncoder(180, 0.5, Drive.Direction.FORWARD, 3000);
+        /*if(goldPos == GoldRecognation.MineralPos.RIGHT){
+            robot.drive.turnByGyroAbsolut(-170, 5);
+        }*/
+        robot.drive.driveByEncoder(110, 0.5, Drive.Direction.FORWARD, 3000);
         robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
         robot.intake.collect();
         robot.climbing.moveLiftAuto(Climbing.Height.PUT);

@@ -57,7 +57,7 @@ public class Creater extends LinearOpMode {
     robot.init(hardwareMap , this, log);
     waitForStart();
     robot.climbing.land();
-    robot.drive.turnByGyroAbsolut(-10);
+    robot.drive.turnByGyroAbsolut(-6, 10);
     GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
     goToDepot(goldPos);
     goToCreater(goldPos);
@@ -71,28 +71,29 @@ public class Creater extends LinearOpMode {
   public void goToCreater(GoldRecognation.MineralPos goldPos) {
     switch (goldPos){
       case LEFT:
-      robot.drive.turnByGyroAbsolut(0);
-      robot.drive.driveByEncoderUsingPID(15, Drive.Direction.FORWARD);
-      robot.drive.turnByGyroAbsolut(100);
-      robot.drive.turnByGyroAbsolut(160);
-      robot.drive.driveByEncoder(40, 0.5, Drive.Direction.FORWARD, 3000);
+      robot.drive.turnByGyroAbsolut(0, 10);
+      robot.drive.driveByEncoder(15, 0.5 , Drive.Direction.FORWARD, 5);
+      robot.drive.turnByGyroAbsolut(-100, 3);
+      robot.drive.turnByGyroAbsolut(-160, 5);
+      robot.drive.driveByEncoder(25, 0.5, Drive.Direction.FORWARD, 3000);
       break;
       case UNKNOWN:
       case CENTER:
-        robot.drive.turnByGyroAbsolut(0);
-        robot.drive.driveByEncoderUsingPID(15, Drive.Direction.FORWARD);
-        robot.drive.turnByGyroAbsolut(100);
-        robot.drive.turnByGyroAbsolut(160);
-        robot.drive.driveByEncoder(40, 0.5, Drive.Direction.FORWARD, 3000);
-        break;
-      case RIGHT:
-        robot.drive.turnByGyroAbsolut(0);
-        robot.drive.driveByEncoderUsingPID(20, Drive.Direction.FORWARD);
-        robot.drive.turnByGyroAbsolut(100);
-        robot.drive.turnByGyroAbsolut(160);
+        robot.drive.turnByGyroAbsolut(0, 10);
+        robot.drive.driveByEncoder(25,0.5, Drive.Direction.FORWARD, 10);
+        robot.drive.turnByGyroAbsolut(100,5);
+        robot.drive.turnByGyroAbsolut(180,5);
         robot.drive.driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 3000);
         break;
+      case RIGHT:
+        robot.drive.turnByGyroAbsolut(0, 10);
+        robot.drive.driveByEncoder(15, 0.5 , Drive.Direction.FORWARD, 5);
+        robot.drive.turnByGyroAbsolut(100, 5);
+        robot.drive.turnByGyroAbsolut(160, 5);
+        robot.drive.driveByEncoder(10, 0.5, Drive.Direction.FORWARD, 3000);
+        break;
     }
+
     robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
     robot.intake.collect();
     robot.climbing.moveLiftAuto(Climbing.Height.PUT);

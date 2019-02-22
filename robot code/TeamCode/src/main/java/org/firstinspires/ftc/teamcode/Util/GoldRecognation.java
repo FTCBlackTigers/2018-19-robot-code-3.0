@@ -28,9 +28,6 @@ public class GoldRecognation {
         UNKNOWN;
     }
 
-    public double lastGoldPos = -1;
-    public Recognition lastRecognaition;
-    public double topAndBottomAvg = -999;
     private OpMode opMode;
     private HardwareMap hardwareMap;
     private DcMotor leds;
@@ -68,60 +65,6 @@ public class GoldRecognation {
         }
     }
 
-    public MineralPos getGoldPos(LogCreater log) {
-        turnOnLeds();
-        if (((LinearOpMode) opMode).opModeIsActive()) {
-            /** Activate Tensor Flow Object Detection. */
-            if (tfod != null) {
-                tfod.activate();
-            }
-            double time = opMode.getRuntime();
-            while (((LinearOpMode) opMode).opModeIsActive() && opMode.getRuntime() < time + 5) {
-                List<Recognition> recognitionList = tfod.getUpdatedRecognitions();
-                if (recognitionList != null) {
-                    opMode.telemetry.addData("size", recognitionList.size());
-                    if (log != null) {
-                        log.writeLog("SamplingSize", recognitionList.size(), "");
-                        for (Recognition recognition : recognitionList) {
-                            log.writeLog("SamplingObject", recognition.getTop(),
-                                    recognition.toString() + ", h: " + recognition.getHeight() + ", w: " + recognition.getWidth());
-                        }
-                    }
-                    if (recognitionList.size() == 2) {
-                        double goldTop = -1;
-                        double silverTop = -1;
-                        for (Recognition recognition : recognitionList) {
-
-                            if (recognition.getLabel() == "Gold Mineral") {
-                                goldTop = recognition.getTop();
-                            } else if (silverTop == -1) {
-                                silverTop = recognition.getTop();
-                            } else {
-                                return MineralPos.LEFT;
-                            }
-                        }
-                        opMode.telemetry.addData("goldPos", goldTop + ",silverPos", silverTop);
-                        if (goldTop != -1 && silverTop != -1) {
-                            if (goldTop > silverTop) {
-                                return MineralPos.CENTER;
-                            } else return MineralPos.RIGHT;
-                        }
-                    }
-
-                }
-                opMode.telemetry.update();
-            }
-
-        }
-        return MineralPos.UNKNOWN;
-    }
-
-
-    public List<Recognition> getRecognaition() {
-        tfod.activate();
-        return tfod.getUpdatedRecognitions();
-    }
-
     private void initVuforia() {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
@@ -157,5 +100,50 @@ public class GoldRecognation {
 
     public void turnOffLeds() {
         leds.setPower(0);
+    }
+
+    public MineralPos getGoldPos(LogCreater log) {
+        turnOnLeds();
+        if (((LinearOpMode) opMode).opModeIsActive()) {
+            /** Activate Tensor Flow Object Detection. */
+            if (tfod != null) {
+                tfod.activate();
+            }
+            double time = opMode.getRuntime();
+            while (((LinearOpMode) opMode).opModeIsActive() && opMode.getRuntime() < time + 5) {
+                List<Recognition> recognitionList = tfod.getUpdatedRecognitions();
+                if (recognitionList != null) {
+                    opMode.telemetry.addData("size", recognitionList.size());
+                    if (log != null) {
+                        log.writeLog("SamplingSize", recognitionList.size(), "");
+                        for (Recognition recognition : recognitionList) {
+                            log.writeLog("SamplingObject", recognition.getTop(),
+                                    recognition.toString() + ", h: " + recognition.getHeight() + ", w: " + recognition.getWidth());
+                        }
+                    }
+                    if (recognitionList.size() == 2) {
+                        double goldTop = -1;
+                        double silverTop = -1;
+                        for (Recognition recognition : recognitionList) {
+                            if (recognition.getLabel() == "Gold Mineral") {
+                                goldTop = recognition.getTop();
+                            } else if (silverTop == -1) {
+                                silverTop = recognition.getTop();
+                            } else {
+                                return MineralPos.LEFT;
+                            }
+                        }
+                        opMode.telemetry.addData("goldPos", goldTop + ",silverPos", silverTop);
+                        if (goldTop != -1 && silverTop != -1) {
+                            if (goldTop > silverTop) {
+                                return MineralPos.CENTER;
+                            } else return MineralPos.RIGHT;
+                        }
+                    }
+                }
+                opMode.telemetry.update();
+            }
+        }
+        return MineralPos.UNKNOWN;
     }
 }

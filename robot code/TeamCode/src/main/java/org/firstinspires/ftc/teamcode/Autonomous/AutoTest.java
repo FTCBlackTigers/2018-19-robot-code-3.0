@@ -54,7 +54,8 @@ public class AutoTest extends LinearOpMode {
     waitForStart();
     //robot.drive.curvedDrive(500, 4, 1, Drive.Direction.BACKWARD , Drive.CurvedDirection.RIGHT);
     //robot.drive.curvedDrive(500, 20, 1, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
-
-    robot.drive.driveByEncoder(10000000, 1, Drive.Direction.FORWARD, 30);
+    robot.drive.curvedDrive(100,10,0.6, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
+    robot.drive.turnByGyroRelative(30, 3);
+    //robot.drive.curvedDriveNew(90,100000,0.2);
   }
 }

@@ -55,36 +55,20 @@ public class TeleOp extends OpMode {
     robot.init(hardwareMap, this, log);
     telemetry.addData("Status", "Initialized");
     telemetry.update();
-
   }
 
-
-  /*
-     * Code to run when the op mode is first enabled goes here
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#start()
-     */
   @Override
   public void init_loop() {
   }
 
-  /*
-   * This method will be called ONCE when start is pressed
-   * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-   */
   @Override
   public void start() {
     runtime.reset();
   }
 
-  /*
-   * This method will be called repeatedly in a loop
-   *@see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-   */
-  @Override
+ @Override
   public void loop() {
-    robot.teleop(gamepad1, gamepad2, false);
-    telemetry.addData("robot Status", "Run Time: " + runtime.toString());
-    telemetry.addData("gyro angle: ", robot.drive.getAngle());
+    robot.teleop(gamepad1, gamepad2);
     telemetry.update();
 
   }

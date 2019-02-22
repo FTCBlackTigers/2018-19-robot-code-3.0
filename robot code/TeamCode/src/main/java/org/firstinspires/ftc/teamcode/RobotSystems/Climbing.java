@@ -20,8 +20,7 @@ public class Climbing {
         DOWN(10),
         DRIVE_POS(30),
         COLLECT(152),
-        LAND(50),
-        LANDFINAL(52),
+        LAND(52),
         GO_TO_CLIMB(58),
         CLIMB(30),
         PUT(59);
@@ -58,15 +57,20 @@ public class Climbing {
     }
 
     private final double LIFT_SPEED = 1;
-    private final double HANG_OPEN_POS = 0.25;
-    private final double HANG_CLOSE_POS = 0;
     private final double ANGLE_SPEED = 1;
 
-    public DcMotor liftMotor;
-    private Servo hangServo;
+    private final double HANG_OPEN_POS = 0.8;
+    private final double HANG_CLOSE_POS = 0;
+
+    private final double KP = 0.5, KI = 0, KD = 0, TOLERANCE = 4;
+
+    private OpMode opMode;
+    private LogCreater log;
+
     public DcMotor angleMotorLeft;
     public DcMotor angleMotorRight;
-    private OpMode opMode;
+    public DcMotor liftMotor;
+    private Servo hangServo;
     private DigitalChannel liftTouch;
     private DigitalChannel angleTouch;
     private AnalogInput potentiometer;
@@ -75,15 +79,14 @@ public class Climbing {
     private boolean angleTouchIsActive;
     private boolean liftTouchIsPrevActive;
     private boolean liftTouchIsActive;
+
     private double angleJoystickValue = 0;
     private double angleJoystickPrevValue = 0;
     private double liftJoystickValue = 0;
     private double liftJoystickPrevValue = 0;
     private double stopPIDTime;
-    private PIDController anglePID;
-    private final double KP = 0.5, KI = 0, KD = 0, TOLERANCE = 4;
-    private LogCreater log;
 
+    private PIDController anglePID;
 
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log) {
         this.log = log;
@@ -121,6 +124,8 @@ public class Climbing {
         liftTouch.setMode(DigitalChannel.Mode.INPUT);
         angleTouch.setMode(DigitalChannel.Mode.INPUT);
 
+        hangServo.setDirection(Servo.Direction.REVERSE);
+
         lockServo();
     }
 
@@ -157,6 +162,7 @@ public class Climbing {
                 log.writeLog("liftMotor", liftMotor.getCurrentPosition(), "target: " + liftMotor.getTargetPosition());
             }
         }
+
         if (anglePID.isRunning()) {
             if (anglePID.onTarget()) {
                 angleMotorRight.setPower(0);
@@ -182,7 +188,6 @@ public class Climbing {
                 }
             }
         }
-
 
         if (operator.dpad_down) {
             moveLift(Height.DRIVE_POS);
@@ -241,6 +246,7 @@ public class Climbing {
         } else if (Math.abs(angleJoystickPrevValue) > 0.1) {
             angleMoveManual(0);
         }
+
         if (operator.a) {
             openServo();
         }
@@ -269,22 +275,10 @@ public class Climbing {
         liftJoystickPrevValue = liftJoystickValue;
     }
 
-
     public void moveLift(Height height) {
         liftMotor.setTargetPosition(height.getTicks() - GlobalVariebels.liftPosEndAuto);
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor.setPower(Math.abs(LIFT_SPEED));
-        if(height == Height.GO_TO_CLIMB && IsliftInTarget(Height.GO_TO_CLIMB)){
-            liftMotor.setPower(0.1); //In Order to anchor the motor and make him no fall
-        }
-    }
-
-    private void liftMoveManual(double motorPower) {
-        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        if (liftTouchIsActive && motorPower < 0) {
-            return;
-        }
-        liftMotor.setPower(motorPower * LIFT_SPEED);
     }
 
     public void moveAngle(Angle angle) {
@@ -298,25 +292,14 @@ public class Climbing {
         angleMotorRight.setPower(output);
     }
 
-    public void moveAngleByPID(double target) {
-        anglePID.reset(target, getAngle());
-        while (!anglePID.onTarget()  && ((LinearOpMode) opMode).opModeIsActive()) {
-            double output = anglePID.getOutput(getAngle());
-            angleMotorRight.setPower(output);
-            angleMotorLeft.setPower(output);
-            opMode.telemetry.addData("error: " ,anglePID.getCurrentError())
-                    .addData("output: " , output)
-                    .addData("angle", getAngle());
-            opMode.telemetry.update();
+    private void liftMoveManual(double motorPower) {
+        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        if (liftTouchIsActive && motorPower < 0) {
+            return;
         }
-        angleMotorRight.setPower(0);
-        angleMotorLeft.setPower(0);
-        while (((LinearOpMode) opMode).opModeIsActive()) {
-            opMode.telemetry.addData("error: " ,anglePID.getCurrentError())
-                    .addData("angle", getAngle());
-            opMode.telemetry.update();
-        }
+        liftMotor.setPower(motorPower * LIFT_SPEED);
     }
+
     private void angleMoveManual(double motorPower) {
         anglePID.stop();
 
@@ -335,29 +318,8 @@ public class Climbing {
         hangServo.setPosition(HANG_OPEN_POS);
     }
 
-    public void waitForFinish(DcMotor motor){
-        while(motor.isBusy() && ((LinearOpMode) opMode).opModeIsActive()){
-            opMode.telemetry.addData(motor.getDeviceName() + ": ",motor.getCurrentPosition());
-            opMode.telemetry.update();
-        }
-    }
 
-    public void land() {
-        //moveAngleAuto(Climbing.Angle.LAND);
-        //moveLiftAuto(Climbing.Height.LAND);
-        //moveAngleAuto(Climbing.Angle.LANDFINAL);
-        moveAngleAndHeight(Climbing.Angle.LANDFINAL, Climbing.Height.LAND);
-        ((LinearOpMode) opMode).sleep(600);
-        openServo();
-        ((LinearOpMode) opMode).sleep(600);
-        //moveLiftAuto(Climbing.Height.CLIMB);
-        //moveAngleAuto(Angle.DOWN);
-        moveAngleAndHeight(Angle.DOWN, Height.CLIMB);
-
-        angleMotorLeft.setPower(0);
-        liftMotor.setPower(0);
-    }
-
+    //Auto methods
     public void moveLiftAuto(Height height) {
         moveLift(height);
         while(liftMotor.isBusy() && ((LinearOpMode) opMode).opModeIsActive()) {
@@ -433,6 +395,20 @@ public class Climbing {
         liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    public void land() {
+        //moveAngleAuto(Climbing.Angle.LAND);
+        //moveLiftAuto(Climbing.Height.LAND);
+        //moveAngleAuto(Climbing.Angle.LAND);
+        moveAngleAndHeight(Climbing.Angle.LAND, Climbing.Height.LAND);
+        ((LinearOpMode) opMode).sleep(600);
+        openServo();
+        ((LinearOpMode) opMode).sleep(700);
+        moveAngleAndHeight(Angle.DOWN, Height.CLIMB);
+
+        angleMotorLeft.setPower(0);
+        liftMotor.setPower(0);
+    }
+
     public double getAngle() {
         return potentiometer.getVoltage() / 3.347 *270;
     }
@@ -448,8 +424,27 @@ public class Climbing {
         return getAngle()>49 && getAngle()<80;
     }
     public boolean IsliftInTarget(Height height){
-        if(liftMotor.getTargetPosition() >= height.getTicks()+200 && liftMotor.getTargetPosition() <= height.getTicks()-200){
-            return true;
-        } else return false;
+        return liftMotor.getTargetPosition() >= height.getTicks()+200 && liftMotor.getTargetPosition() <= height.getTicks()-200;
     }
+        /* TESTING CODE
+    public void moveAngleByPID(double target) {
+        anglePID.reset(target, getAngle());
+        while (!anglePID.onTarget()  && ((LinearOpMode) opMode).opModeIsActive()) {
+            double output = anglePID.getOutput(getAngle());
+            angleMotorRight.setPower(output);
+            angleMotorLeft.setPower(output);
+            opMode.telemetry.addData("error: " ,anglePID.getCurrentError())
+                    .addData("output: " , output)
+                    .addData("angle", getAngle());
+            opMode.telemetry.update();
+        }
+        angleMotorRight.setPower(0);
+        angleMotorLeft.setPower(0);
+        while (((LinearOpMode) opMode).opModeIsActive()) {
+            opMode.telemetry.addData("error: " ,anglePID.getCurrentError())
+                    .addData("angle", getAngle());
+            opMode.telemetry.update();
+        }
+    }
+    */
 }

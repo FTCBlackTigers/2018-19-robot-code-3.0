@@ -29,19 +29,22 @@ public class Drive {
     static final double COUNTS_PER_MOTOR_REV = 28;
     static final double DRIVE_GEAR_REDUCTION = 40;
     static final double WHEEL_DIAMETER_CM = 10.16;
-    static final double COUNTS_PER_CM = 20; /*(COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
-            (WHEEL_DIAMETER_CM * 3.141592654);*/
+    static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_CM * 3.141592654);
     private final double KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
     private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 7;
 
     private OpMode opMode;
-    private BT_Gyro gyro = new BT_Gyro();
+    private LogCreater log;
+
     private DcMotor leftDrive;
     private DcMotor rightDrive;
+    private BT_Gyro gyro = new BT_Gyro();
     private GoldRecognation recognation = null;
+
     private PIDController forwardPID;
     private PIDController turnPID;
-    private LogCreater log;
+
 
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log) {
         this.log = log;
@@ -71,8 +74,6 @@ public class Drive {
         forwardPID = new PIDController(KP, KI, KD, TOLERANCE,opMode);
         turnPID = new PIDController(turnKP, turnKI, turnKD, turnTOLERANCE, opMode);
 
-        //leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public void teleOpMotion(Gamepad driver) {
         if (driver.dpad_up) {
@@ -83,6 +84,7 @@ public class Drive {
             rightDrive.setPower(-0.2);
         } else tankDrive(-driver.left_stick_y, -driver.right_stick_y);
 
+        //TODO: change telemetry
         opMode.telemetry.addLine("Drive: ").
                 addData("left motor power: ", leftDrive.getPower())
                 .addData("right motor power: ", rightDrive.getPower())
@@ -91,37 +93,12 @@ public class Drive {
                 .addData("\ndelta in encoders: ", Math.abs(leftDrive.getCurrentPosition() - rightDrive.getCurrentPosition()));
     }
 
-
     private void tankDrive(double powerLeftDrive, double powerRightDrive) {
-        leftDrive.setPower(powerLeftDrive *0.5);
-        rightDrive.setPower(powerRightDrive *0.5);
+        leftDrive.setPower(powerLeftDrive * 0.5);
+        rightDrive.setPower(powerRightDrive * 0.5);
     }
 
-    public void turnByGyroRelative(double degrees) {
-        turnByGyroAbsolut(this.gyro.getAngle() + degrees);
-    }
-
-    public void trxDrive(Gamepad driver) {
-        if (driver.a && driver.right_trigger != 0) {
-            leftDrive.setPower(driver.right_trigger);
-            rightDrive.setPower(-driver.right_trigger);
-        } else if (driver.a && driver.left_trigger != 0) {
-            leftDrive.setPower(-driver.left_trigger);
-            rightDrive.setPower(driver.left_trigger);
-        } else if (driver.right_trigger != 0) {
-            leftDrive.setPower(driver.right_trigger);
-            rightDrive.setPower(driver.right_trigger);
-        } else if (driver.left_trigger != 0) {
-            leftDrive.setPower(-driver.left_trigger);
-            rightDrive.setPower(-driver.left_trigger);
-        } else {
-            leftDrive.setPower(0);
-            rightDrive.setPower(0);
-        }
-    }
-
-
-    public void driveByEncoder(double distanceCm, double speed, Direction direction, double timeMs) {
+    public void driveByEncoder(double distanceCm, double speed, Direction direction, double timeS) {
         if (opMode instanceof LinearOpMode) {
             int newLeftTarget = 0;
             int newRightTarget = 0;
@@ -150,7 +127,7 @@ public class Drive {
             leftDrive.setPower(Math.abs(speed));
             rightDrive.setPower(Math.abs(speed));
 
-            double stopTime = opMode.getRuntime() + timeMs;
+            double stopTime = opMode.getRuntime() + timeS;
             while (((LinearOpMode) opMode).opModeIsActive() &&
                     (opMode.getRuntime() < stopTime) &&
                     (rightDrive.isBusy() && leftDrive.isBusy())) {
@@ -159,7 +136,7 @@ public class Drive {
                 opMode.telemetry.update();
                 if(log != null) {
                     log.writeLog("leftDrive", leftDrive.getCurrentPosition(), "target: " + newLeftTarget);
-                    log.writeLog("rightDrive", rightDrive.getCurrentPosition(), "target" + newRightTarget);
+                    log.writeLog("rightDrive", rightDrive.getCurrentPosition(), "target: " + newRightTarget);
                 }
             }
             leftDrive.setPower(0);
@@ -170,183 +147,6 @@ public class Drive {
         }
     }
 
-    public void driveByEncoderUsingPID(double distance,Direction direction){
-        if(direction == Direction.BACKWARD){
-            distance *= -1;
-        }
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        forwardPID.reset(distance,0);
-
-        opMode.telemetry.addData("error: " , forwardPID.getCurrentError());
-        opMode.telemetry.update();
-        while (!forwardPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()){
-            double output = forwardPID.getOutput(leftDrive.getCurrentPosition() / COUNTS_PER_CM);
-            leftDrive.setPower(output);
-            rightDrive.setPower(output);
-            opMode.telemetry.addData("error: " , forwardPID.getCurrentError())
-            .addData("output: " , output);
-            opMode.telemetry.update();
-            if (log != null) {
-                log.writeLog("leftDrive", leftDrive.getCurrentPosition() / COUNTS_PER_CM, "target: " + distance);
-                log.writeLog("rightDrive", rightDrive.getCurrentPosition() / COUNTS_PER_CM, "target" + distance);
-            }
-        }
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
-    }
-
-    public void turnByGyroAbsolut(double targetDegree) {
-        while (targetDegree > 180 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree -= 360;
-        while (targetDegree <= -180 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree += 360;
-        turnPID.reset(targetDegree, getAngle());
-
-        while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {
-            while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()) {
-                double angleCurrection = 0;
-                if(targetDegree>=170) {
-                    if (getAngle() < 0) {
-                        angleCurrection = 360;
-                    }
-                }
-                else if (targetDegree <= -170) {
-                    if (getAngle() > 0) {
-                        targetDegree = -360;
-                    }
-                }
-                double output = turnPID.getOutput(getAngle() + angleCurrection);
-                leftDrive.setPower(-output);
-                rightDrive.setPower(output);
-                opMode.telemetry.addData("error: ", turnPID.getCurrentError())
-                        .addData("output: ", output)
-                        .addData("robot angle: ", getAngle());
-                opMode.telemetry.update();
-                if (log != null) {
-                    log.writeLog("gyro", getAngle(), "target: " + targetDegree);
-                }
-            }
-            double time = opMode.getRuntime() + 0.3;
-            while ((opMode.getRuntime() < time) && ((LinearOpMode)opMode).opModeIsActive()) {
-                turnPID.updateError(getAngle());
-            }
-        }
-
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
-    }
-
-    public GoldRecognation.MineralPos Sampling(Side side) {
-        GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
-        recognation.stopTfod();
-        recognation.turnOffLeds();
-        if (side == Side.DEPOT) {
-            switch (pos) {
-                case LEFT:
-                    turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(80, Direction.BACKWARD);
-                    turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(45, Direction.BACKWARD);
-                    break;
-                case CENTER:
-                case UNKNOWN:
-                    turnByGyroAbsolut(5);
-                    driveByEncoderUsingPID(130, Direction.BACKWARD);
-                    break;
-                case RIGHT:
-                    turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(90, Direction.BACKWARD);
-                    turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(45, Direction.BACKWARD);
-                    break;
-            }
-
-        } else {
-            switch (pos) {
-                case LEFT:
-                    turnByGyroAbsolut(30);
-                    driveByEncoderUsingPID(75, Direction.BACKWARD);
-                    break;
-                case CENTER:
-                case UNKNOWN:
-                    turnByGyroAbsolut(5);
-                    driveByEncoderUsingPID(60, Direction.BACKWARD);
-                    break;
-                case RIGHT:
-                    turnByGyroAbsolut(-30);
-                    driveByEncoderUsingPID(75, Direction.BACKWARD);
-                    break;
-            }
-        }
-        opMode.telemetry.addData("mineral", pos);
-        return pos;
-    }
-
-    public  void curvedDrive(double distanceCm, double angle, double speed, double startTurnDist, Direction direction) {
-
-        int startTurnDistCounts = (int)(startTurnDist * COUNTS_PER_CM);
-
-        double steer = 0, max;
-        double leftSpeed = speed, rightSpeed = speed;
-
-        if(direction == Direction.BACKWARD) {
-            distanceCm *= -1;
-        }
-
-        int newLeftTarget = (int)(distanceCm * COUNTS_PER_CM);
-        int newRightTarget = (int)(distanceCm * COUNTS_PER_CM);
-
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        leftDrive.setTargetPosition(newLeftTarget);
-        rightDrive.setTargetPosition(newRightTarget);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        turnPID.reset(angle, getAngle());
-
-        leftDrive.setPower(Math.abs(leftSpeed));
-        rightDrive.setPower(Math.abs(rightSpeed));
-
-        while (((LinearOpMode) opMode).opModeIsActive() &&
-                (rightDrive.isBusy() && leftDrive.isBusy())) {
-            if (Math.abs(leftDrive.getCurrentPosition()) > startTurnDistCounts || Math.abs(rightDrive.getCurrentPosition()) > startTurnDistCounts) {
-                steer = turnPID.onTarget()? 0 : turnPID.getOutput(getAngle());
-
-                if (direction == Direction.BACKWARD) {
-                    steer *= -1;
-                }
-
-                leftSpeed = speed - steer;
-                rightSpeed = speed + steer;
-
-                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
-                if (max > 1.0) {
-                    leftSpeed /= max;
-                    rightSpeed /= max;
-                }
-
-                leftDrive.setPower(leftSpeed);
-                rightDrive.setPower(rightSpeed);
-            }
-            opMode.telemetry.addData("Err/St",  "%5.1f/%5.1f",  turnPID.getCurrentError(), steer)
-                .addData("Target",  "%7d:%7d",      newLeftTarget,  newRightTarget)
-                .addData("Actual",  "%7d:%7d",      leftDrive.getCurrentPosition(), rightDrive.getCurrentPosition())
-                .addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
-            opMode.telemetry.update();
-        }
-
-        /*if(!turnPID.onTarget()){
-            turnByGyroAbsolut(angle);
-        }*/
-
-    }
     public  void curvedDrive(double distanceCm, double angleFactor, double speed, Direction direction, CurvedDirection curvedDirection)
     {
         int newLeftTarget;
@@ -402,6 +202,135 @@ public class Drive {
         rightDrive.setPower(0);
     }
 
+    public void turnByGyroAbsolut(double targetDegree, double timeS) {
+        while (targetDegree > 180 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree -= 360;
+        while (targetDegree <= -179 && ((LinearOpMode)opMode).opModeIsActive()) targetDegree += 360;
+        turnPID.reset(targetDegree, getAngle());
+        timeS += opMode.getRuntime();
+
+        while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive() && opMode.getRuntime() <= timeS) {
+            while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()&& opMode.getRuntime() <= timeS) {
+                double angleCurrection = 0;
+                if(targetDegree>=170) {
+                    if (getAngle() < 0) {
+                        angleCurrection = 360;
+                    }
+                }
+                else if (targetDegree <= -170) {
+                    if (getAngle() > 0) {
+                        targetDegree = -360;
+                    }
+                }
+                double output = turnPID.getOutput(getAngle() + angleCurrection);
+                leftDrive.setPower(-output);
+                rightDrive.setPower(output);
+                opMode.telemetry.addData("error: ", turnPID.getCurrentError())
+                        .addData("output: ", output)
+                        .addData("robot angle: ", getAngle());
+                opMode.telemetry.update();
+                if (log != null) {
+                    log.writeLog("gyro", getAngle(), "target: " + targetDegree + ", output: " + output);
+                }
+            }
+            double time = opMode.getRuntime() + 0.3;
+            while ((opMode.getRuntime() < time) && ((LinearOpMode)opMode).opModeIsActive()) {
+                turnPID.updateError(getAngle());
+            }
+        }
+
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+    }
+
+    public void curvedDriveNew(double Radius,double cm, double speed){
+        final double ROBOT_WIDTH = 10;
+
+        double error = Math.pow(cm,2)/(ROBOT_WIDTH * Math.sin(Radius) * Math.pow(cm,2));
+        double turnRadius = ((ROBOT_WIDTH * 0.5) * error) / (cm - error);
+        int leftDriveCm =  (int) (((Math.PI * turnRadius * Radius) / 90) * COUNTS_PER_CM);
+        int rightDriveCm = (int) (((turnRadius + (ROBOT_WIDTH*0.5) * Radius) / 90) * COUNTS_PER_CM);
+        double rightPower = (rightDriveCm * speed) / leftDriveCm;
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        leftDrive.setTargetPosition(leftDriveCm);
+        rightDrive.setTargetPosition(rightDriveCm);
+
+        leftDrive.setPower(speed);
+        rightDrive.setPower(rightPower);
+
+        while (((LinearOpMode)opMode).opModeIsActive() && leftDrive.isBusy() && rightDrive.isBusy()){
+            opMode.telemetry.addData("leftPos", leftDrive.getCurrentPosition());
+            opMode.telemetry.addData("rightPos", rightDrive.getCurrentPosition());
+            opMode.telemetry.update();
+        }
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+
+    public void turnByGyroRelative(double degrees, double timeS) {
+        turnByGyroAbsolut(this.gyro.getAngle() + degrees, timeS);
+    }
+
+    public GoldRecognation.MineralPos Sampling(Side side) {
+        GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
+        recognation.stopTfod();
+        recognation.turnOffLeds();
+        if (side == Side.DEPOT) {
+            switch (pos) {
+                case LEFT:
+                    turnByGyroAbsolut(40,2);
+                    driveByEncoder(10, 0.2, Direction.BACKWARD, 5);
+                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.LEFT);
+                    //driveByEncoder(80, 0.5, Direction.BACKWARD, 5);
+                    //turnByGyroAbsolut(-30,2);
+                    //driveByEncoder(45,0.5,  Direction.BACKWARD, 5);
+                    break;
+                case CENTER:
+                case UNKNOWN:
+                    turnByGyroAbsolut(5,3);
+                    driveByEncoder(75,0.5, Direction.BACKWARD, 10);
+                    break;
+                case RIGHT:
+                    turnByGyroAbsolut(-40,10);
+                    //driveByEncoder(10, 0.2, Direction.BACKWARD, 5);
+                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
+                    //driveByEncoder(90,0.5, Direction.BACKWARD,10);
+                    //turnByGyroAbsolut(30,10);
+                    //driveByEncoder(45,0.5, Direction.BACKWARD,10);
+                    break;
+            }
+
+        } else {
+            switch (pos) {
+                case LEFT:
+                    turnByGyroAbsolut(30,10);
+                    driveByEncoder(45,0.5, Direction.BACKWARD,10);
+                    break;
+                case CENTER:
+                case UNKNOWN:
+                    turnByGyroAbsolut(5,10);
+                    driveByEncoder(40,0.5, Direction.BACKWARD,10);
+                    break;
+                case RIGHT:
+                    turnByGyroAbsolut(-30,10);
+                    driveByEncoder(55,0.5, Direction.BACKWARD,10);
+                    break;
+            }
+        }
+        opMode.telemetry.addData("mineral", pos);
+        return pos;
+    }
+
+
+
     public double getAngle(){
         return gyro.getAngle();
     }
@@ -413,8 +342,34 @@ public class Drive {
     public void setLog(LogCreater log) {
         this.log = log;
     }
+
+    /**
+     public void driveByEncoderUsingPID(double distance,Direction direction){
+     if(direction == Direction.BACKWARD){
+     distance *= -1;
+     }
+     leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+     rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+     leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+     rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+     forwardPID.reset(distance,0);
+
+     opMode.telemetry.addData("error: " , forwardPID.getCurrentError());
+     opMode.telemetry.update();
+     while (!forwardPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()){
+     double output = forwardPID.getOutput(leftDrive.getCurrentPosition() / COUNTS_PER_CM);
+     leftDrive.setPower(output);
+     rightDrive.setPower(output);
+     opMode.telemetry.addData("error: " , forwardPID.getCurrentError())
+     .addData("output: " , output);
+     opMode.telemetry.update();
+     if (log != null) {
+     log.writeLog("leftDrive", leftDrive.getCurrentPosition() / COUNTS_PER_CM, "target: " + distance);
+     log.writeLog("rightDrive", rightDrive.getCurrentPosition() / COUNTS_PER_CM, "target" + distance);
+     }
+     }
+     leftDrive.setPower(0);
+     rightDrive.setPower(0);
+     }
+     **/
 }
-
-
-
-
