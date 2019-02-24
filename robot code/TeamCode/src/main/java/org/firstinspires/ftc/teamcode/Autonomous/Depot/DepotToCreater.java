@@ -54,13 +54,15 @@ public class DepotToCreater extends Depot {
     double driveDis = 0, turnAngle = 0;
     switch (goldPos) {
       case RIGHT:
-        driveDis = 100;
-        turnAngle = 55;
+        driveDis = 130;
+        turnAngle = -60;
+        robot.drive.driveByEncoder(15,0.3, Drive.Direction.BACKWARD, 2);
         break;
       case UNKNOWN:
       case CENTER:
         driveDis = 110;
-        turnAngle = 60;
+        turnAngle = -60;
+        robot.drive.driveByEncoder(8,0.3, Drive.Direction.BACKWARD, 2);
         break;
       case LEFT:
         driveDis = 100;

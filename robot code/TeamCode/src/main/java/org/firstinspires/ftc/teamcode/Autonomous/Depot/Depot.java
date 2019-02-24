@@ -73,7 +73,7 @@ public class Depot extends LinearOpMode {
         robot.init(hardwareMap, this, log);
         waitForStart();
         robot.climbing.land();
-        robot.drive.turnByGyroAbsolut(-7, 10);
+        robot.drive.turnByGyroAbsolut(-9, 10);
         GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.DEPOT);
         robot.intake.injackt();
         sleep(2000);

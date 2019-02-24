@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Pixy.PixyCam;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 import org.firstinspires.ftc.teamcode.Util.PIDController;
 import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
+import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
 
 public class Drive {
     public enum Direction {
@@ -43,7 +44,7 @@ public class Drive {
     private GoldRecognation recognation = null;
 
     private PIDController forwardPID;
-    private PIDController turnPID;
+    private TurnPIDController turnPID;
 
 
     public void init(HardwareMap hardwareMap, OpMode opMode, LogCreater log) {
@@ -72,7 +73,7 @@ public class Drive {
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         forwardPID = new PIDController(KP, KI, KD, TOLERANCE,opMode);
-        turnPID = new PIDController(turnKP, turnKI, turnKD, turnTOLERANCE, opMode);
+        turnPID = new TurnPIDController(turnKP, turnKI, turnKD, turnTOLERANCE, opMode);
 
     }
     public void teleOpMotion(Gamepad driver) {
@@ -211,7 +212,7 @@ public class Drive {
         while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive() && opMode.getRuntime() <= timeS) {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()&& opMode.getRuntime() <= timeS) {
                 double angleCurrection = 0;
-                if(targetDegree>=170) {
+               /* if(targetDegree>=170) {
                     if (getAngle() < 0) {
                         angleCurrection = 360;
                     }
@@ -221,6 +222,7 @@ public class Drive {
                         targetDegree = -360;
                     }
                 }
+                */
                 double output = turnPID.getOutput(getAngle() + angleCurrection);
                 leftDrive.setPower(-output);
                 rightDrive.setPower(output);
@@ -241,40 +243,6 @@ public class Drive {
         leftDrive.setPower(0);
         rightDrive.setPower(0);
     }
-
-    public void curvedDriveNew(double Radius,double cm, double speed){
-        final double ROBOT_WIDTH = 10;
-
-        double error = Math.pow(cm,2)/(ROBOT_WIDTH * Math.sin(Radius) * Math.pow(cm,2));
-        double turnRadius = ((ROBOT_WIDTH * 0.5) * error) / (cm - error);
-        int leftDriveCm =  (int) (((Math.PI * turnRadius * Radius) / 90) * COUNTS_PER_CM);
-        int rightDriveCm = (int) (((turnRadius + (ROBOT_WIDTH*0.5) * Radius) / 90) * COUNTS_PER_CM);
-        double rightPower = (rightDriveCm * speed) / leftDriveCm;
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        leftDrive.setTargetPosition(leftDriveCm);
-        rightDrive.setTargetPosition(rightDriveCm);
-
-        leftDrive.setPower(speed);
-        rightDrive.setPower(rightPower);
-
-        while (((LinearOpMode)opMode).opModeIsActive() && leftDrive.isBusy() && rightDrive.isBusy()){
-            opMode.telemetry.addData("leftPos", leftDrive.getCurrentPosition());
-            opMode.telemetry.addData("rightPos", rightDrive.getCurrentPosition());
-            opMode.telemetry.update();
-        }
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
-
     public void turnByGyroRelative(double degrees, double timeS) {
         turnByGyroAbsolut(this.gyro.getAngle() + degrees, timeS);
     }
@@ -321,7 +289,7 @@ public class Drive {
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30,10);
-                    driveByEncoder(55,0.5, Direction.BACKWARD,10);
+                    driveByEncoder(45,0.5, Direction.BACKWARD,10);
                     break;
             }
         }

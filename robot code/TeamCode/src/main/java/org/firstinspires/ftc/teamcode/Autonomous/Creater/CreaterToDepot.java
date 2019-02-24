@@ -69,25 +69,23 @@ public class CreaterToDepot extends Creater {
                 robot.drive.driveByEncoder(70,0.5, Drive.Direction.BACKWARD,6);
                 break;
             case RIGHT:
+                robot.drive.driveByEncoder(10, 0.5, Drive.Direction.FORWARD, 5);
                 robot.drive.curvedDrive(100,6,0.5, Drive.Direction.FORWARD, Drive.CurvedDirection.RIGHT);
                 robot.drive.driveByEncoder(60,0.4, Drive.Direction.FORWARD,5);
-                robot.drive.turnByGyroAbsolut(140, 5);
-                robot.drive.driveByEncoder(100,0.5, Drive.Direction.BACKWARD,6);
+                robot.drive.turnByGyroAbsolut(140, 3);
+                robot.drive.driveByEncoder(80,0.5, Drive.Direction.BACKWARD,6);
                 break;
         }
         robot.drive.turnByGyroRelative(10,3);
         robot.intake.injackt();
         sleep(2000);
         robot.intake.stop();
+        robot.drive.turnByGyroAbsolut(160, 1);
     }
 
     @Override
     public void goToCreater(GoldRecognation.MineralPos goldPos) {
-        robot.climbing.moveLift(Climbing.Height.CLIMB);
-        /*if(goldPos == GoldRecognation.MineralPos.RIGHT){
-            robot.drive.turnByGyroAbsolut(-170, 5);
-        }*/
-        robot.drive.driveByEncoder(110, 0.5, Drive.Direction.FORWARD, 3000);
+        robot.drive.driveByEncoder(110, 1, Drive.Direction.FORWARD, 3);
         robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
         robot.intake.collect();
         robot.climbing.moveLiftAuto(Climbing.Height.PUT);

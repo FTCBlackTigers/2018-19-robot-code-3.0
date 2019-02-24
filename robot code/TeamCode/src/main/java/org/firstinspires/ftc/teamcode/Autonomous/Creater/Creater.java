@@ -57,7 +57,7 @@ public class Creater extends LinearOpMode {
     robot.init(hardwareMap , this, log);
     waitForStart();
     robot.climbing.land();
-    robot.drive.turnByGyroAbsolut(-6, 10);
+    robot.drive.turnByGyroAbsolut(-9, 10);
     GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
     goToDepot(goldPos);
     goToCreater(goldPos);
@@ -74,7 +74,7 @@ public class Creater extends LinearOpMode {
       robot.drive.turnByGyroAbsolut(0, 10);
       robot.drive.driveByEncoder(15, 0.5 , Drive.Direction.FORWARD, 5);
       robot.drive.turnByGyroAbsolut(-100, 3);
-      robot.drive.turnByGyroAbsolut(-160, 5);
+      robot.drive.turnByGyroAbsolut(-179, 5);
       robot.drive.driveByEncoder(25, 0.5, Drive.Direction.FORWARD, 3000);
       break;
       case UNKNOWN:
@@ -89,7 +89,7 @@ public class Creater extends LinearOpMode {
         robot.drive.turnByGyroAbsolut(0, 10);
         robot.drive.driveByEncoder(15, 0.5 , Drive.Direction.FORWARD, 5);
         robot.drive.turnByGyroAbsolut(100, 5);
-        robot.drive.turnByGyroAbsolut(160, 5);
+        robot.drive.turnByGyroAbsolut(180, 5);
         robot.drive.driveByEncoder(10, 0.5, Drive.Direction.FORWARD, 3000);
         break;
     }

@@ -5,12 +5,12 @@ import com.qualcomm.robotcore.util.Range;
 
 public class PIDController {
 
-    private double setpoint, tolerance, currentError;
-    private double kP, kI, kD;
-    private OpMode opMode;
+    protected double setpoint, tolerance, currentError;
+    protected double kP, kI, kD;
+    protected OpMode opMode;
 
-    private double prevError, sumError, prevTime;
-    private boolean running = false;
+    protected double prevError, sumError, prevTime;
+    protected boolean running = false;
 
     /**
      * Instantiate a new PIDController. 

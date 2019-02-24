@@ -48,14 +48,12 @@ public class AutoTest extends LinearOpMode {
 
 
 
+
   @Override
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    //robot.drive.curvedDrive(500, 4, 1, Drive.Direction.BACKWARD , Drive.CurvedDirection.RIGHT);
-    //robot.drive.curvedDrive(500, 20, 1, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
-    robot.drive.curvedDrive(100,10,0.6, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
-    robot.drive.turnByGyroRelative(30, 3);
-    //robot.drive.curvedDriveNew(90,100000,0.2);
+    robot.drive.turnByGyroAbsolut(100,5);
+      robot.drive.turnByGyroAbsolut(-170,5);
   }
 }
