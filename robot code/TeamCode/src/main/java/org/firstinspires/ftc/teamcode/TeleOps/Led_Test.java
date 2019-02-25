@@ -41,7 +41,7 @@ import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
  * Demonstrates empty OpMode
  */
 @TeleOp(name = "Led_Test", group = "Concept")
-@Disabled
+//@Disabled
 public class Led_Test extends OpMode {
 
   private ElapsedTime runtime = new ElapsedTime();

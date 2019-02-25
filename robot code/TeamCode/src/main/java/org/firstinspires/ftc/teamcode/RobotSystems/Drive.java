@@ -33,7 +33,7 @@ public class Drive {
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);
     private final double KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
-    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 7;
+    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 4;//TODO: check if need to change back to 7;
 
     private OpMode opMode;
     private LogCreater log;
@@ -211,19 +211,12 @@ public class Drive {
 
         while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive() && opMode.getRuntime() <= timeS) {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()&& opMode.getRuntime() <= timeS) {
-                double angleCurrection = 0;
-               /* if(targetDegree>=170) {
-                    if (getAngle() < 0) {
-                        angleCurrection = 360;
-                    }
+                double output = turnPID.getOutput(getAngle());
+                //TODO: make sure 0.1 is good
+                if(Math.abs(output) < 0.1) {
+                    output = Math.signum(output) * 0.1;
                 }
-                else if (targetDegree <= -170) {
-                    if (getAngle() > 0) {
-                        targetDegree = -360;
-                    }
-                }
-                */
-                double output = turnPID.getOutput(getAngle() + angleCurrection);
+
                 leftDrive.setPower(-output);
                 rightDrive.setPower(output);
                 opMode.telemetry.addData("error: ", turnPID.getCurrentError())

@@ -69,8 +69,8 @@ public class DepotToCreater extends Depot {
         turnAngle = -45;
         break;
     }
-    robot.drive.turnByGyroAbsolut(turnAngle, 10);
-    robot.drive.driveByEncoder(driveDis, 0.5, Drive.Direction.FORWARD, 3000);
+    robot.drive.turnByGyroAbsolut(turnAngle, 3);
+    robot.drive.driveByEncoder(driveDis, 0.5, Drive.Direction.FORWARD, 10);
     robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
     robot.intake.collect();
     robot.climbing.moveLiftAuto(Climbing.Height.PUT);
