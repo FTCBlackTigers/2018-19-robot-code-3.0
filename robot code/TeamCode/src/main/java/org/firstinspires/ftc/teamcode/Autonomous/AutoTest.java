@@ -53,7 +53,5 @@ public class AutoTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
-    robot.drive.turnByGyroAbsolut(100,5);
-      robot.drive.turnByGyroAbsolut(-170,5);
   }
 }

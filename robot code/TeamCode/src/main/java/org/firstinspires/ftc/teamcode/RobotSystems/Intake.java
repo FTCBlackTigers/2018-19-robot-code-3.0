@@ -77,12 +77,17 @@ public class Intake {
 
         if (injecktIsActive) {
             this.injackt();
+
         }
 
         if(injecktIsPrevActive && !injecktIsActive) {
             closeRightGate();
             closeLeftGate();
             this.stop();
+        }
+        if(driver.y){
+            openLeftGate();
+            openRightGate();
         }
 
         opMode.telemetry.addLine("intake: \n" )
@@ -97,19 +102,19 @@ public class Intake {
         injecktIsPrevActive = injecktIsActive;
     }
 
-    private void openLeftGate() {
+    public void openLeftGate() {
         leftServo.setPosition(LEFT_SERVO_OPEN_POS);
     }
 
-    private void openRightGate() {
+    public void openRightGate() {
         rightServo.setPosition(RIGHT_SERVO_OPEN_POS);
     }
 
-    private void closeLeftGate() {
+    public void closeLeftGate() {
         leftServo.setPosition(LEFT_SERVO_CLOSE_POS);
     }
 
-    private void closeRightGate() {
+    public void closeRightGate() {
         rightServo.setPosition(RIGHT_SERVO_CLOSE_POS);
     }
 

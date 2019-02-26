@@ -58,14 +58,14 @@ public class CreaterToDepot extends Creater {
                 robot.drive.curvedDrive(60,3,0.5, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
                 robot.drive.driveByEncoder(60,0.4, Drive.Direction.BACKWARD,5);
                 robot.drive.turnByGyroAbsolut(130, 5);
-                robot.drive.driveByEncoder(100,0.5, Drive.Direction.BACKWARD,6);
+                robot.drive.driveByEncoder(80,0.5, Drive.Direction.BACKWARD,6);
                 break;
             case UNKNOWN:
             case CENTER:
                 //robot.drive.curvedDrive(100,10,0.6, Drive.Direction.FORWARD, Drive.CurvedDirection.LEFT);
                 robot.drive.driveByEncoder(20,0.4, Drive.Direction.FORWARD,5);
-                robot.drive.turnByGyroAbsolut(90, 3);
-                robot.drive.driveByEncoder(100,0.6, Drive.Direction.BACKWARD,5);
+                robot.drive.turnByGyroAbsolut(85, 3);
+                robot.drive.driveByEncoder(80/*100*/,0.6, Drive.Direction.BACKWARD,5);
                 robot.drive.turnByGyroAbsolut(130, 5);
                 robot.drive.driveByEncoder(70,0.7, Drive.Direction.BACKWARD,6);
                 break;
