@@ -38,12 +38,15 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
+import org.firstinspires.ftc.teamcode.Util.PIDController;
 
-@Autonomous(name = "TurnTest", group = "Tests")
+@Autonomous(name = "AutoTest", group = "Tests")
 public class AutoTest extends LinearOpMode {
 
 
-  private Robot robot = new Robot();
+  //private Robot robot = new Robot();
+  //private PIDController PID;
+ // private double KI = 0 ,KP = 0,KD = 0, TOLERANCE = 0;
   private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -51,7 +54,8 @@ public class AutoTest extends LinearOpMode {
 
   @Override
   public void runOpMode() throws InterruptedException {
-    robot.init(hardwareMap , this);
+    //robot.init(hardwareMap , this);
+    //PID = new PIDController(KP, KI, KD, TOLERANCE,this);
     waitForStart();
   }
 }
