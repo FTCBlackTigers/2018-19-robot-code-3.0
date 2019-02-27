@@ -213,9 +213,9 @@ public class Drive {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()&& opMode.getRuntime() <= timeS) {
                 double output = turnPID.getOutput(getAngle());
                 //TODO: make sure 0.1 is good
-                if(Math.abs(output) < 0.1) {
+                /*if(Math.abs(output) < 0.1) {
                     output = Math.signum(output) * 0.1;
-                }
+                }*/
 
                 leftDrive.setPower(-output);
                 rightDrive.setPower(output);

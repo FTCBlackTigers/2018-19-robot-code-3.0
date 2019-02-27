@@ -39,14 +39,16 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 import org.firstinspires.ftc.teamcode.Util.PIDController;
+import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
 
 @Autonomous(name = "AutoTest", group = "Tests")
+@Disabled
 public class AutoTest extends LinearOpMode {
 
 
   private Robot robot = new Robot();
-  private PIDController PID;
-  private double KP = 0.15 , KI = 0.00009 ,KD = 0.4, TOLERANCE = 4; //KI = 0.052
+  private TurnPIDController PID;
+  private double KP = 0.2 , KI = 0 ,KD = 0.02, TOLERANCE = 4; //KI = 0.052
   private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -54,9 +56,10 @@ public class AutoTest extends LinearOpMode {
 
   @Override
   public void runOpMode() throws InterruptedException {
-    robot.init(hardwareMap , this);
-    PID = new PIDController(KP, KI, KD, TOLERANCE,this);
-    robot.drive.turnByGyroAbsolut(90,50);
-    waitForStart();
+      robot.init(hardwareMap , this);
+      PID = new TurnPIDController(KP, KI, KD, TOLERANCE,this);
+      waitForStart();
+      robot.drive.turnByGyroAbsolut(90,50);
+
   }
 }

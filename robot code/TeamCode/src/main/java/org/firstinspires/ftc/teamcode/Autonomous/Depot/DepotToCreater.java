@@ -46,7 +46,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * Starting from Depot On The Lander
  * FIRST Autonomous
  */
-@Autonomous(name = "DepotToCreater", group = "Auto")
+@Autonomous(name = "DepotToCreater", group = "Depot")
 public class DepotToCreater extends Depot {
 
   @Override

@@ -39,6 +39,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 
 @Autonomous(name = "Land", group = "Tests")
+@Disabled
 public class Land extends LinearOpMode {
 
   protected Robot robot = new Robot();

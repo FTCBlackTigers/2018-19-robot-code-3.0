@@ -46,7 +46,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * Starting from Depot On The Lander
  * FIRST Autonomous
  */
-@Autonomous(name = "Depot", group = "Auto")
+@Autonomous(name = "Depot", group = "Depot")
 public class Depot extends LinearOpMode {
 
     protected Robot robot = new Robot();
