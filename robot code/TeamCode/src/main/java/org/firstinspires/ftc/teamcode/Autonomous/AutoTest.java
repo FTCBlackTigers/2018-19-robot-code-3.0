@@ -42,13 +42,11 @@ import org.firstinspires.ftc.teamcode.Util.PIDController;
 import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
 
 @Autonomous(name = "AutoTest", group = "Tests")
-@Disabled
+
 public class AutoTest extends LinearOpMode {
 
 
   private Robot robot = new Robot();
-  private TurnPIDController PID;
-  private double KP = 0.2 , KI = 0 ,KD = 0.02, TOLERANCE = 4; //KI = 0.052
   private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -57,9 +55,8 @@ public class AutoTest extends LinearOpMode {
   @Override
   public void runOpMode() throws InterruptedException {
       robot.init(hardwareMap , this);
-      PID = new TurnPIDController(KP, KI, KD, TOLERANCE,this);
       waitForStart();
-      robot.drive.turnByGyroAbsolut(90,50);
+      robot.drive.driveByEncoder(100,0.5, Drive.Direction.FORWARD,5000);
 
   }
 }

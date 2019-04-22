@@ -32,7 +32,7 @@ public class Drive {
     static final double WHEEL_DIAMETER_CM = 10.16;
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);
-    private final double KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
+    private final double KP = 1, KI = 0, KD = 0, TOLERANCE = 1;//KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
     private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 4;//TODO: check if need to change back to 7;
 
     private OpMode opMode;
@@ -62,6 +62,15 @@ public class Drive {
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        if(this.opMode instanceof LinearOpMode) {
+            leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }else{
+            leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        }
+
 
         leftDrive.setPower(0);
         rightDrive.setPower(0);
@@ -304,33 +313,39 @@ public class Drive {
         this.log = log;
     }
 
-    /**
-     public void driveByEncoderUsingPID(double distance,Direction direction){
-     if(direction == Direction.BACKWARD){
-     distance *= -1;
-     }
-     leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-     rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-     leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-     rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-     forwardPID.reset(distance,0);
 
-     opMode.telemetry.addData("error: " , forwardPID.getCurrentError());
-     opMode.telemetry.update();
-     while (!forwardPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()){
-     double output = forwardPID.getOutput(leftDrive.getCurrentPosition() / COUNTS_PER_CM);
-     leftDrive.setPower(output);
-     rightDrive.setPower(output);
-     opMode.telemetry.addData("error: " , forwardPID.getCurrentError())
-     .addData("output: " , output);
-     opMode.telemetry.update();
-     if (log != null) {
-     log.writeLog("leftDrive", leftDrive.getCurrentPosition() / COUNTS_PER_CM, "target: " + distance);
-     log.writeLog("rightDrive", rightDrive.getCurrentPosition() / COUNTS_PER_CM, "target" + distance);
+     public void driveByEncoderUsingPID(double distance,Direction direction) {
+         if (direction == Direction.BACKWARD) {
+             distance *= -1;
+         }
+         leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         forwardPID.reset(distance, 0);
+
+         opMode.telemetry.addData("error: ", forwardPID.getCurrentError());
+         opMode.telemetry.update();
+         while (!forwardPID.onTarget() && ((LinearOpMode) opMode).opModeIsActive()) {
+             while (!forwardPID.onTarget() && ((LinearOpMode) opMode).opModeIsActive()) {
+                 double output = forwardPID.getOutput(leftDrive.getCurrentPosition() / COUNTS_PER_CM);
+                 leftDrive.setPower(output);
+                 rightDrive.setPower(output);
+                 opMode.telemetry.addData("error: ", forwardPID.getCurrentError())
+                         .addData("output: ", output);
+                 opMode.telemetry.update();
+                 if (log != null) {
+                     log.writeLog("leftDrive", leftDrive.getCurrentPosition() / COUNTS_PER_CM, "target: " + distance);
+                     log.writeLog("rightDrive", rightDrive.getCurrentPosition() / COUNTS_PER_CM, "target" + distance);
+                 }
+             }
+             double time = opMode.getRuntime() + 0.3;
+            /// while ((opMode.getRuntime() < time) && ((LinearOpMode)opMode).opModeIsActive()) {
+                  //forwardPID.updateError(getAngle());
+            // }
+         }
+         leftDrive.setPower(0);
+         rightDrive.setPower(0);
      }
-     }
-     leftDrive.setPower(0);
-     rightDrive.setPower(0);
-     }
-     **/
+
 }

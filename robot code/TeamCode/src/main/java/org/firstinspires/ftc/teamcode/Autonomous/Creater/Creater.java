@@ -46,6 +46,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * Starting from Creater
  */
 @Autonomous(name = "Creater", group = "Crater")
+
 public class Creater extends LinearOpMode {
   protected Robot robot = new Robot();
   protected ElapsedTime runtime = new ElapsedTime();
@@ -61,7 +62,7 @@ public class Creater extends LinearOpMode {
     GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
     goToDepot(goldPos);
     goToCreater(goldPos);
-    GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
+    GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
 
   }
 

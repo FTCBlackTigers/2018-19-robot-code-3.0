@@ -41,7 +41,6 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import java.util.List;
 
 @Autonomous(name = "AutoPhoneCamera", group = "Tests")
-@Disabled
 public class AutoPhoneCamera extends LinearOpMode {
   protected Robot robot = new Robot();
   private GoldRecognation recognation = null;

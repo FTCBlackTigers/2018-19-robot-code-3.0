@@ -47,6 +47,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * FIRST Autonomous
  */
 @Autonomous(name = "Depot", group = "Depot")
+
 public class Depot extends LinearOpMode {
 
     protected Robot robot = new Robot();
@@ -79,6 +80,6 @@ public class Depot extends LinearOpMode {
         sleep(2000);
         robot.intake.stop();
         endAuto(goldPos);
-        GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotor.getCurrentPosition();
+        GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
     }
 }

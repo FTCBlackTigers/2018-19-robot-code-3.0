@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Depot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -47,6 +48,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * FIRST Autonomous
  */
 @Autonomous(name = "DepotToCreater", group = "Depot")
+
 public class DepotToCreater extends Depot {
 
   @Override

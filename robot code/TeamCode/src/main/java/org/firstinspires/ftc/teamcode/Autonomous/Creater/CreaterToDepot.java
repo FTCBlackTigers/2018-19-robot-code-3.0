@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
@@ -37,6 +38,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 
 @Autonomous(name = "CreaterToDepot", group = "Crater")
+
 public class CreaterToDepot extends Creater {
     @Override
     public void goToDepot(GoldRecognation.MineralPos goldPos) {
