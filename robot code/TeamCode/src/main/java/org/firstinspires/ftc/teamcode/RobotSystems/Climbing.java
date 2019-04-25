@@ -19,12 +19,12 @@ import static java.lang.Thread.sleep;
 public class Climbing {
     public enum Angle {
         DOWN(10),
-        DRIVE_POS(30),
-        COLLECT(152),
+        DRIVE_POS(72),
+        COLLECT(190),
         LAND(52),
         GO_TO_CLIMB(58),
         CLIMB(30),
-        PUT(59);
+        PUT(72);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -43,7 +43,7 @@ public class Climbing {
         LAND(26),
         GO_TO_CLIMB(29),
         CLIMB(10),
-        PUT(36);
+        PUT(30);
 
         float pos;
         final double ticksPerCm = 54.46;
@@ -109,6 +109,7 @@ public class Climbing {
         angleMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         angleMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         liftMotorLeft.setPower(0);
         liftMotorRight.setPower(0);
@@ -164,11 +165,11 @@ public class Climbing {
         }
 
         if ((!liftMotorLeft.isBusy() && liftMotorLeft.getMode() == DcMotor.RunMode.RUN_TO_POSITION) || (!liftMotorRight.isBusy() && liftMotorRight.getMode() == DcMotor.RunMode.RUN_TO_POSITION)) {
-            liftMotorLeft.setPower(0);
-            liftMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //liftMotorLeft.setPower(0);
+            //liftMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            liftMotorRight.setPower(0);
-            liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //liftMotorRight.setPower(0);
+            //liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             if (log != null) {
                 log.writeLog("liftMotorLeft", liftMotorLeft.getCurrentPosition(), "arrived to target " + liftMotorLeft.getTargetPosition());
                 log.writeLog("liftMotorRight", liftMotorRight.getCurrentPosition(), "arrived to target " + liftMotorRight.getTargetPosition());
@@ -186,7 +187,7 @@ public class Climbing {
                 angleMotorRight.setPower(0);
                 angleMotorLeft.setPower(0);
                 if (opMode.getRuntime() >= stopPIDTime) {
-                    anglePID.stop();
+                    //anglePID.stop();
                     if (log != null) {
                         log.writeLog("angleMotor", getAngle(), "arrived to target " + anglePID.getSetpoint());
                     }
@@ -196,7 +197,7 @@ public class Climbing {
                 stopPIDTime = opMode.getRuntime() + 0.3;
                 double output = anglePID.getOutput(getAngle());
                 if(IsLiftInDeadZone()){
-                    output *= 0.1;
+                    output *= 0.4;
                     opMode.telemetry.addData("output: " , output);
                 }
                 angleMotorLeft.setPower(output);
@@ -311,7 +312,7 @@ public class Climbing {
         anglePID.reset(angle.pos, getAngle());
         double output = anglePID.getOutput(getAngle());
         if(IsLiftInDeadZone()){
-            output *= 0.1;
+            output *= 0.4;
             opMode.telemetry.addData("output: " , output);
         }
         angleMotorLeft.setPower(output);
