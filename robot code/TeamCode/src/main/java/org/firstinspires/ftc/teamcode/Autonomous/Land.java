@@ -48,6 +48,7 @@ public class Land extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
     robot.init(hardwareMap , this);
     waitForStart();
+    robot.drive.driveByEncoder(100, 1, Drive.Direction.BACKWARD, 2);
     robot.climbing.land();
   }
 }

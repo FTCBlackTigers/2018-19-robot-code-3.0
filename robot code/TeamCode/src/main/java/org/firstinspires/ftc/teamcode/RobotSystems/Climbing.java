@@ -18,10 +18,10 @@ import static java.lang.Thread.sleep;
 
 public class Climbing {
     public enum Angle {
-        DOWN(10),
+        DOWN(25),
         DRIVE_POS(72),
         COLLECT(190),
-        LAND(52),
+        LAND(90),
         GO_TO_CLIMB(58),
         CLIMB(30),
         PUT(72);
@@ -46,7 +46,7 @@ public class Climbing {
         PUT(30);
 
         float pos;
-        final double ticksPerCm = 54.46;
+        final double ticksPerCm = 50.63;
 
         public int getTicks() {
             return ((int) (ticksPerCm * pos));

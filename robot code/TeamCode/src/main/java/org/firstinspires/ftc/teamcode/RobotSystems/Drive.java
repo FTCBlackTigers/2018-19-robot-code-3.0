@@ -33,7 +33,7 @@ public class Drive {
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);
     private final double KP = 1, KI = 0, KD = 0, TOLERANCE = 1;//KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
-    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 4;//TODO: check if need to change back to 7;
+    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 4;
 
     private OpMode opMode;
     private LogCreater log;
