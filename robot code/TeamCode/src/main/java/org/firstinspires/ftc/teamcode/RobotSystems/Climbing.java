@@ -21,7 +21,7 @@ public class Climbing {
         DOWN(25),
         DRIVE_POS(72),
         COLLECT(190),
-        LAND(90),
+        LAND(68),
         GO_TO_CLIMB(58),
         CLIMB(30),
         PUT(72);
@@ -40,7 +40,7 @@ public class Climbing {
     public enum Height {
         DRIVE_POS(0),
         COLLECT(15),
-        LAND(26),
+        LAND(24),
         GO_TO_CLIMB(29),
         CLIMB(10),
         PUT(30);
@@ -319,7 +319,7 @@ public class Climbing {
         angleMotorRight.setPower(output);
     }
 
-    private void liftMoveManual(double motorPower) {
+    public void liftMoveManual(double motorPower) {
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if (liftTouchIsActive && motorPower < 0) {
@@ -329,7 +329,7 @@ public class Climbing {
         liftMotorRight.setPower(motorPower * LIFT_SPEED);
     }
 
-    private void angleMoveManual(double motorPower) {
+    public void angleMoveManual(double motorPower) {
         anglePID.stop();
 
         if(angleTouchIsActive && motorPower < 0) {
@@ -412,6 +412,7 @@ public class Climbing {
                 log.writeLog("angle", getAngle(), "target: " + angle.pos);
                 log.writeLog("lift", liftMotorLeft.getCurrentPosition(), "target: " + height.getTicks());
             }
+
         }
         angleMotorLeft.setPower(0);
         angleMotorRight.setPower(0);
@@ -431,20 +432,7 @@ public class Climbing {
         liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void land() {
-        //moveAngleAuto(Climbing.Angle.LAND);
-        //moveLiftAuto(Climbing.Height.LAND);
-        //moveAngleAuto(Climbing.Angle.LAND);
-        moveAngleAndHeight(Climbing.Angle.LAND, Climbing.Height.LAND);
-        ((LinearOpMode) opMode).sleep(600);
-        openServo();
-        ((LinearOpMode) opMode).sleep(700);
-        moveAngleAndHeight(Angle.DOWN, Height.CLIMB);
 
-        angleMotorLeft.setPower(0);
-        liftMotorLeft.setPower(0);
-        liftMotorRight.setPower(0);
-    }
 
     public double getAngle() {
         return potentiometer.getVoltage() / 3.347 *270;

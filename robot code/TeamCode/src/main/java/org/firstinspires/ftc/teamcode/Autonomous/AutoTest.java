@@ -56,7 +56,12 @@ public class AutoTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
       robot.init(hardwareMap , this);
       waitForStart();
-      robot.drive.turnByGyroAbsolut(90, 5);
+
+      while (opModeIsActive()) {
+          robot.climbing.openServo();
+          robot.climbing.liftMoveManual(0.1);
+      }
+
 
   }
 }

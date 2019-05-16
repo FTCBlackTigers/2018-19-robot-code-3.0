@@ -67,4 +67,18 @@ public class Robot {
         this.drive.setLog(log);
         this.intake.setLog(log);
     }
+    public void land() {
+        drive.driveByEncoder(60, 1, Drive.Direction.BACKWARD, 2);
+        climbing.moveAngleAndHeight(Climbing.Angle.LAND, Climbing.Height.LAND);
+        climbing.openServo();
+        ((LinearOpMode) opMode).sleep(700);
+        opMode.telemetry.addLine("done!");
+        opMode.telemetry.update();
+        climbing.moveAngleAndHeight(Climbing.Angle.DOWN, Climbing.Height.CLIMB);
+
+
+        climbing.angleMotorLeft.setPower(0);
+        climbing.liftMotorLeft.setPower(0);
+        climbing.liftMotorRight.setPower(0);
+    }
 }
