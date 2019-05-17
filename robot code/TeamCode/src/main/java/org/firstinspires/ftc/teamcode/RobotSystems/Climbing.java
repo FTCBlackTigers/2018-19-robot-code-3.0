@@ -20,7 +20,7 @@ public class Climbing {
     public enum Angle {
         DOWN(25),
         DRIVE_POS(72),
-        COLLECT(190),
+        COLLECT(170),
         LAND(68),
         GO_TO_CLIMB(58),
         CLIMB(30),
@@ -40,7 +40,7 @@ public class Climbing {
     public enum Height {
         DRIVE_POS(0),
         COLLECT(15),
-        LAND(24),
+        LAND(25),
         GO_TO_CLIMB(29),
         CLIMB(10),
         PUT(30);

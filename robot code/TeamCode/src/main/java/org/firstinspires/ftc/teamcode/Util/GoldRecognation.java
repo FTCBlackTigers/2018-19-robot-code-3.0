@@ -148,4 +148,55 @@ public class GoldRecognation {
         }
         return MineralPos.UNKNOWN;
     }
+    public void getGoldPosUsingCam() {
+        List<Recognition> recognitionList = tfod.getUpdatedRecognitions();
+        if(recognitionList != null){
+            opMode.telemetry.addData("Size: ",recognitionList.size());
+            opMode.telemetry.update();
+            /*for(Recognition recognition : recognitionList){
+                opMode.telemetry.addData("",recognition.toString());
+                opMode.telemetry.update();
+            }*/
+        }
+
+    }
+    public MineralPos getGoldPosUsingCam(LogCreater log) {
+            /** Activate Tensor Flow Object Detection. */
+            if (tfod != null) {
+                tfod.activate();
+            }
+            List<Recognition> recognitionList = tfod.getUpdatedRecognitions();
+            if (recognitionList != null) {
+                opMode.telemetry.addData("size", recognitionList.size());
+                opMode.telemetry.update();
+                if (log != null) {
+                    log.writeLog("SamplingSize", recognitionList.size(), "");
+                    for (Recognition recognition : recognitionList) {
+                        log.writeLog("SamplingObject", recognition.getTop(),
+                        recognition.toString() + ", h: " + recognition.getHeight() + ", w: " + recognition.getWidth());
+                    }
+                }
+                if (recognitionList.size() == 2) {
+                    double goldLeft = -1;
+                    double silverLeft = -1;
+                    for (Recognition recognition : recognitionList) {
+                        if (recognition.getLabel() == "Gold Mineral") {
+                            goldLeft = recognition.getLeft();
+                        } else if (silverLeft == -1) {
+                            silverLeft = recognition.getLeft();
+                        } else {
+                            return MineralPos.LEFT;
+                        }
+                    }
+                    opMode.telemetry.addData("goldPos", goldLeft + ",silverPos", silverLeft);
+                    opMode.telemetry.update();
+                    if (goldLeft != -1 && silverLeft != -1) {
+                        if (goldLeft > silverLeft) {
+                            return MineralPos.RIGHT;
+                        } else return MineralPos.CENTER;
+                    }
+                }
+            }
+        return MineralPos.UNKNOWN;
+    }
 }

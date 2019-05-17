@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 public class Intake {
 
-    private final double COLLECTION_SPEED = 0.8;
+    private final double COLLECTION_SPEED = 1;
     private final double INJECT_SPEED = 0.5;
     private final double RELEASE_SPEED = 0.5;
     private final double LEFT_SERVO_OPEN_POS = 0.8;

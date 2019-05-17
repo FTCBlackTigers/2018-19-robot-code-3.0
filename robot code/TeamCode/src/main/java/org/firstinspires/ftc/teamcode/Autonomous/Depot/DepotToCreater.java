@@ -43,7 +43,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
 /**
  * doing Landing, Team Marker and Parking
  * PTS = 50
- * In Case of no Sampling
+ * In Case of no sampling
  * Starting from Depot On The Lander
  * FIRST Autonomous
  */

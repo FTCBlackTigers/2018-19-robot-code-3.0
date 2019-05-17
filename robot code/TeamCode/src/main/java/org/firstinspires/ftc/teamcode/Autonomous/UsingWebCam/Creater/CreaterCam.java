@@ -27,52 +27,77 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.Autonomous;
+package org.firstinspires.ftc.teamcode.Autonomous.UsingWebCam.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
+import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
+import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
+import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
+import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
-import java.util.List;
 
-@Autonomous(name = "AutoPhoneCamera", group = "Tests")
-public class AutoPhoneCamera extends LinearOpMode {
+@Autonomous(name = "CreaterCam", group = "CreaterCam")
+
+public class CreaterCam extends LinearOpMode {
+
     protected Robot robot = new Robot();
-    private GoldRecognation recognation = null;
-    private ElapsedTime runtime = new ElapsedTime();
+    protected ElapsedTime runtime = new ElapsedTime();
+    protected LogCreater log = new LogCreater("auto");
+    protected GoldRecognation recognation = null;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
-        recognation = new GoldRecognation(hardwareMap, this);
-        recognation.tfod.activate();
-        telemetry.setAutoClear(true);
-        GoldRecognation.MineralPos minrePos = GoldRecognation.MineralPos.UNKNOWN;
-        while(!isStarted())
-        {
-            minrePos = recognation.getGoldPosUsingCam(null);
-            telemetry.addData("gold pos: ",minrePos);
-            telemetry.update();
+        log.init(this);
+        robot.init(hardwareMap, this, log);
+        recognation = new GoldRecognation(hardwareMap,this);
+        GoldRecognation.MineralPos goldPos = GoldRecognation.MineralPos.UNKNOWN;
+        while(!isStarted()){
+            goldPos = recognation.getGoldPosUsingCam(log);
             idle();
+            if(isStopRequested()){
+                stop();
+            }
         }
-        //recognation.turnOnLeds();
-        //while (opModeIsActive()) {
-            //GoldRecognation.MineralPos mineralPos = recognation.getGoldPos(null);
-            //telemetry.addData(" mineral", mineralPos);
-            //telemetry.update();
-            while(minrePos == GoldRecognation.MineralPos.UNKNOWN) {
-                minrePos = recognation.getGoldPosUsingCam(null);
-                telemetry.addData("gold pos: ", minrePos);
-                telemetry.update();
-            }
-            while (opModeIsActive()){
-                telemetry.addData("gold pos: ", minrePos);
-                telemetry.update();
-            }
-        //}
+        /**   started   **/
+        while (goldPos == GoldRecognation.MineralPos.UNKNOWN){
+            goldPos = recognation.getGoldPosUsingCam(log);
+        }
+        robot.land();
+        robot.drive.samplingCam(Drive.Side.CREATER, goldPos);
+        goToCreater(goldPos);
+
+
+    }
+
+    public void goToCreater(GoldRecognation.MineralPos goldpos){
+        int degree = 180;
+        switch (goldpos){
+            case LEFT:
+                degree = 160;
+                break;
+            case CENTER:
+            case UNKNOWN:
+                degree = 180;
+                break;
+            case RIGHT:
+                degree = -160;
+                break;
+        }
+        robot.drive.turnByGyroAbsolut(degree,3);
+
+        robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+        robot.intake.collect();
+        sleep(300);
+        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+
+
     }
 }

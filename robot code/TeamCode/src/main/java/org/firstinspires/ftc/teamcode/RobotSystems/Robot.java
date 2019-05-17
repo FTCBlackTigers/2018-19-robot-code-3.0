@@ -71,7 +71,8 @@ public class Robot {
         drive.driveByEncoder(60, 1, Drive.Direction.BACKWARD, 2);
         climbing.moveAngleAndHeight(Climbing.Angle.LAND, Climbing.Height.LAND);
         climbing.openServo();
-        ((LinearOpMode) opMode).sleep(700);
+        climbing.liftMoveManual(0.1);
+        ((LinearOpMode) opMode).sleep(1000);
         opMode.telemetry.addLine("done!");
         opMode.telemetry.update();
         climbing.moveAngleAndHeight(Climbing.Angle.DOWN, Climbing.Height.CLIMB);

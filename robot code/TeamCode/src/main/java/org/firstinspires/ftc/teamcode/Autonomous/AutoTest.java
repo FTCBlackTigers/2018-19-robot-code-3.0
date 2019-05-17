@@ -32,11 +32,13 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
+import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 import org.firstinspires.ftc.teamcode.Util.PIDController;
 import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
@@ -45,21 +47,19 @@ import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
 
 public class AutoTest extends LinearOpMode {
 
-
   private Robot robot = new Robot();
   private ElapsedTime runtime = new ElapsedTime();
-
-
-
+  private GoldRecognation goldRecognation = null;
 
   @Override
   public void runOpMode() throws InterruptedException {
-      robot.init(hardwareMap , this);
+      //robot.init(hardwareMap , this);
+      goldRecognation = new GoldRecognation(hardwareMap,this);
+      goldRecognation.tfod.activate();
       waitForStart();
-
       while (opModeIsActive()) {
-          robot.climbing.openServo();
-          robot.climbing.liftMoveManual(0.1);
+          goldRecognation.getGoldPosUsingCam(null);
+          telemetry.update();
       }
 
 

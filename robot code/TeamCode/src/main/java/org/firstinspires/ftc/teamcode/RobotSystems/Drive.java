@@ -41,7 +41,7 @@ public class Drive {
     private DcMotor leftDrive;
     private DcMotor rightDrive;
     private BT_Gyro gyro = new BT_Gyro();
-    private GoldRecognation recognation = null;
+    public GoldRecognation recognation = null;
 
     private PIDController forwardPID;
     private TurnPIDController turnPID;
@@ -56,9 +56,11 @@ public class Drive {
         leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
         rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
         gyro.init(hardwareMap);
+        /**
         if (opMode instanceof  LinearOpMode) {
             recognation = new GoldRecognation(hardwareMap, opMode);
         }
+         **/
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -249,7 +251,7 @@ public class Drive {
         turnByGyroAbsolut(this.gyro.getAngle() + degrees, timeS);
     }
 
-    public GoldRecognation.MineralPos Sampling(Side side) {
+    public GoldRecognation.MineralPos sampling(Side side) {
         GoldRecognation.MineralPos pos = recognation.getGoldPos(log);
         recognation.stopTfod();
         recognation.turnOffLeds();
@@ -299,6 +301,43 @@ public class Drive {
         return pos;
     }
 
+    public void samplingCam(Side side, GoldRecognation.MineralPos pos){
+        if (side == Side.DEPOT) {
+            switch (pos) {
+                case LEFT:
+                    turnByGyroAbsolut(40,2);
+                    driveByEncoder(10, 0.2, Direction.BACKWARD, 5);
+                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.LEFT);
+                    break;
+                case CENTER:
+                case UNKNOWN:
+                    turnByGyroAbsolut(5,3);
+                    driveByEncoder(75,0.5, Direction.BACKWARD, 10);
+                    break;
+                case RIGHT:
+                    turnByGyroAbsolut(-40,10);
+                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
+                    break;
+            }
+            } else {
+            switch (pos) {
+                case LEFT:
+                    turnByGyroAbsolut(-135,10);
+                    driveByEncoder(45,0.5, Direction.FORWARD,10);
+                    break;
+                case CENTER:
+                case UNKNOWN:
+                    turnByGyroAbsolut(180,10);
+                    driveByEncoder(40,0.5, Direction.FORWARD,10);
+                    break;
+                case RIGHT:
+                    turnByGyroRelative(140,5);
+                    driveByEncoder(45,0.5, Direction.FORWARD,10);
+                    break;
+            }
+        }
+        opMode.telemetry.addData("mineral", pos);
+    }
 
 
     public double getAngle(){

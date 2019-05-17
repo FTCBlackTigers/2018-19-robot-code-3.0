@@ -41,7 +41,7 @@ import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
- * doing Landing,Sampling and Team Marker
+ * doing Landing,sampling and Team Marker
  * PTS = 70
  * Starting from Depot On The Lander
  * FIRST Autonomous
@@ -73,9 +73,9 @@ public class Depot extends LinearOpMode {
         log.init(this);
         robot.init(hardwareMap, this, log);
         waitForStart();
-        robot.climbing.land();
+        robot.land();
         robot.drive.turnByGyroAbsolut(-9, 10);
-        GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.DEPOT);
+        GoldRecognation.MineralPos goldPos = robot.drive.sampling(Drive.Side.DEPOT);
         robot.intake.injackt();
         sleep(2000);
         robot.intake.stop();

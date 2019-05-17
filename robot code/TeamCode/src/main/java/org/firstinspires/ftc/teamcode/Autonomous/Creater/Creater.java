@@ -41,9 +41,9 @@ import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 /**
- * doing Landing, Sampling and Parking.
+ * doing Landing, sampling and Parking.
  * PTS=65
- * Starting from Creater
+ * Starting from CreaterCam
  */
 @Autonomous(name = "Creater", group = "Crater")
 
@@ -57,9 +57,9 @@ public class Creater extends LinearOpMode {
     log.init(this);
     robot.init(hardwareMap , this, log);
     waitForStart();
-    robot.climbing.land();
+    robot.land();
     robot.drive.turnByGyroAbsolut(-9, 10);
-    GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
+    GoldRecognation.MineralPos goldPos = robot.drive.sampling(Drive.Side.CREATER);
     goToDepot(goldPos);
     goToCreater(goldPos);
     GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();

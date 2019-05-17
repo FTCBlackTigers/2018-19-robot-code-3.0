@@ -31,10 +31,8 @@ package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
@@ -52,7 +50,7 @@ public class CreaterToDepotNoLand extends LinearOpMode {
         robot.init(hardwareMap, this, log);
         waitForStart();
         robot.drive.turnByGyroAbsolut(-9, 10);
-        GoldRecognation.MineralPos goldPos = robot.drive.Sampling(Drive.Side.CREATER);
+        GoldRecognation.MineralPos goldPos = robot.drive.sampling(Drive.Side.CREATER);
         goToDepot(goldPos);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
     }
