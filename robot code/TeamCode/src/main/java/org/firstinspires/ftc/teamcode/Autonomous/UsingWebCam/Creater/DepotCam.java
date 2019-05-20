@@ -40,16 +40,34 @@ import org.firstinspires.ftc.teamcode.Util.GlobalVariebels;
 import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
+/**
+ * doing Landing,sampling and Team Marker
+ * PTS = 70
+ * Starting from Depot On The Lander
+ * FIRST Autonomous
+ */
+@Autonomous(name = "DepotCam", group = "Depot")
 
-@Autonomous(name = "CreaterCam", group = "CreaterCam")
-
-public class CreaterCam extends LinearOpMode {
+public class DepotCam extends LinearOpMode {
 
     protected Robot robot = new Robot();
     protected ElapsedTime runtime = new ElapsedTime();
     protected LogCreater log = new LogCreater("auto");
     protected GoldRecognation recognation = null;
 
+    public void endAuto(GoldRecognation.MineralPos goldPos) {
+        if (goldPos == GoldRecognation.MineralPos.LEFT) {
+            robot.drive.turnByGyroAbsolut(-45, 10);
+            robot.drive.driveByEncoder(100, 0.5, Drive.Direction.FORWARD, 3000);
+            robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+            robot.intake.collect();
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+            robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        } else {
+            robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
+        }
+    }
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -61,39 +79,13 @@ public class CreaterCam extends LinearOpMode {
             goldPos = recognation.getGoldPosUsingCam(log);
             idle();
         }
-        /**   started   **/
+        // start
         while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive()){
             goldPos = recognation.getGoldPosUsingCam(log);
         }
         robot.land();
-        robot.drive.samplingCam(Drive.Side.CREATER, goldPos);
-        goToCreater(goldPos);
+        robot.drive.samplingCam(Drive.Side.DEPOT, goldPos);
 
-
-    }
-
-    public void goToCreater(GoldRecognation.MineralPos goldpos){
-        int degree = 180;
-        switch (goldpos){
-            case LEFT:
-                degree = 160;
-                break;
-            case CENTER:
-            case UNKNOWN:
-                degree = 180;
-                break;
-            case RIGHT:
-                degree = -160;
-                break;
-        }
-        robot.drive.turnByGyroAbsolut(degree,3);
-
-        robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
-        robot.intake.collect();
-        sleep(300);
-        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-        robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
-        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
 
 
     }

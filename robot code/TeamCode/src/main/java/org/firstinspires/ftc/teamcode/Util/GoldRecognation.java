@@ -185,15 +185,15 @@ public class GoldRecognation {
                         } else if (silverLeft == -1) {
                             silverLeft = recognition.getLeft();
                         } else {
-                            return MineralPos.LEFT;
+                            return MineralPos.RIGHT;
                         }
                     }
                     opMode.telemetry.addData("goldPos", goldLeft + ",silverPos", silverLeft);
                     opMode.telemetry.update();
                     if (goldLeft != -1 && silverLeft != -1) {
                         if (goldLeft > silverLeft) {
-                            return MineralPos.RIGHT;
-                        } else return MineralPos.CENTER;
+                            return MineralPos.CENTER;
+                        } else return MineralPos.LEFT;
                     }
                 }
             }
