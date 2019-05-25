@@ -80,11 +80,17 @@ public class DepotCam extends LinearOpMode {
             idle();
         }
         // start
-        while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive()){
+        double timeToStop = getRuntime() + 3;
+        while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive() && getRuntime() <= timeToStop){
             goldPos = recognation.getGoldPosUsingCam(log);
         }
         robot.land();
         robot.drive.samplingCam(Drive.Side.DEPOT, goldPos);
+        //robot.drive.turnByGyroRelative(15, 2);
+        //robot.drive.driveByEncoder(10, 0.5, Drive.Direction.BACKWARD, 5);
+        robot.intake.injackt();
+        sleep(3000);
+        robot.intake.stop();
 
 
 

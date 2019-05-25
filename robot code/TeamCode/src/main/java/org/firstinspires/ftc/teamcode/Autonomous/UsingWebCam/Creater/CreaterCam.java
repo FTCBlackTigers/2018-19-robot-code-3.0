@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.RobotSystems.Climbing;
 import org.firstinspires.ftc.teamcode.RobotSystems.Drive;
 import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
@@ -55,14 +56,16 @@ public class CreaterCam extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         log.init(this);
         robot.init(hardwareMap, this, log);
-        recognation = new GoldRecognation(hardwareMap,this);
+        ssssssssrecognation = new GoldRecognation(hardwareMap,this);
         GoldRecognation.MineralPos goldPos = GoldRecognation.MineralPos.UNKNOWN;
         while(!isStarted() && !isStopRequested()){
+            //goldPos = //recognation.getGoldPosUsingCam(log);
             goldPos = recognation.getGoldPosUsingCam(log);
             idle();
         }
         /**   started   **/
-        while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive()){
+        double timeToStop = getRuntime() + 3;
+        while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive() && getRuntime() <= timeToStop){
             goldPos = recognation.getGoldPosUsingCam(log);
         }
         robot.land();
@@ -80,7 +83,7 @@ public class CreaterCam extends LinearOpMode {
                 break;
             case CENTER:
             case UNKNOWN:
-                degree = 180;
+                degree = 185;
                 break;
             case RIGHT:
                 degree = -160;
@@ -94,6 +97,28 @@ public class CreaterCam extends LinearOpMode {
         robot.climbing.moveLiftAuto(Climbing.Height.PUT);
         robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
         robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        if (goldpos == GoldRecognation.MineralPos.CENTER || goldpos == GoldRecognation.MineralPos.UNKNOWN) {
+            robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
+            robot.climbing.moveAngleAuto(Climbing.Angle.DRIVE_POS);
+            robot.intake.stop();
+            robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
+            robot.climbing.moveAngleAndHeight(Climbing.Angle.PUT, Climbing.Height.PUT);
+            robot.drive.driveByEncoder(10, 0.2, Drive.Direction.BACKWARD, 5);
+            double timeToStop = getRuntime() + 3;
+            while (opModeIsActive() && getRuntime() <= timeToStop) {
+                robot.intake.release();
+            }
+            robot.intake.stop();
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+            robot.drive.driveByEncoder(60, 0.5, Drive.Direction.FORWARD, 5);
+            robot.climbing.moveLift(Climbing.Height.DRIVE_POS);
+            robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+            robot.intake.collect();
+            sleep(300);
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+            robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
+            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        }
 
 
     }

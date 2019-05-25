@@ -53,15 +53,16 @@ public class AutoTest extends LinearOpMode {
 
   @Override
   public void runOpMode() throws InterruptedException {
-      //robot.init(hardwareMap , this);
-      goldRecognation = new GoldRecognation(hardwareMap,this);
-      goldRecognation.tfod.activate();
+      robot.init(hardwareMap, this);
       waitForStart();
-      while (opModeIsActive()) {
-          goldRecognation.getGoldPosUsingCam(null);
-          telemetry.update();
+      robot.drive.turnByGyroAbsolut(-30,10);
+      robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
+      robot.drive.driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 5);
+      robot.drive.turnByGyroAbsolut(-100, 5);
+      robot.drive.driveByEncoder(80, 0.5, Drive.Direction.FORWARD, 5);
+      robot.drive.turnByGyroAbsolut(-30 , 5);
+      robot.drive.driveByEncoder(80, 0.5, Drive.Direction.BACKWARD, 5);
       }
 
 
   }
-}

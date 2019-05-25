@@ -33,7 +33,7 @@ public class Drive {
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);
     private final double KP = 1, KI = 0, KD = 0, TOLERANCE = 1;//KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
-    private final double turnKP = 0.01, turnKI = 0.00009, turnKD = 0.002, turnTOLERANCE = 4;
+    private final double turnKP = 0.01, turnKI = 0.0, turnKD = 0.0, turnTOLERANCE = 4;
 
     private OpMode opMode;
     private LogCreater log;
@@ -315,8 +315,14 @@ public class Drive {
                     driveByEncoder(75,0.5, Direction.BACKWARD, 10);
                     break;
                 case RIGHT:
-                    turnByGyroAbsolut(-40,10);
-                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
+                    turnByGyroAbsolut(-30,10);
+                    driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
+                    driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 5);
+                    turnByGyroAbsolut(-100, 5);
+                    driveByEncoder(80, 0.5, Drive.Direction.FORWARD, 5);
+                    turnByGyroAbsolut(-30 , 5);
+                    driveByEncoder(80, 0.5, Drive.Direction.BACKWARD, 5);
+                    //curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
                     break;
             }
             } else {
@@ -327,7 +333,7 @@ public class Drive {
                     break;
                 case CENTER:
                 case UNKNOWN:
-                    turnByGyroAbsolut(180,10);
+                    turnByGyroAbsolut(185,10);
                     driveByEncoder(40,0.5, Direction.FORWARD,10);
                     break;
                 case RIGHT:
