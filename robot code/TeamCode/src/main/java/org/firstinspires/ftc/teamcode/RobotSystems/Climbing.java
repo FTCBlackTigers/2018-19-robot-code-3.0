@@ -60,7 +60,7 @@ public class Climbing {
     private final double LIFT_SPEED = 0.7;
     private final double ANGLE_SPEED = 1;
 
-    private final double HANG_OPEN_POS = 0.8;
+    private final double HANG_OPEN_POS = 1;
     private final double HANG_CLOSE_POS = 0;
 
     private final double KP = 0.5, KI = 0, KD = 0, TOLERANCE = 4;

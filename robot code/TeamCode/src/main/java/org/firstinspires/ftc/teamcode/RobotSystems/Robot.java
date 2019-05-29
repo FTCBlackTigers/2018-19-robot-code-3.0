@@ -82,4 +82,12 @@ public class Robot {
         climbing.liftMotorLeft.setPower(0);
         climbing.liftMotorRight.setPower(0);
     }
+    public void collectAuto() {
+        climbing.moveAngleAuto(Climbing.Angle.COLLECT);
+        intake.collect();
+        ((LinearOpMode) opMode).sleep(300);
+        climbing.moveLiftAuto(Climbing.Height.PUT);
+        climbing.moveLiftAuto(Climbing.Height.COLLECT);
+        climbing.moveLiftAuto(Climbing.Height.PUT);
+    }
 }

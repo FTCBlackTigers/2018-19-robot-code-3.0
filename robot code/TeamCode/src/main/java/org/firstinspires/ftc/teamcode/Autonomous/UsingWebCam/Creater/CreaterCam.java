@@ -56,7 +56,7 @@ public class CreaterCam extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         log.init(this);
         robot.init(hardwareMap, this, log);
-        ssssssssrecognation = new GoldRecognation(hardwareMap,this);
+        recognation = new GoldRecognation(hardwareMap,this);
         GoldRecognation.MineralPos goldPos = GoldRecognation.MineralPos.UNKNOWN;
         while(!isStarted() && !isStopRequested()){
             //goldPos = //recognation.getGoldPosUsingCam(log);
@@ -70,6 +70,7 @@ public class CreaterCam extends LinearOpMode {
         }
         robot.land();
         robot.drive.samplingCam(Drive.Side.CREATER, goldPos);
+        goToDepot(goldPos);
         goToCreater(goldPos);
 
 
@@ -90,13 +91,7 @@ public class CreaterCam extends LinearOpMode {
                 break;
         }
         robot.drive.turnByGyroAbsolut(degree,3);
-
-        robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
-        robot.intake.collect();
-        sleep(300);
-        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-        robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
-        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+        robot.collectAuto();
         if (goldpos == GoldRecognation.MineralPos.CENTER || goldpos == GoldRecognation.MineralPos.UNKNOWN) {
             robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
             robot.climbing.moveAngleAuto(Climbing.Angle.DRIVE_POS);
@@ -106,20 +101,18 @@ public class CreaterCam extends LinearOpMode {
             robot.drive.driveByEncoder(10, 0.2, Drive.Direction.BACKWARD, 5);
             double timeToStop = getRuntime() + 3;
             while (opModeIsActive() && getRuntime() <= timeToStop) {
+                robot.climbing.moveLift(Climbing.Height.PUT);
                 robot.intake.release();
             }
             robot.intake.stop();
             robot.climbing.moveLiftAuto(Climbing.Height.PUT);
             robot.drive.driveByEncoder(60, 0.5, Drive.Direction.FORWARD, 5);
             robot.climbing.moveLift(Climbing.Height.DRIVE_POS);
-            robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
-            robot.intake.collect();
-            sleep(300);
-            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-            robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
-            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+            robot.collectAuto();
         }
 
 
+    }
+    public void goToDepot(GoldRecognation.MineralPos goldPos) {
     }
 }

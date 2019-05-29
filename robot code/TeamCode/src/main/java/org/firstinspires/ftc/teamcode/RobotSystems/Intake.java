@@ -12,7 +12,7 @@ public class Intake {
 
     private final double COLLECTION_SPEED = 1;
     private final double INJECT_SPEED = 0.5;
-    private final double RELEASE_SPEED = 0.5;
+    private final double RELEASE_SPEED = 0.75;
     private final double LEFT_SERVO_OPEN_POS = 0.8;
     private final double RIGHT_SERVO_OPEN_POS = 0;
     private final double LEFT_SERVO_CLOSE_POS = 0.20;
