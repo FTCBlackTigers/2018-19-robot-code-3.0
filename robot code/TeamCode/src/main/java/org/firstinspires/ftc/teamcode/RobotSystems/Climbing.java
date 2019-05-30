@@ -22,7 +22,7 @@ public class Climbing {
         DRIVE_POS(72),
         COLLECT(170),
         LAND(68),
-        GO_TO_CLIMB(58),
+        GO_TO_CLIMB(64),
         CLIMB(30),
         PUT(72);
         float pos;
@@ -41,7 +41,7 @@ public class Climbing {
         DRIVE_POS(0),
         COLLECT(15),
         LAND(25),
-        GO_TO_CLIMB(29),
+        GO_TO_CLIMB(22),
         CLIMB(10),
         PUT(30);
 

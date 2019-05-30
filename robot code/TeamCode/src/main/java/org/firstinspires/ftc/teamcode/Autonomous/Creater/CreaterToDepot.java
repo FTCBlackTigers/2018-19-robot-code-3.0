@@ -38,6 +38,7 @@ import org.firstinspires.ftc.teamcode.RobotSystems.Robot;
 import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 
 @Autonomous(name = "CreaterToDepot", group = "Crater")
+@Disabled
 public class CreaterToDepot extends Creater {
     @Override
     public void goToDepot(GoldRecognation.MineralPos goldPos) {

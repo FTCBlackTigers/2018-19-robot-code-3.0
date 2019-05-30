@@ -12,7 +12,7 @@ public class CreaterToDepotCam extends CreaterCam {
     public void goToCreater(GoldRecognation.MineralPos goldpos) {
         robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
         robot.drive.turnByGyroAbsolut(140, 3);
-        robot.drive.driveByEncoder(85, 0.5, Drive.Direction.FORWARD, 5);
+        robot.drive.driveByEncoder(85, 0.8, Drive.Direction.FORWARD, 5);
         robot.drive.turnByGyroAbsolut(135, 3);
         robot.collectAuto();
     }
@@ -20,16 +20,34 @@ public class CreaterToDepotCam extends CreaterCam {
     public void goToDepot(GoldRecognation.MineralPos goldPos) {
         switch (goldPos) {
             case LEFT:
-                //ToDO: Add backward drive to prevent touching the ball
-                robot.drive.turnByGyroAbsolut(110, 3);
-                robot.drive.driveByEncoder(55, 0.5, Drive.Direction.BACKWARD, 3);
+                robot.drive.driveByEncoder(10, 0.5, Drive.Direction.BACKWARD, 3);
+                robot.drive.turnByGyroAbsolut(100, 3);
+                robot.drive.driveByEncoder(70, 0.5, Drive.Direction.BACKWARD, 3);
                 robot.drive.turnByGyroAbsolut(130, 4);
-                robot.drive.driveByEncoder(50, 0.5 , Drive.Direction.BACKWARD, 3);
-                robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+                robot.drive.driveByEncoder(30, 0.5 , Drive.Direction.BACKWARD, 3);
+                break;
+            case UNKNOWN:
+            case CENTER:
+                robot.drive.driveByEncoder(20, 0.5, Drive.Direction.BACKWARD, 3);
+                robot.drive.turnByGyroAbsolut(100, 3);
+                robot.drive.driveByEncoder(95, 0.5, Drive.Direction.BACKWARD, 3);
+                robot.drive.turnByGyroAbsolut(130, 4);
+                robot.drive.driveByEncoder(40, 0.5 , Drive.Direction.BACKWARD, 3);
+
+                break;
+            case RIGHT:
+                robot.drive.driveByEncoder(20, 0.5, Drive.Direction.BACKWARD, 3);
+                robot.drive.turnByGyroAbsolut(90, 3);
+                robot.drive.driveByEncoder(110, 0.7, Drive.Direction.BACKWARD, 3);
+                robot.drive.turnByGyroAbsolut(130, 4);
+                robot.drive.driveByEncoder(35, 0.5 , Drive.Direction.BACKWARD, 3);
+                break;
+
 
         }
+        robot.climbing.moveLiftAuto(Climbing.Height.PUT);
         robot.intake.injackt();
-        sleep(3000);
+        sleep(1500);
         robot.intake.stop();
     }
 }

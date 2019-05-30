@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -46,6 +47,7 @@ import org.firstinspires.ftc.teamcode.Util.LogCreater;
  * Starting from CreaterCam
  */
 @Autonomous(name = "Creater", group = "Crater")
+@Disabled
 
 public class Creater extends LinearOpMode {
   protected Robot robot = new Robot();

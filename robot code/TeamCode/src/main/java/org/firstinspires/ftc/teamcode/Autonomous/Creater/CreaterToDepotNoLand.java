@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Creater;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -40,6 +41,7 @@ import org.firstinspires.ftc.teamcode.Util.GoldRecognation;
 import org.firstinspires.ftc.teamcode.Util.LogCreater;
 
 @Autonomous(name = "CreaterToDepotNoLand", group = "Crater")
+@Disabled
 public class CreaterToDepotNoLand extends LinearOpMode {
     protected Robot robot = new Robot();
     protected ElapsedTime runtime = new ElapsedTime();
