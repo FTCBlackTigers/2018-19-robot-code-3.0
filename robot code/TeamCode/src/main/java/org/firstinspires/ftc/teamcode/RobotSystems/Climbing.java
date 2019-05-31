@@ -24,7 +24,7 @@ public class Climbing {
         LAND(68),
         GO_TO_CLIMB(64),
         CLIMB(30),
-        PUT(72);
+        PUT(66);
         float pos;
         final double ticksPerDegree =93.588;
 
@@ -281,14 +281,13 @@ public class Climbing {
 
 
         opMode.telemetry.addLine("climbing: \n")
-                .addData(" lift Position: ", liftMotorLeft.getCurrentPosition() + "\n")
-                .addData(" Angle Right Position: ", angleMotorRight.getCurrentPosition() + "\n")
-                .addData(" Angle Left Position: ", angleMotorLeft.getCurrentPosition() + "\n")
+                .addData("left lift Position: ", liftMotorLeft.getCurrentPosition() + "\n")
+                .addData("right lift position: ", liftMotorRight.getCurrentPosition() +"\n")
                 .addData("Servo position: ", hangServo.getPosition() + "\n")
-                .addData("liftTouch: " , liftTouchIsActive)
-                .addData(" angleTouch: ", angleTouchIsActive +"\n")
                 .addData(" potentiometer: ", potentiometer.getVoltage())
                 .addData("angle: ", getAngle())
+                .addData("liftTouch: " , liftTouchIsActive)
+                .addData(" angleTouch: ", angleTouchIsActive +"\n")
                 .addData("liftPosEndAuto", GlobalVariebels.liftPosEndAuto);
 
 

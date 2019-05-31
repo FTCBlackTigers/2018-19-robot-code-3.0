@@ -93,9 +93,7 @@ public class Intake {
         opMode.telemetry.addLine("intake: \n" )
                 .addData("collectMotorPower: ", collectMotor.getPower()+"\n")
                 .addData("rightServoPos: ", rightServo.getPosition())
-                .addData("leftServoPos: ", leftServo.getPosition()+"\n")
-                .addData("releaseModeIsPrevActive: ", releaseModeIsPrevActive)
-                .addData("collectModeIsPrevActive: ", collectModeIsPrevActive +"\n");
+                .addData("leftServoPos: ", leftServo.getPosition()+"\n");
 
         releaseModeIsPrevActive = releaseModeIsActive;
         collectModeIsPrevActive = collectModeIsActive;

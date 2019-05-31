@@ -96,13 +96,11 @@ public class Drive {
             rightDrive.setPower(-0.2);
         } else tankDrive(-driver.left_stick_y, -driver.right_stick_y);
 
-        //TODO: change telemetry
-        opMode.telemetry.addLine("Drive: ").
-                addData("left motor power: ", leftDrive.getPower())
-                .addData("right motor power: ", rightDrive.getPower())
+        opMode.telemetry.addLine("Drive: ")
                 .addData("left motor pos: ", leftDrive.getCurrentPosition())
                 .addData("right motor pos: ", rightDrive.getCurrentPosition())
-                .addData("\ndelta in encoders: ", Math.abs(leftDrive.getCurrentPosition() - rightDrive.getCurrentPosition()));
+                .addData("\ndelta in encoders: ", Math.abs(leftDrive.getCurrentPosition() - rightDrive.getCurrentPosition()))
+                .addData("\nrobot angle: ", getAngle());
     }
 
     private void tankDrive(double powerLeftDrive, double powerRightDrive) {
@@ -223,11 +221,6 @@ public class Drive {
         while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive() && opMode.getRuntime() <= timeS) {
             while (!turnPID.onTarget() && ((LinearOpMode)opMode).opModeIsActive()&& opMode.getRuntime() <= timeS) {
                 double output = turnPID.getOutput(getAngle());
-                //TODO: make sure 0.1 is good
-                /*if(Math.abs(output) < 0.1) {
-                    output = Math.signum(output) * 0.1;
-                }*/
-
                 leftDrive.setPower(-output);
                 rightDrive.setPower(output);
                 opMode.telemetry.addData("error: ", turnPID.getCurrentError())
@@ -307,18 +300,18 @@ public class Drive {
                 case LEFT:
                     turnByGyroAbsolut(40,2);
                     driveByEncoder(10, 0.2, Direction.BACKWARD, 5);
-                    curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.LEFT);
+                    curvedDrive(120, 1.9, 0.5, Direction.BACKWARD, CurvedDirection.LEFT);
                     break;
                 case CENTER:
                 case UNKNOWN:
-                    turnByGyroAbsolut(5,3);
+                    turnByGyroAbsolut(3,3);
                     driveByEncoder(75,0.5, Direction.BACKWARD, 10);
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30,10);
                     driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
                     driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 5);
-                    turnByGyroAbsolut(-100, 5);
+                    turnByGyroAbsolut(-90, 5);
                     driveByEncoder(80, 0.5, Drive.Direction.FORWARD, 5);
                     turnByGyroAbsolut(-30 , 5);
                     driveByEncoder(80, 0.5, Drive.Direction.BACKWARD, 5);

@@ -56,17 +56,6 @@ public class DepotCam extends LinearOpMode {
     protected GoldRecognation recognation = null;
 
     public void endAuto(GoldRecognation.MineralPos goldPos) {
-        if (goldPos == GoldRecognation.MineralPos.LEFT) {
-            robot.drive.turnByGyroAbsolut(-45, 10);
-            robot.drive.driveByEncoder(100, 0.5, Drive.Direction.FORWARD, 3000);
-            robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
-            robot.intake.collect();
-            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-            robot.climbing.moveLiftAuto(Climbing.Height.COLLECT);
-            robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-        } else {
-            robot.drive.driveByEncoder(40, 0.4, Drive.Direction.FORWARD, 3000);
-        }
     }
 
     @Override
@@ -89,6 +78,9 @@ public class DepotCam extends LinearOpMode {
         robot.intake.injackt();
         sleep(3000);
         robot.intake.stop();
+        endAuto(goldPos);
+        GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
+
 
 
 
