@@ -143,7 +143,7 @@ public class CreaterCam extends LinearOpMode {
                 }
                 robot.intake.stop();
                 robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-                robot.drive.driveByEncoder(10, 0.3, Drive.Direction.BACKWARD, 3);
+                robot.drive.driveByEncoder(10, 0.3, Drive.Direction.FORWARD, 3);
                 robot.drive.turnByGyroAbsolut(-155, 3);
                 robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
                 robot.drive.driveByEncoder(60, 1, Drive.Direction.FORWARD, 3);
