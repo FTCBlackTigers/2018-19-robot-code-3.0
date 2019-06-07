@@ -33,7 +33,7 @@ public class Drive {
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * 3.141592654);
     private final double KP = 1, KI = 0, KD = 0, TOLERANCE = 1;//KP = 0.05, KI = 0.03, KD = 0.03, TOLERANCE = 1;
-    private final double turnKP = 0.01, turnKI = 0.0, turnKD = 0.0, turnTOLERANCE = 4;
+    private final double turnKP = 0.005, turnKI = 0.0, turnKD = 0.0, turnTOLERANCE = 2;
 
     private OpMode opMode;
     private LogCreater log;
@@ -309,25 +309,27 @@ public class Drive {
                     break;
                 case RIGHT:
                     turnByGyroAbsolut(-30,10);
-                    driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
-                    driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 5);
+                    driveByEncoder(40, 0.5, Drive.Direction.BACKWARD, 5);
+                    driveByEncoder(20, 0.5, Drive.Direction.FORWARD, 5);
                     turnByGyroAbsolut(-90, 5);
-                    driveByEncoder(80, 0.5, Drive.Direction.FORWARD, 5);
-                    turnByGyroAbsolut(-30 , 5);
-                    driveByEncoder(80, 0.5, Drive.Direction.BACKWARD, 5);
+                    driveByEncoder(70, 0.5, Drive.Direction.FORWARD, 5);
+                    turnByGyroAbsolut(0 , 5);
+                    driveByEncoder(30, 0.5, Drive.Direction.BACKWARD, 5);
+                    turnByGyroAbsolut(-35 , 5);
+                    driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
                     //curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
                     break;
             }
             } else {
             switch (pos) {
                 case LEFT:
-                    turnByGyroAbsolut(-135,10);
+                    turnByGyroAbsolut(-135,5);
                     driveByEncoder(45,0.5, Direction.FORWARD,10);
                     break;
                 case CENTER:
                 case UNKNOWN:
-                    turnByGyroAbsolut(185,10);
-                    driveByEncoder(40,0.5, Direction.FORWARD,10);
+                    turnByGyroAbsolut(185,3);
+                    driveByEncoder(35,0.5, Direction.FORWARD,10);
                     break;
                 case RIGHT:
                     turnByGyroRelative(140,5);

@@ -55,14 +55,15 @@ public class AutoTest extends LinearOpMode {
   public void runOpMode() throws InterruptedException {
       robot.init(hardwareMap, this);
       waitForStart();
-      robot.drive.turnByGyroAbsolut(-30,10);
-      robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
-      robot.drive.driveByEncoder(30, 0.5, Drive.Direction.FORWARD, 5);
-      robot.drive.turnByGyroAbsolut(-100, 5);
-      robot.drive.driveByEncoder(80, 0.5, Drive.Direction.FORWARD, 5);
-      robot.drive.turnByGyroAbsolut(-30 , 5);
-      robot.drive.driveByEncoder(80, 0.5, Drive.Direction.BACKWARD, 5);
+      runtime.reset();
+      robot.drive.turnByGyroAbsolut(40, 15);
+      double time = runtime.time();
+      telemetry.addLine("" + time);
+      while (opModeIsActive()) {
+          telemetry.addLine("angle " + robot.drive.getAngle());
+          telemetry.addLine("stop time: " + time+" done");
+          telemetry.update();
       }
-
+  }
 
   }

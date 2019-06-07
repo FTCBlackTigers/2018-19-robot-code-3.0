@@ -68,6 +68,7 @@ public class CreaterCam extends LinearOpMode {
         while (goldPos == GoldRecognation.MineralPos.UNKNOWN && opModeIsActive() && getRuntime() <= timeToStop){
             goldPos = recognation.getGoldPosUsingCam(log);
         }
+        recognation.stopTfod();
         robot.land();
         robot.drive.samplingCam(Drive.Side.CREATER, goldPos);
         goToDepot(goldPos);

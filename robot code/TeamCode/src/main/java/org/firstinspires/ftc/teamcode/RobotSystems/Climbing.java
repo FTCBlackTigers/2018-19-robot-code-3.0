@@ -348,9 +348,10 @@ public class Climbing {
 
 
     //Auto methods
-    public void moveLiftAuto(Height height) {
+    public void moveLiftAuto(Height height, double timeS) {
         moveLift(height);
-        while(liftMotorLeft.isBusy() && liftMotorRight.isBusy() && ((LinearOpMode) opMode).opModeIsActive()) {
+        double timeToStop = timeS + opMode.getRuntime();
+        while(liftMotorLeft.isBusy() && liftMotorRight.isBusy() && ((LinearOpMode) opMode).opModeIsActive() && opMode.getRuntime() <= timeToStop) {
             opMode.telemetry.addData("liftMotorLeft: ", liftMotorLeft.getCurrentPosition());
             opMode.telemetry.update();
             if (log != null) {
@@ -358,6 +359,10 @@ public class Climbing {
             }
         }
         liftMotorLeft.setPower(0);
+    }
+
+    public void moveLiftAuto(Height height){
+        moveLiftAuto(height, 3);
     }
 
     public void moveAngleAuto(Angle angle) {
@@ -378,7 +383,7 @@ public class Climbing {
         angleMotorLeft.setPower(0);
     }
 
-    public  void moveAngleAndHeight(Angle angle, Height height){
+    public void moveAngleAndHeight(Angle angle, Height height){
         anglePID.reset(angle.pos, getAngle());
 
         liftMotorLeft.setTargetPosition(height.getTicks());
@@ -415,8 +420,8 @@ public class Climbing {
         }
         angleMotorLeft.setPower(0);
         angleMotorRight.setPower(0);
-
-        while(liftMotorLeft.isBusy()  && liftMotorRight.isBusy() && ((LinearOpMode) opMode).opModeIsActive()){
+        double timeToStop = opMode.getRuntime() + 2;
+        while(liftMotorLeft.isBusy()  && liftMotorRight.isBusy() && ((LinearOpMode) opMode).opModeIsActive() && opMode.getRuntime() <= timeToStop){
             opMode.telemetry.addLine("Lift \n")
                     .addData("position: ", liftMotorLeft.getCurrentPosition());
             opMode.telemetry.update();
