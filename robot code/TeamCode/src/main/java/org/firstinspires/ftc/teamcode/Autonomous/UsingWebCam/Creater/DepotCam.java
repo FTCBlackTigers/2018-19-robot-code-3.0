@@ -80,6 +80,7 @@ public class DepotCam extends LinearOpMode {
         sleep(3000);
         robot.intake.stop();
         endAuto(goldPos);
+        robot.drive.driveByEncoder(10, 0.5, Drive.Direction.FORWARD, 3);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
 
 

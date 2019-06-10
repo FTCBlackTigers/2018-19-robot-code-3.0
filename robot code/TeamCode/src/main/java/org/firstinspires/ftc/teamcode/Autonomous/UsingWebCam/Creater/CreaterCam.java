@@ -115,8 +115,8 @@ public class CreaterCam extends LinearOpMode {
                 robot.collectAuto();
                 break;
             case RIGHT:
-                robot.drive.turnByGyroAbsolut(150, 3);
-                robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 4);
+                robot.drive.turnByGyroAbsolut(145, 3);
+                robot.drive.driveByEncoder(48, 0.5, Drive.Direction.BACKWARD, 4);
                 robot.climbing.moveAngleAndHeight(Climbing.Angle.PUT, Climbing.Height.PUT);
                 robot.drive.driveByEncoder(10, 0.2, Drive.Direction.BACKWARD, 5);
                 timeToStop = getRuntime() + 3;
@@ -132,11 +132,11 @@ public class CreaterCam extends LinearOpMode {
                 robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
                 break;
             case LEFT:
-                robot.drive.turnByGyroAbsolut(-155, 3);
+                robot.drive.turnByGyroAbsolut(-155, 2);
                 robot.drive.driveByEncoder(60, 1, Drive.Direction.BACKWARD, 3);
                 robot.climbing.moveAngleAndHeight(Climbing.Angle.PUT, Climbing.Height.PUT);
                 robot.drive.turnByGyroAbsolut(-180, 3);
-                robot.drive.driveByEncoder(20, 0.2, Drive.Direction.BACKWARD, 5);
+                robot.drive.driveByEncoder(7, 0.2, Drive.Direction.BACKWARD, 5);
                 timeToStop = getRuntime() + 3;
                 while (opModeIsActive() && getRuntime() <= timeToStop) {
                     robot.climbing.moveLift(Climbing.Height.PUT);
@@ -144,10 +144,10 @@ public class CreaterCam extends LinearOpMode {
                 }
                 robot.intake.stop();
                 robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-                robot.drive.driveByEncoder(10, 0.3, Drive.Direction.FORWARD, 3);
+                robot.drive.driveByEncoder(15, 0.3, Drive.Direction.FORWARD, 3);
                 robot.drive.turnByGyroAbsolut(-155, 3);
+                robot.drive.driveByEncoder(55, 0.5, Drive.Direction.FORWARD, 3);
                 robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
-                robot.drive.driveByEncoder(60, 1, Drive.Direction.FORWARD, 3);
                 robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
                 break;
         }

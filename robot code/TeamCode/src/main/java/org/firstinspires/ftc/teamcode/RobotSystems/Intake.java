@@ -118,8 +118,7 @@ public class Intake {
 
 
     public void collect() {
-        //TODO: remove from comment
-        //collectMotor.setPower(COLLECTION_SPEED);
+        collectMotor.setPower(COLLECTION_SPEED);
     }
 
     public void release(){
