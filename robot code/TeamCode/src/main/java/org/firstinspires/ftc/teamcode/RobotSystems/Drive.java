@@ -332,8 +332,8 @@ public class Drive {
                     driveByEncoder(35,0.5, Direction.FORWARD,10);
                     break;
                 case RIGHT:
-                    turnByGyroRelative(150,5);
-                    driveByEncoder(40,0.5, Direction.FORWARD,10);
+                    turnByGyroAbsolut(-40,3);
+                    driveByEncoder(47,0.5, Direction.BACKWARD,10);
                     break;
             }
         }

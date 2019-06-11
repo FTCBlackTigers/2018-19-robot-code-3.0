@@ -26,7 +26,7 @@ public class Climbing {
         CLIMB(30),
         PUT(66);
         float pos;
-        final double ticksPerDegree =93.588;
+        final double ticksPerDegree = 93.588;
 
         public int getTicks() {
             return ((int) (ticksPerDegree * pos));
