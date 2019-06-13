@@ -299,9 +299,10 @@ public class Climbing {
     }
 
     public void moveLift(Height height) {
-        liftMotorLeft.setTargetPosition(height.getTicks() - GlobalVariebels.liftPosEndAuto);
+        int targetPosition = height.getTicks() - ((opMode instanceof LinearOpMode) ?  0 : GlobalVariebels.liftPosEndAuto);
+        liftMotorLeft.setTargetPosition(targetPosition);
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        liftMotorRight.setTargetPosition(height.getTicks() - GlobalVariebels.liftPosEndAuto);
+        liftMotorRight.setTargetPosition(targetPosition);
         liftMotorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotorLeft.setPower(Math.abs(LIFT_SPEED));
         liftMotorRight.setPower(Math.abs(LIFT_SPEED));
