@@ -315,8 +315,8 @@ public class Drive {
                     driveByEncoder(70, 0.5, Drive.Direction.FORWARD, 5);
                     turnByGyroAbsolut(-5 , 5);
                     driveByEncoder(30, 0.5, Drive.Direction.BACKWARD, 5);
-                    turnByGyroAbsolut(-35 , 5);
-                    driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
+                    turnByGyroAbsolut(-40 , 5);
+                    driveByEncoder(60, 0.5, Drive.Direction.BACKWARD, 5);
                     //curvedDrive(140, 2, 0.5, Direction.BACKWARD, CurvedDirection.RIGHT);
                     break;
             }

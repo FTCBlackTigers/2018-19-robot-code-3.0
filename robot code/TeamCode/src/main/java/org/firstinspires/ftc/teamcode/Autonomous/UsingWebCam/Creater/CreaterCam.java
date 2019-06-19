@@ -101,15 +101,17 @@ public class CreaterCam extends LinearOpMode {
             case CENTER:
             case UNKNOWN:
                 robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
-                robot.climbing.moveAngleAndHeight(Climbing.Angle.PUT, Climbing.Height.PUT);
+                robot.climbing.moveAngleAndHeight(Climbing.Angle.GO_TO_CLIMB, Climbing.Height.PUT);
                 robot.drive.driveByEncoder(10, 0.2, Drive.Direction.BACKWARD, 5);
-                double timeToStop = getRuntime() + 3;
+                double timeToStop = getRuntime() + 4;
                 while (opModeIsActive() && getRuntime() <= timeToStop) {
+                    robot.climbing.moveAngle(Climbing.Angle.GO_TO_CLIMB);
                     robot.climbing.moveLift(Climbing.Height.PUT);
                     robot.intake.release();
                 }
                 robot.intake.stop();
-                robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+                robot.climbing.moveAngleAuto(Climbing.Angle.PUT);
+                robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
                 robot.drive.driveByEncoder(60, 0.5, Drive.Direction.FORWARD, 5);
                 robot.climbing.moveLift(Climbing.Height.DRIVE_POS);
                 robot.collectAuto();

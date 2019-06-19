@@ -22,9 +22,9 @@ public class Climbing {
         DRIVE_POS(72),
         COLLECT(170),
         LAND(68),
-        GO_TO_CLIMB(64),
+        GO_TO_CLIMB(54),
         CLIMB(30),
-        PUT(66);
+        PUT(67);
         float pos;
         final double ticksPerDegree = 93.588;
 
