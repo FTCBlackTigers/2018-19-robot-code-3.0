@@ -127,11 +127,9 @@ public class CreaterCam extends LinearOpMode {
                     robot.intake.release();
                 }
                 robot.intake.stop();
-                robot.climbing.moveAngleAuto(Climbing.Angle.DRIVE_POS);
-                robot.climbing.moveLiftAuto(Climbing.Height.PUT);
-                robot.drive.driveByEncoder(40, 0.5, Drive.Direction.FORWARD, 3);
-                robot.climbing.moveLift(Climbing.Height.DRIVE_POS);
-                robot.drive.driveByEncoder(30, 1, Drive.Direction.FORWARD, 3);
+                robot.climbing.moveAngleAuto(Climbing.Angle.PUT);
+                robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
+                robot.drive.driveByEncoder(70, 0.8, Drive.Direction.FORWARD, 3);
                 robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
                 robot.drive.turnByGyroAbsolut(-170, 3);
                 robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
@@ -148,13 +146,11 @@ public class CreaterCam extends LinearOpMode {
                     robot.intake.release();
                 }
                 robot.intake.stop();
-                robot.climbing.moveAngleAuto(Climbing.Angle.DRIVE_POS);
-                robot.climbing.moveLiftAuto(Climbing.Height.PUT);
+                robot.climbing.moveAngleAuto(Climbing.Angle.PUT);
+                robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
                 robot.drive.driveByEncoder(15, 0.3, Drive.Direction.FORWARD, 3);
-                robot.climbing.moveLift(Climbing.Height.DRIVE_POS);
                 robot.drive.turnByGyroAbsolut(-155, 3);
                 robot.drive.driveByEncoder(55, 1, Drive.Direction.FORWARD, 3);
-                robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
                 robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
                 break;
         }
