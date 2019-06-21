@@ -76,6 +76,7 @@ public class Robot {
         opMode.telemetry.addLine("done!");
         opMode.telemetry.update();
         climbing.moveAngleAndHeight(Climbing.Angle.DOWN, Climbing.Height.CLIMB);
+        climbing.moveAngleAuto(Climbing.Angle.DOWN);
 
 
         climbing.angleMotorLeft.setPower(0);

@@ -74,8 +74,6 @@ public class CreaterCam extends LinearOpMode {
         goToDepot(goldPos);
         goToCreater(goldPos);
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
-
-
     }
 
     public void goToCreater(GoldRecognation.MineralPos goldpos){
@@ -94,6 +92,7 @@ public class CreaterCam extends LinearOpMode {
         }
         robot.drive.turnByGyroAbsolut(degree,3);
         robot.collectAuto();
+
         robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
         robot.climbing.moveAngleAuto(Climbing.Angle.PUT);
         robot.intake.stop();
@@ -101,11 +100,10 @@ public class CreaterCam extends LinearOpMode {
             case CENTER:
             case UNKNOWN:
                 robot.drive.driveByEncoder(50, 0.5, Drive.Direction.BACKWARD, 5);
-                robot.climbing.moveAngleAndHeight(Climbing.Angle.GO_TO_CLIMB, Climbing.Height.PUT);
+                robot.climbing.moveAngleAndHeight(Climbing.Angle.AUTO_PUT, Climbing.Height.COLLECT);
                 robot.drive.driveByEncoder(10, 0.2, Drive.Direction.BACKWARD, 5);
-                double timeToStop = getRuntime() + 4;
+                double timeToStop = getRuntime() + 2;
                 while (opModeIsActive() && getRuntime() <= timeToStop) {
-                    robot.climbing.moveAngle(Climbing.Angle.GO_TO_CLIMB);
                     robot.climbing.moveLift(Climbing.Height.PUT);
                     robot.intake.release();
                 }
@@ -119,7 +117,7 @@ public class CreaterCam extends LinearOpMode {
             case RIGHT:
                 robot.drive.turnByGyroAbsolut(160, 3);
                 robot.drive.driveByEncoder(60, 0.8, Drive.Direction.BACKWARD, 4);
-                robot.climbing.moveAngleAndHeight(Climbing.Angle.GO_TO_CLIMB, Climbing.Height.PUT);
+                robot.climbing.moveAngleAndHeight(Climbing.Angle.AUTO_PUT, Climbing.Height.COLLECT);
                 robot.drive.driveByEncoder(10, 0.3, Drive.Direction.BACKWARD, 5);
                 timeToStop = getRuntime() + 2;
                 while (opModeIsActive() && getRuntime() <= timeToStop) {
@@ -136,8 +134,8 @@ public class CreaterCam extends LinearOpMode {
                 break;
             case LEFT:
                 robot.drive.turnByGyroAbsolut(-155, 2);
+                robot.climbing.moveAngleAuto(Climbing.Angle.AUTO_PUT);
                 robot.drive.driveByEncoder(60, 1, Drive.Direction.BACKWARD, 3);
-                robot.climbing.moveAngleAndHeight(Climbing.Angle.GO_TO_CLIMB, Climbing.Height.PUT);
                 robot.drive.turnByGyroAbsolut(-180, 3);
                 robot.drive.driveByEncoder(7, 0.4, Drive.Direction.BACKWARD, 5);
                 timeToStop = getRuntime() + 2;
@@ -148,14 +146,12 @@ public class CreaterCam extends LinearOpMode {
                 robot.intake.stop();
                 robot.climbing.moveAngleAuto(Climbing.Angle.PUT);
                 robot.climbing.moveLiftAuto(Climbing.Height.DRIVE_POS);
-                robot.drive.driveByEncoder(15, 0.3, Drive.Direction.FORWARD, 3);
+                robot.drive.driveByEncoder(15, 0.4, Drive.Direction.FORWARD, 3);
                 robot.drive.turnByGyroAbsolut(-155, 3);
                 robot.drive.driveByEncoder(55, 1, Drive.Direction.FORWARD, 3);
                 robot.climbing.moveAngleAuto(Climbing.Angle.COLLECT);
                 break;
         }
-
-
     }
     public void goToDepot(GoldRecognation.MineralPos goldPos) {
     }

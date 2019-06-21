@@ -56,6 +56,7 @@ public class DepotCam extends LinearOpMode {
     protected GoldRecognation recognation = null;
 
     public void endAuto(GoldRecognation.MineralPos goldPos) {
+        robot.drive.driveByEncoder(35, 0.5, Drive.Direction.FORWARD, 3);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class DepotCam extends LinearOpMode {
         sleep(3000);
         robot.intake.stop();
         endAuto(goldPos);
-        robot.drive.driveByEncoder(35, 0.5, Drive.Direction.FORWARD, 3);
+
         GlobalVariebels.liftPosEndAuto = robot.climbing.liftMotorLeft.getCurrentPosition();
 
 

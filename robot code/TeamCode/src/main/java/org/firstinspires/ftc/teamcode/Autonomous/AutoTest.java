@@ -44,7 +44,7 @@ import org.firstinspires.ftc.teamcode.Util.PIDController;
 import org.firstinspires.ftc.teamcode.Util.TurnPIDController;
 
 @Autonomous(name = "AutoTest", group = "Tests")
-
+@Disabled
 public class AutoTest extends LinearOpMode {
 
   private Robot robot = new Robot();
