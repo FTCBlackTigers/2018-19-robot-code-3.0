@@ -22,6 +22,7 @@ public class CreaterToDepotCam extends CreaterCam {
     }
     @Override
     public void goToDepot(GoldRecognation.MineralPos goldPos) {
+        robot.climbing.moveAngleAuto(Climbing.Angle.TEAM_MARKER);
         switch (goldPos) {
             case LEFT:
                 robot.drive.driveByEncoder(15, 0.5, Drive.Direction.BACKWARD, 3);

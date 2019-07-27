@@ -77,6 +77,7 @@ public class DepotCam extends LinearOpMode {
         recognation.stopTfod();
         robot.land();
         robot.drive.samplingCam(Drive.Side.DEPOT, goldPos);
+        robot.climbing.moveAngleAuto(Climbing.Angle.TEAM_MARKER);
         robot.intake.injackt();
         sleep(3000);
         robot.intake.stop();

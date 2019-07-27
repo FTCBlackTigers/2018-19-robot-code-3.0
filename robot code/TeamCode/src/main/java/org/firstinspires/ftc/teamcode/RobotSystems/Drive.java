@@ -301,6 +301,7 @@ public class Drive {
                     turnByGyroAbsolut(40,2);
                     driveByEncoder(10, 0.2, Direction.BACKWARD, 5);
                     curvedDrive(120, 1.9, 0.5, Direction.BACKWARD, CurvedDirection.LEFT);
+                    //turnByGyroAbsolut(-40,4);
                     break;
                 case CENTER:
                 case UNKNOWN:

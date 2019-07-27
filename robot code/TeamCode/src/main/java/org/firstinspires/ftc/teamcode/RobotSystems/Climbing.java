@@ -18,14 +18,16 @@ import static java.lang.Thread.sleep;
 
 public class Climbing {
     public enum Angle {
+        TEAM_MARKER(10),
         DOWN(25),
         DRIVE_POS(72),
         COLLECT(170),
         LAND(68),
         GO_TO_CLIMB(60),
         CLIMB(30),
-        AUTO_PUT(45),
-        PUT(67);
+        AUTO_PUT(35),
+        PUT(63),
+        PUT_CORRECTION(55);
         float pos;
         final double ticksPerDegree = 93.588;
 
